@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { ExternalLink, Github, Eye } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 
 const projects = [

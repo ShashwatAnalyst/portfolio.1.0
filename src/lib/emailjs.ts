@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser';
 
 // Initialize EmailJS with your public key
-emailjs.init("vCsyJWyCmsvXkcs3I");
+emailjs.init(import.meta.env.EMAILJS_PUBLIC_KEY);
 
 export const sendEmail = async (formData: {
     name: string;
@@ -18,8 +18,8 @@ export const sendEmail = async (formData: {
         };
 
         const response = await emailjs.send(
-            "service_sqpjye1",
-            "template_hm0puep",
+            import.meta.env.EMAILJS_SERVICE_ID,
+            import.meta.env.EMAILJS_TEMPLATE_ID,
             templateParams
         );
 

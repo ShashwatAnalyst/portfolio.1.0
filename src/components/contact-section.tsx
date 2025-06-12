@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
 import { sendEmail } from '../lib/emailjs';
 import { toast } from 'sonner';
 import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';

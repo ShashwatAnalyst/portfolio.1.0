@@ -1,13 +1,9 @@
 import { Download, Mail } from 'lucide-react';
 import { Button } from './ui/button';
-import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
-import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 
 export function HeroSection() {
-  const { addSection } = useUltraSmoothScroll();
-
   return (
-    <section ref={addSection} id="hero" className="min-h-screen flex items-center justify-center">
+    <section id="hero" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8 text-center lg:text-left">
           <div className="space-y-4">

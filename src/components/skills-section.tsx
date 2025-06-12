@@ -149,16 +149,6 @@ export function SkillsSection() {
     setSelectedSkill(skillName === selectedSkill ? null : skillName);
   };
 
-  const handlePointClick = (data: any) => {
-    console.log('Click event data:', data);
-    if (data && data.payload) {
-      const year = data.payload.year;
-      console.log('Setting year to:', year);
-      setSelectedYear(year);
-      // Keep selectedSkill as is to maintain skill selection when switching timelines
-    }
-  };
-
   const getSkillColor = (skillName: string) => {
     switch (skillName) {
       case 'Python':

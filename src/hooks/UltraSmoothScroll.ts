@@ -145,9 +145,22 @@ export const useUltraSmoothScroll = () => {
     }, []);
 
     const scrollToSection = useCallback((index: number) => {
-        if (smoother.current && sections.current[index]) {
-            smoother.current.scrollTo(sections.current[index], true, "power3.inOut");
-        }
+        if (!smoother.current || !sections.current[index]) return;
+
+        const section = sections.current[index];
+        const sectionTop = section.offsetTop;
+
+        // Use GSAP to animate the scroll
+        gsap.to(smoother.current.scrollTop, {
+            value: sectionTop,
+            duration: 1,
+            ease: "power3.inOut",
+            onUpdate: () => {
+                if (smoother.current) {
+                    smoother.current.scrollTo(sectionTop, true);
+                }
+            }
+        });
     }, []);
 
     useEffect(() => {

@@ -63,7 +63,7 @@ portfolio/
 │   ├── components/     # React components
 │   ├── hooks/         # Custom React hooks
 │   ├── styles/        # Global styles
-│   └── app/           # Next.js app directory
+│   └── app/           # React app directory
 ├── public/            # Static assets
 └── ...config files
 ```

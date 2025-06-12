@@ -13,15 +13,15 @@ export function HeroSection() {
           <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl heading-font tracking-tight">
               <span className="bg-blue-600 bg-clip-text text-transparent">
-                HI, I'M SHASHWAT,<br /> DATA ANALYST
+                HI, I'M SHASHWAT,<br /> ASPIRING DATA ANALYST
               </span>
             </h1>
             <h2 className="text-2xl md:text-3xl text-muted-foreground heading-font">
-              TRANSFORMING DATA INTO INSIGHTS
+              TURNING DATA INTO INSIGHTS
             </h2>
             <p className="text-lg text-muted-foreground text-[18.5px] max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Passionate about uncovering patterns in data and creating compelling visualizations
-              that drive business decisions. Specialized in SQL, Python, Tableau, and Excel.
+              Passionate about data analysis and visualization. Skilled in SQL, Python, Tableau, and Excel.
+              Ready to apply my knowledge and learn from real-world challenges.
             </p>
           </div>
 

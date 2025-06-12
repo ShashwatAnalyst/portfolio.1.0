@@ -281,7 +281,7 @@ export function SkillsSection() {
   };
 
   return (
-    <section ref={addSection} id="skills" className="min-h-screen flex items-center justify-center">
+    <section id="skills" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4">SKILLS & EXPERTISE</h2>

@@ -51,7 +51,7 @@ export function ProjectsSection() {
   const { addSection } = useUltraSmoothScroll();
 
   return (
-    <section ref={addSection} id="projects" className="min-h-screen flex items-center justify-center">
+    <section id="projects" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4">FEATURED PROJECTS</h2>

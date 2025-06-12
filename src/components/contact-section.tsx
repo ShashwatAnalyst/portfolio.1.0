@@ -50,7 +50,7 @@ export function ContactSection() {
   };
 
   return (
-    <section ref={addSection} id="contact" className="px-4 bg-background">
+    <section id="contact" className="px-4">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4 text-foreground">GET IN TOUCH</h2>

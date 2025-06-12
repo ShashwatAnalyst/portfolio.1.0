@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 import { useState, useEffect } from 'react';
 import {
   Select,
@@ -139,7 +139,7 @@ function useWindowSize() {
 }
 
 export function SkillsSection() {
-  const { addToRefs } = useScrollAnimation();
+  const { addSection } = useUltraSmoothScroll();
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const { width } = useWindowSize();
@@ -291,7 +291,7 @@ export function SkillsSection() {
   };
 
   return (
-    <section ref={addToRefs} id="skills" className="px-4">
+    <section ref={addSection} id="skills" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4">SKILLS & EXPERTISE</h2>

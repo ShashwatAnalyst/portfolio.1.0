@@ -6,11 +6,11 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
 import { sendEmail } from '../lib/emailjs';
 import { toast } from 'sonner';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 import { Label } from './ui/label';
 
 export function ContactSection() {
-  const { addToRefs } = useScrollAnimation();
+  const { addSection } = useUltraSmoothScroll();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -52,7 +52,7 @@ export function ContactSection() {
   };
 
   return (
-    <section ref={addToRefs} id="contact" className="px-4">
+    <section ref={addSection} id="contact" className="px-4">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4">GET IN TOUCH</h2>

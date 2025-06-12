@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { ExternalLink, Github, Eye } from 'lucide-react';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 
 const projects = [
   {
@@ -48,9 +48,10 @@ const projects = [
 ];
 
 export function ProjectsSection() {
-  const { addToRefs } = useScrollAnimation();
+  const { addSection } = useUltraSmoothScroll();
+
   return (
-    <section ref={addToRefs} id="projects" className="px-4">
+    <section ref={addSection} id="projects" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4">FEATURED PROJECTS</h2>

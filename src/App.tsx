@@ -14,12 +14,12 @@ import { Spacer } from './components/spacer';
 import { Toaster } from 'sonner';
 import './App.css';
 
-// 👇 Import the hook
-import { useScrollAnimation } from './hooks/useScrollAnimation'; // Adjust path accordingly
+// Replace useScrollAnimation with UltraSmoothScroll
+import { useUltraSmoothScroll } from './hooks/UltraSmoothScroll';
 
 export default function App() {
   const [showCinematic, setShowCinematic] = useState(true);
-  const { addToRefs } = useScrollAnimation(); // 👈 Use hook
+  const { containerRef, contentRef, addSection } = useUltraSmoothScroll();
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -27,23 +27,44 @@ export default function App() {
         <StarryBackground />
         <CustomCursor />
         <ScrollProgressIndicator />
+
+        {/* Enhanced scroll indicator */}
         <div className="relative z-20">
           <Sidebar />
-          <main className="container mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-16 lg:py-24">
 
-            {/* Wrapped sections in <div ref={addToRefs}> for scroll animation */}
-            <div ref={addToRefs}><HeroSection /></div>
-            <Spacer />
-            <div ref={addToRefs}><AboutSection /></div>
-            <Spacer />
-            <div ref={addToRefs}><SkillsSection /></div>
-            <Spacer />
-            <div ref={addToRefs}><ProjectsSection /></div>
-            <Spacer />
+          {/* Add smooth scroll container and content refs */}
+          <div ref={containerRef} className="smooth-scroll-container">
+            <div ref={contentRef} className="smooth-scroll-content">
+              <main className="container mx-auto px-4 md:px-8 lg:px-16 pt-0 pb-4 md:pb-8 lg:pb-12">
+                <div ref={addSection} className="scroll-section">
+                  <HeroSection />
+                </div>
 
-          </main>
+                <Spacer />
 
-          <div ref={addToRefs}><ContactSection /></div>
+                <div ref={addSection} className="scroll-section">
+                  <AboutSection />
+                </div>
+
+                <Spacer />
+
+                <div ref={addSection} className="scroll-section">
+                  <SkillsSection />
+                </div>
+
+                <Spacer />
+
+                <div ref={addSection} className="scroll-section">
+                  <ProjectsSection />
+                </div>
+
+                <Spacer />
+              </main>
+
+              {/* Contact section outside main container */}
+              <ContactSection />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -57,4 +78,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-

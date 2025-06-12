@@ -1,14 +1,14 @@
 import { Download, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 
 export function HeroSection() {
-  const { addToRefs } = useScrollAnimation();
+  const { addSection } = useUltraSmoothScroll();
 
   return (
-    <section ref={addToRefs} id="hero" className="px-4">
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center -mt-8">
+    <section ref={addSection} id="hero" className="min-h-screen flex items-center justify-center">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8 text-center lg:text-left">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl heading-font tracking-tight">
@@ -49,11 +49,11 @@ export function HeroSection() {
         <div className="flex justify-center lg:justify-end">
           <div className="relative  lg:right-[-50px] lg:-top-[75px] md:-right-[120px] md:-top-[15px]  transform -translate-x-[100px]">
 
-            <div className="relative -right-[130px] top-[20px] h-[150px]  w-[150px] lg:-right-[00px] md:-right-[20px]  md:top-[40px] lg:w-[300px] lg:h-[300px] md:h-[150px]  md:w-[150px] rounded-full overflow-hidden border-4 border-border bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 hover:rotate-2 animate-float z-10 translate-x-[-50px] translate-y-[125px]">
+            <div className="relative -right-[130px] top-[20px] h-[150px] w-[150px] lg:-right-[00px] md:-right-[20px] md:top-[40px] lg:w-[300px] lg:h-[300px] md:h-[150px] md:w-[150px] rounded-full overflow-hidden border-4 bor backdrop-blur-sm transform hover:scale-105 transition-all duration-500 hover:rotate-2 animate-float z-10 translate-x-[-50px] translate-y-[125px]">
               <img
-                src="https://media.istockphoto.com/id/1393750072/vector/flat-white-icon-man-for-web-design-silhouette-flat-illustration-vector-illustration-stock.jpg?s=612x612&w=0&k=20&c=s9hO4SpyvrDIfELozPpiB_WtzQV9KhoMUP9R9gVohoU="
+                src="RKS_0611_copy.png"
                 alt="Profile"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                className="w-full h-full object-cover rounded-full transition-transform duration-700 hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent"></div>
             </div>

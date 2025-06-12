@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { BarChart3, Database, TrendingUp, Users } from 'lucide-react';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 
 export function AboutSection() {
-  const { addToRefs } = useScrollAnimation();
+  const { addSection } = useUltraSmoothScroll();
   const highlights = [
     {
       icon: BarChart3,
@@ -29,7 +29,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section ref={addToRefs} id="about" className="px-4">
+    <section ref={addSection} id="about" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font mb-4">ABOUT ME</h2>

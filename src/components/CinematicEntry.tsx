@@ -136,16 +136,16 @@ const CinematicEntry: React.FC<CinematicEntryProps> = ({ onComplete }) => {
         backfaceVisibility: 'hidden'
       }}
     >
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
-      <div className="CinematicEntry-item h-full w-[10%] bg-black transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="CinematicEntry-item h-full w-[10%] bg-[#1a1a1a] transform-gpu" style={{ transform: 'translateZ(0)' }}></div>
 
       <p className="name-text flex text-[20vw] lg:text-[200px] heading-font text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 leading-none overflow-hidden will-change-transform">
         <span className="inline-block transform-gpu will-change-transform backface-visibility-hidden" style={{ transform: 'translateZ(0) translateY(100%)' }}>W</span>

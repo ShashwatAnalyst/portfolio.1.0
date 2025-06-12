@@ -1,76 +1,70 @@
 # Shashwat Singh - Portfolio Website
 
-![Portfolio Screenshot](https://github.com/itsshashwatsingh/portfolio.1.0/blob/main/public/images/portfolio-screenshot.png?raw=true)
+![Portfolio Screenshot](https://raw.githubusercontent.com/itsshashwatsingh/portfolio.1.0/main/public/images/portfolio-screenshot.png)
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This portfolio showcases my work as a Data Analyst and includes smooth animations powered by GSAP.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This project showcases my skills, projects, and experience in web development.
 
-If you like my work, give it a star⭐.
+## 🚀 Live Demo
 
-## 🚀 Features
+Visit the live website: [portfolio-1-0-lac.vercel.app](https://portfolio-1-0-lac.vercel.app)
 
-- **Modern Design**: Clean and professional UI with smooth animations
-- **Responsive**: Fully responsive design that works on all devices
-- **Performance Optimized**: Built with Vite for optimal performance
-- **Interactive Elements**: Smooth scrolling and engaging animations
-- **Dark Mode**: Built-in dark mode support
-- **Contact Form**: Easy way for potential employers to reach out
+## 🛠️ Technologies Used
 
-## 🛠️ Tech Stack
+- React
+- TypeScript
+- Tailwind CSS
+- GSAP (GreenSock Animation Platform)
+- EmailJS for contact form
+- Vite for build tooling
 
-- **Framework**: React 18
-- **Build Tool**: Vite
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: GSAP (GreenSock Animation Platform)
-- **Icons**: Lucide Icons
-- **UI Components**: Custom components with shadcn/ui
+## 📋 Features
 
-## 📦 Installation
+- Responsive design
+- Smooth animations
+- Dark/Light mode
+- Contact form
+- Project showcase
+- Skills visualization
+- Interactive timeline
+
+## 🏗️ Project Structure
+
+```
+src/
+├── components/     # React components
+├── lib/           # Utility functions and configurations
+├── styles/        # Global styles and Tailwind config
+└── App.tsx        # Main application component
+```
+
+## 🚀 Getting Started
 
 1. Clone the repository:
-```bash
-git clone https://github.com/itsshashwatsingh/portfolio.1.0.git
-```
+   ```bash
+   git clone https://github.com/itsshashwatsingh/portfolio.1.0.git
+   ```
 
 2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
+   ```bash
+   npm install
+   ```
 
-3. Run the development server:
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🎨 Customization
+## 📝 License
 
-- Update the content in the respective component files
-- Modify the theme colors in `tailwind.config.js`
-- Add or remove sections as needed
-- Customize animations in the components
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📝 Project Structure
+## 🙏 Acknowledgments
 
-```
-portfolio/
-├── src/
-│   ├── components/     # React components
-│   ├── hooks/         # Custom React hooks
-│   ├── styles/        # Global styles
-│   └── app/           # React app directory
-├── public/            # Static assets
-└── ...config files
-```
+- Design inspired by [Brittany Chiang's portfolio](https://brittanychiang.com/)
+- Icons from [Lucide Icons](https://lucide.dev/)
+- UI components from [shadcn/ui](https://ui.shadcn.com/)
 
 ## 🤝 Contributing
 

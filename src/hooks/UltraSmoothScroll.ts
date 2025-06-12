@@ -5,10 +5,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
+interface Section {
+    element: HTMLElement;
+    id: string;
+}
+
 export function useUltraSmoothScroll() {
     const containerRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
-    const [sections, setSections] = useState<{ element: HTMLElement; id: string }[]>([]);
+    const [sections, setSections] = useState<Section[]>([]);
     const smootherRef = useRef<ScrollSmoother | null>(null);
 
     useEffect(() => {

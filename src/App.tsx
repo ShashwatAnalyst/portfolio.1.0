@@ -36,31 +36,31 @@ export default function App() {
           <div ref={containerRef} className="smooth-scroll-container">
             <div ref={contentRef} className="smooth-scroll-content">
               <main className="container mx-auto px-4 md:px-8 lg:px-16 pt-0 pb-4 md:pb-8 lg:pb-12">
-                <div ref={(el) => addSection(el, 'hero')} className="scroll-section">
+                <div ref={(el) => el && addSection(el, 'hero')} className="scroll-section">
                   <HeroSection />
                 </div>
 
                 <Spacer />
 
-                <div ref={(el) => addSection(el, 'about')} className="scroll-section">
+                <div ref={(el) => el && addSection(el, 'about')} className="scroll-section">
                   <AboutSection />
                 </div>
 
                 <Spacer />
 
-                <div ref={(el) => addSection(el, 'skills')} className="scroll-section">
+                <div ref={(el) => el && addSection(el, 'skills')} className="scroll-section">
                   <SkillsSection />
                 </div>
 
                 <Spacer />
 
-                <div ref={(el) => addSection(el, 'projects')} className="scroll-section">
+                <div ref={(el) => el && addSection(el, 'projects')} className="scroll-section">
                   <ProjectsSection />
                 </div>
 
                 <Spacer />
 
-                <div ref={(el) => addSection(el, 'contact')} className="scroll-section">
+                <div ref={(el) => el && addSection(el, 'contact')} className="scroll-section">
                   <ContactSection />
                 </div>
               </main>

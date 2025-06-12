@@ -16,7 +16,6 @@ import './App.css';
 
 // Replace useScrollAnimation with UltraSmoothScroll
 import { useUltraSmoothScroll } from './hooks/UltraSmoothScroll';
-import { MainContent } from './components/main-content';
 
 export default function App() {
   const [showCinematic, setShowCinematic] = useState(true);
@@ -28,11 +27,6 @@ export default function App() {
         <StarryBackground />
         <CustomCursor />
         <ScrollProgressIndicator />
-
-        <div className="flex">
-          <Sidebar />
-          <MainContent />
-        </div>
 
         {/* Enhanced scroll indicator */}
         <div className="relative z-20">
@@ -65,10 +59,11 @@ export default function App() {
                 </div>
 
                 <Spacer />
-              </main>
 
-              {/* Contact section outside main container */}
-              <ContactSection />
+                <div ref={addSection} className="scroll-section">
+                  <ContactSection />
+                </div>
+              </main>
             </div>
           </div>
         </div>

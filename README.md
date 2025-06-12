@@ -1,19 +1,20 @@
 # Shashwat Singh - Portfolio Website
 
-A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. This portfolio showcases my work as a Data Analyst and includes smooth animations powered by GSAP.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This portfolio showcases my work as a Data Analyst and includes smooth animations powered by GSAP.
 
 ## 🚀 Features
 
 - **Modern Design**: Clean and professional UI with smooth animations
 - **Responsive**: Fully responsive design that works on all devices
-- **Performance Optimized**: Built with Next.js for optimal performance
+- **Performance Optimized**: Built with Vite for optimal performance
 - **Interactive Elements**: Smooth scrolling and engaging animations
 - **Dark Mode**: Built-in dark mode support
 - **Contact Form**: Easy way for potential employers to reach out
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 14
+- **Framework**: React 18
+- **Build Tool**: Vite
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Animations**: GSAP (GreenSock Animation Platform)

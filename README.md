@@ -1,6 +1,6 @@
 # Shashwat Singh - Portfolio Website
 
-![Portfolio Screenshot](https://raw.githubusercontent.com/itsshashwatsingh/portfolio.1.0/main/public/images/portfolio-screenshot.png)
+![Portfolio Screenshot](https://github.com/itsshashwatsingh/portfolio.1.0/blob/main/public/images/portfolio-screenshot.png?raw=true)
 
 A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This portfolio showcases my work as a Data Analyst and includes smooth animations powered by GSAP.
 

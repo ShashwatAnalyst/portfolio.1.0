@@ -1,10 +1,12 @@
 import { Button } from './ui/button';
-import { Mail } from 'lucide-react';
+import { Mail, Sun, Moon } from 'lucide-react';
 import { useState } from 'react';
 import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
+import { useTheme } from 'next-themes';
 
 export function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
+    const { theme, setTheme } = useTheme();
 
     const scrollToSection = (sectionId: string) => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -13,7 +15,6 @@ export function Sidebar() {
 
     return (
         <>
-
             <div className="fixed top-4 left-4 z-[100]">
                 <label htmlFor="menu-check" className="flex flex-col w-[40px] h-[40px] cursor-pointer justify-center">
                     <input
@@ -42,6 +43,22 @@ export function Sidebar() {
                     }`}
             >
                 <div className="flex flex-col h-full p-6">
+                    {/* Theme Toggle */}
+                    <div className="absolute top-4 right-4">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                            className="hover:scale-110 transition-all"
+                        >
+                            {theme === 'dark' ? (
+                                <Sun className="h-5 w-5" />
+                            ) : (
+                                <Moon className="h-5 w-5" />
+                            )}
+                        </Button>
+                    </div>
+
                     {/* Navigation Links */}
                     <div className="flex flex-col gap-4 mt-16">
                         <div

@@ -11,17 +11,7 @@ export function Sidebar() {
     const { scrollToSection } = useUltraSmoothScroll();
 
     const handleNavigation = (sectionId: string) => {
-        const sectionMap: { [key: string]: number } = {
-            'home': 0,
-            'about': 1,
-            'skills': 2,
-            'projects': 3,
-            'contact': 4
-        };
-
-        if (sectionMap[sectionId] !== undefined) {
-            scrollToSection(sectionMap[sectionId]);
-        }
+        scrollToSection(sectionId);
         setIsOpen(false);
     };
 
@@ -55,7 +45,7 @@ export function Sidebar() {
                     <div className="flex flex-col gap-4 mt-16">
                         <div
                             className="flex items-center text-lg hover:text-primary transition-colors duration-300 group"
-                            onClick={() => handleNavigation('home')}
+                            onClick={() => handleNavigation('hero')}
                         >
                             <div className="relative w-4 h-4 rounded-full bg-blue-500 mr-3 group-hover:scale-150 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

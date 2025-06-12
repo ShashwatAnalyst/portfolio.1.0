@@ -39,12 +39,14 @@ html {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  z-index: 1;
 }
 
 .smooth-scroll-content {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  will-change: transform;
 }
 
 /* Section styles for smooth animations */
@@ -57,10 +59,11 @@ html {
   justify-content: center;
   will-change: transform;
 }
+
 html, body {
   overflow-x: hidden;
-  
 }
+
 html {
   scroll-behavior: auto !important;
 }

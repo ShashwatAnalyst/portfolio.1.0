@@ -90,4 +90,4 @@ This portfolio is inspired by and built upon the amazing work of [Tajmirul's Por
 
 ---
 
-Made with ❤️ by Shashwat Singh 
+Made with ❤️ and ☕ by Shashwat Singh 

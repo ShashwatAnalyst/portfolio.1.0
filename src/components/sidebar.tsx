@@ -1,5 +1,5 @@
 import { Button } from './ui/button';
-import { Menu, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { useState } from 'react';
 import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
 
@@ -108,7 +108,7 @@ export function Sidebar() {
                         {/* Email */}
                         <div className="flex items-center gap-2 text-muted-foreground mb-4">
                             <Mail className="w-4 h-4" />
-                            <span>analyst@example.com</span>
+                            <span>shashwat98k@gmail.com</span>
                         </div>
 
                         {/* Social Media Buttons */}

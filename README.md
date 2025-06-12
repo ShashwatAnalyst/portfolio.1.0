@@ -8,6 +8,13 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 Visit the live website: [portfolio-1-0-lac.vercel.app](https://portfolio-1-0-lac.vercel.app)
 
+## 👨‍💻 Connect With Me
+
+- GitHub: [@itsshashwatsingh](https://github.com/itsshashwatsingh)
+- LinkedIn: [Shashwat Singh](https://www.linkedin.com/in/shashwat-singh-bb2730357/)
+- Twitter: [@ShashwatSi48402](https://x.com/ShashwatSi48402)
+- Email: shashwat98k@gmail.com
+
 ## 🛠️ Technologies Used
 
 - React

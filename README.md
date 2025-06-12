@@ -2,6 +2,8 @@
 
 A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This portfolio showcases my work as a Data Analyst and includes smooth animations powered by GSAP.
 
+If you like my work, give it a star⭐.
+
 ## 🚀 Features
 
 - **Modern Design**: Clean and professional UI with smooth animations

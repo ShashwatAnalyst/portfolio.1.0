@@ -50,10 +50,10 @@ export function ContactSection() {
   };
 
   return (
-    <section ref={addSection} id="contact" className="px-4">
+    <section ref={addSection} id="contact" className="px-4 bg-background">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4">GET IN TOUCH</h2>
+          <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4 text-foreground">GET IN TOUCH</h2>
           <p className="text-muted-foreground text-[18.5px] text-lg max-w-2xl mx-auto">
             Ready to collaborate on your next data project? Let's discuss how data-driven insights can transform your business. Fill out the form below and I'll get back to you within 24 hours.
           </p>
@@ -61,12 +61,12 @@ export function ContactSection() {
 
         <div className="flex justify-center">
           <div className="w-full max-w-5xl">
-            <div className="bg-gradient-to-br">
+            <div className="bg-card rounded-lg shadow-lg border border-border">
               <div className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
+                      <Label htmlFor="name" className="text-foreground">Name</Label>
                       <Input
                         id="name"
                         name="name"
@@ -74,11 +74,11 @@ export function ContactSection() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="h-12"
+                        className="h-12 bg-background border-input"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email" className="text-foreground">Email</Label>
                       <Input
                         id="email"
                         name="email"
@@ -87,12 +87,12 @@ export function ContactSection() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="h-12"
+                        className="h-12 bg-background border-input"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
+                    <Label htmlFor="subject" className="text-foreground">Subject</Label>
                     <Input
                       id="subject"
                       name="subject"
@@ -100,11 +100,11 @@ export function ContactSection() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="h-12"
+                      className="h-12 bg-background border-input"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="text-foreground">Message</Label>
                     <Textarea
                       id="message"
                       name="message"
@@ -112,10 +112,14 @@ export function ContactSection() {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="min-h-[200px]"
+                      className="min-h-[200px] bg-background border-input"
                     />
                   </div>
-                  <Button type="submit" className="w-full h-12 bg-blue-600 text-lg" disabled={isLoading}>
+                  <Button
+                    type="submit"
+                    className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 text-lg"
+                    disabled={isLoading}
+                  >
                     {isLoading ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>

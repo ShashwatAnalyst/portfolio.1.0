@@ -129,7 +129,7 @@ export function ContactSection() {
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-border text-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 Data Analyst Portfolio. Built with React & Tailwind CSS.
+            © 2025 Data Analyst Portfolio. Built with React, TypeScript, Vite, Tailwind CSS, GSAP, shadcn/ui, and ☕ by Shashwat Singh.
           </p>
         </div>
       </div>

@@ -84,9 +84,6 @@ This project is open source and available under the [MIT License](LICENSE).
 - **LinkedIn**: [Your LinkedIn Profile]
 - **GitHub**: [@itsshashwatsingh](https://github.com/itsshashwatsingh)
 
-## 🙏 Credits
-
-This portfolio is inspired by and built upon the amazing work of [Tajmirul's Portfolio](https://github.com/Tajmirul/portfolio-2.0). Special thanks for the inspiration and design patterns.
 
 ---
 

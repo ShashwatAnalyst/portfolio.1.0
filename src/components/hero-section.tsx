@@ -13,15 +13,15 @@ export function HeroSection() {
           <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl heading-font tracking-tight">
               <span className="bg-blue-600 bg-clip-text text-transparent">
-                HI, I'M SHASHWAT,<br /> ASPIRING DATA ANALYST
+                HI, I'M SHASHWAT,<br /> DATA ANALYST
               </span>
             </h1>
             <h2 className="text-2xl md:text-3xl text-muted-foreground heading-font">
-              TURNING DATA INTO INSIGHTS
+              TRANSFORMING DATA INTO INSIGHTS
             </h2>
             <p className="text-lg text-muted-foreground text-[18.5px] max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Passionate about data analysis and visualization. Skilled in SQL, Python, Tableau, and Excel.
-              Ready to apply my knowledge and learn from real-world challenges.
+              Passionate about uncovering patterns in data and creating compelling visualizations
+              that drive business decisions. Specialized in SQL, Python, Tableau, and Excel.
             </p>
           </div>
 
@@ -51,9 +51,10 @@ export function HeroSection() {
 
             <div className="relative -right-[130px] top-[20px] h-[150px] w-[150px] lg:-right-[00px] md:-right-[20px] md:top-[40px] lg:w-[300px] lg:h-[300px] md:h-[150px] md:w-[150px] rounded-full overflow-hidden border-4 bor backdrop-blur-sm transform hover:scale-105 transition-all duration-500 hover:rotate-2 animate-float z-10 translate-x-[-50px] translate-y-[125px]">
               <img
-                src="RKS_0611_copy.png"
+                src="/images/profile.png"
                 alt="Profile"
-                className="w-full h-full object-cover rounded-full transition-transform duration-700 hover:scale-110"
+                className="w-full h-full object-contain rounded-full transition-transform duration-700 hover:scale-110"
+                style={{ objectPosition: 'center top' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent"></div>
             </div>

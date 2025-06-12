@@ -34,8 +34,8 @@ export function AboutSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font mb-4">ABOUT ME</h2>
           <p className="text-muted-foreground text-[18.5px]  max-w-2xl mx-auto leading-relaxed">
-            With 3+ years of experience in data analysis, I specialize in transforming complex datasets
-            into clear, actionable insights that drive business growth and strategic decision-making.
+            A passionate Data Analyst with a strong foundation in data analysis and visualization.
+            I'm eager to apply my skills in transforming raw data into meaningful insights that drive business decisions.
           </p>
         </div>
 
@@ -63,23 +63,21 @@ export function AboutSection() {
               <div className="space-y-6 text-center  lg:text-left">
                 <h3 className="text-2xl text-[25px] font-[60] heading-font">MY JOURNEY</h3>
                 <p className="text-muted-foreground text-[18.5px] leading-relaxed">
-                  Started my career in data analysis with a passion for uncovering hidden patterns
-                  and insights. I've worked across various industries including finance, healthcare,
-                  and e-commerce, helping organizations make data-driven decisions.
+                  As a recent graduate, I'm excited to begin my journey in data analysis. I've developed a strong foundation in data manipulation,
+                  statistical analysis, and visualization through my academic projects and personal learning.
                 </p>
                 <p className="text-muted-foreground text-[18.5px] leading-relaxed">
-                  I believe that great data analysis is not just about technical skills, but also
-                  about understanding business context and communicating findings effectively to
-                  stakeholders at all levels.
+                  I'm passionate about learning and applying data analysis techniques to solve real-world problems.
+                  I believe in continuous learning and staying updated with the latest tools and technologies in the field.
                 </p>
               </div>
               <div className="space-y-4 text-center lg:text-left">
                 <h4 className="text-lg text-[25px] font-[60] heading-font">CORE COMPETENCIES</h4>
                 <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                   {[
-                    'Statistical Analysis', 'Data Mining', 'Predictive Modeling',
-                    'Data Cleaning', 'ETL Processes', 'Dashboard Development',
-                    'A/B Testing', 'Business Intelligence', 'Data Storytelling'
+                    'Data Analysis', 'SQL', 'Python', 'Tableau', 'Excel',
+                    'Data Visualization', 'Statistical Analysis', 'Data Cleaning',
+                    'Business Intelligence', 'Data Storytelling'
                   ].map((skill) => (
                     <Badge key={skill} variant="secondary" className="transition-colors hover:bg-primary hover:text-primary-foreground">
                       {skill}

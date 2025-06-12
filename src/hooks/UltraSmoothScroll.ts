@@ -2,8 +2,48 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { Flip } from 'gsap/Flip';
+import { Observer } from 'gsap/Observer';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { TextPlugin } from 'gsap/TextPlugin';
+import { Draggable } from 'gsap/Draggable';
+import { EaselPlugin } from 'gsap/EaselPlugin';
+import { PixiPlugin } from 'gsap/PixiPlugin';
+import { CustomEase } from 'gsap/CustomEase';
+import { CustomBounce } from 'gsap/CustomBounce';
+import { CustomWiggle } from 'gsap/CustomWiggle';
+import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
+import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+import { MotionPathHelper } from 'gsap/MotionPathHelper';
+import { Physics2DPlugin } from 'gsap/Physics2DPlugin';
+import { PhysicsPropsPlugin } from 'gsap/PhysicsPropsPlugin';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+// Register all GSAP plugins
+gsap.registerPlugin(
+    ScrollSmoother,
+    ScrollTrigger,
+    MotionPathPlugin,
+    Flip,
+    Observer,
+    ScrollToPlugin,
+    TextPlugin,
+    Draggable,
+    EaselPlugin,
+    PixiPlugin,
+    CustomEase,
+    CustomBounce,
+    CustomWiggle,
+    MorphSVGPlugin,
+    DrawSVGPlugin,
+    MotionPathHelper,
+    Physics2DPlugin,
+    PhysicsPropsPlugin,
+    ScrambleTextPlugin,
+    SplitText
+);
 
 interface Section {
     element: HTMLElement;
@@ -25,16 +65,27 @@ export function useUltraSmoothScroll() {
             content: contentRef.current,
             smooth: 1.5,
             effects: true,
+            normalizeScroll: true,
+            smoothTouch: 0.1,
         });
 
+        // Cleanup function
         return () => {
-            smootherRef.current?.kill();
+            if (smootherRef.current) {
+                smootherRef.current.kill();
+                smootherRef.current = null;
+            }
         };
     }, []);
 
     const addSection = (element: HTMLElement | null, id: string) => {
         if (!element) return;
-        setSections(prev => [...prev, { element, id }]);
+
+        // Check if section already exists
+        const exists = sections.some(s => s.id === id);
+        if (!exists) {
+            setSections(prev => [...prev, { element, id }]);
+        }
     };
 
     const scrollToSection = (sectionId: string) => {

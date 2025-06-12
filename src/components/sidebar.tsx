@@ -113,13 +113,31 @@ export function Sidebar() {
 
                         {/* Social Media Buttons */}
                         <div className="flex gap-4">
-                            <Button variant="ghost" size="icon" className="hover:scale-110 transition-all w-14 h-14" aria-label="GitHub">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="hover:scale-110 transition-all w-14 h-14"
+                                aria-label="GitHub"
+                                onClick={() => window.open('https://github.com/itsshashwatsingh', '_blank')}
+                            >
                                 <GithubIcon />
                             </Button>
-                            <Button variant="ghost" size="icon" className="hover:scale-110 transition-all w-14 h-14" aria-label="LinkedIn">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="hover:scale-110 transition-all w-14 h-14"
+                                aria-label="LinkedIn"
+                                onClick={() => window.open('https://www.linkedin.com/in/shashwat-singh-bb2730357/', '_blank')}
+                            >
                                 <LinkedInIcon />
                             </Button>
-                            <Button variant="ghost" size="icon" className="hover:scale-110 transition-all w-14 h-14" aria-label="Twitter">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="hover:scale-110 transition-all w-14 h-14"
+                                aria-label="Twitter"
+                                onClick={() => window.open('https://x.com/ShashwatSi48402', '_blank')}
+                            >
                                 <TwitterIcon />
                             </Button>
                         </div>

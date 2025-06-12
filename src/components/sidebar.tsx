@@ -3,13 +3,25 @@ import { Mail, Sun, Moon } from 'lucide-react';
 import { useState } from 'react';
 import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
 import { useTheme } from 'next-themes';
+import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
 
 export function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme } = useTheme();
+    const { scrollToSection } = useUltraSmoothScroll();
 
-    const scrollToSection = (sectionId: string) => {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    const handleNavigation = (sectionId: string) => {
+        const sectionMap: { [key: string]: number } = {
+            'home': 0,
+            'about': 1,
+            'skills': 2,
+            'projects': 3,
+            'contact': 4
+        };
+
+        if (sectionMap[sectionId] !== undefined) {
+            scrollToSection(sectionMap[sectionId]);
+        }
         setIsOpen(false);
     };
 
@@ -38,32 +50,12 @@ export function Sidebar() {
             )}
 
             {/* Sidebar */}
-            <div
-                className={`fixed top-0 left-0 h-full w-64 bg-background/95 backdrop-blur-md z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
-                    }`}
-            >
-                <div className="flex flex-col h-full p-6">
-                    {/* Theme Toggle */}
-                    <div className="absolute top-4 right-4">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                            className="hover:scale-110 transition-all"
-                        >
-                            {theme === 'dark' ? (
-                                <Sun className="h-5 w-5" />
-                            ) : (
-                                <Moon className="h-5 w-5" />
-                            )}
-                        </Button>
-                    </div>
-
-                    {/* Navigation Links */}
+            <div className={`fixed top-0 left-0 h-full w-[300px] bg-background/95 backdrop-blur-sm z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <div className="p-8">
                     <div className="flex flex-col gap-4 mt-16">
                         <div
                             className="flex items-center text-lg hover:text-primary transition-colors duration-300 group"
-                            onClick={() => scrollToSection('home')}
+                            onClick={() => handleNavigation('home')}
                         >
                             <div className="relative w-4 h-4 rounded-full bg-blue-500 mr-3 group-hover:scale-150 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +66,7 @@ export function Sidebar() {
                         </div>
                         <div
                             className="flex items-center text-lg hover:text-primary transition-colors duration-300 group"
-                            onClick={() => scrollToSection('about')}
+                            onClick={() => handleNavigation('about')}
                         >
                             <div className="relative w-4 h-4 rounded-full bg-purple-500 mr-3 group-hover:scale-150 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +77,7 @@ export function Sidebar() {
                         </div>
                         <div
                             className="flex items-center text-lg hover:text-primary transition-colors duration-300 group"
-                            onClick={() => scrollToSection('skills')}
+                            onClick={() => handleNavigation('skills')}
                         >
                             <div className="relative w-4 h-4 rounded-full bg-green-500 mr-3 group-hover:scale-150 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +88,7 @@ export function Sidebar() {
                         </div>
                         <div
                             className="flex items-center text-lg hover:text-primary transition-colors duration-300 group"
-                            onClick={() => scrollToSection('projects')}
+                            onClick={() => handleNavigation('projects')}
                         >
                             <div className="relative w-4 h-4 rounded-full bg-orange-500 mr-3 group-hover:scale-150 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +99,7 @@ export function Sidebar() {
                         </div>
                         <div
                             className="flex items-center text-lg hover:text-primary transition-colors duration-300 group"
-                            onClick={() => scrollToSection('contact')}
+                            onClick={() => handleNavigation('contact')}
                         >
                             <div className="relative w-4 h-4 rounded-full bg-pink-500 mr-3 group-hover:scale-150 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,45 +111,60 @@ export function Sidebar() {
                     </div>
 
                     {/* Get in Touch Section */}
-                    <div className="mt-auto pt-8 border-t border-border">
-                        <h3 className="text-lg font-semibold mb-4">GET IN TOUCH</h3>
-
-                        {/* Email */}
-                        <div className="flex items-center gap-2 text-muted-foreground mb-4">
-                            <Mail className="w-4 h-4" />
-                            <span>shashwat98k@gmail.com</span>
+                    <div className="mt-16">
+                        <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
+                        <div className="space-y-4">
+                            <Button
+                                variant="outline"
+                                className="w-full justify-start gap-2"
+                                onClick={() => window.location.href = 'mailto:shashwatsingh2004@gmail.com'}
+                            >
+                                <Mail className="w-4 h-4" />
+                                shashwatsingh2004@gmail.com
+                            </Button>
+                            <div className="flex gap-2">
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className="flex-1"
+                                    onClick={() => window.open('https://github.com/itsshashwatsingh', '_blank')}
+                                >
+                                    <GithubIcon className="w-4 h-4" />
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className="flex-1"
+                                    onClick={() => window.open('https://www.linkedin.com/in/shashwat-singh-2004/', '_blank')}
+                                >
+                                    <LinkedInIcon className="w-4 h-4" />
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className="flex-1"
+                                    onClick={() => window.open('https://twitter.com/itsshashwatsingh', '_blank')}
+                                >
+                                    <TwitterIcon className="w-4 h-4" />
+                                </Button>
+                            </div>
                         </div>
+                    </div>
 
-                        {/* Social Media Buttons */}
-                        <div className="flex gap-4">
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="hover:scale-110 transition-all w-14 h-14"
-                                aria-label="GitHub"
-                                onClick={() => window.open('https://github.com/itsshashwatsingh', '_blank')}
-                            >
-                                <GithubIcon />
-                            </Button>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="hover:scale-110 transition-all w-14 h-14"
-                                aria-label="LinkedIn"
-                                onClick={() => window.open('https://www.linkedin.com/in/shashwat-singh-bb2730357/', '_blank')}
-                            >
-                                <LinkedInIcon />
-                            </Button>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="hover:scale-110 transition-all w-14 h-14"
-                                aria-label="Twitter"
-                                onClick={() => window.open('https://x.com/ShashwatSi48402', '_blank')}
-                            >
-                                <TwitterIcon />
-                            </Button>
-                        </div>
+                    {/* Theme Toggle */}
+                    <div className="mt-8">
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                            className="w-full"
+                        >
+                            {theme === 'dark' ? (
+                                <Sun className="w-4 h-4" />
+                            ) : (
+                                <Moon className="w-4 h-4" />
+                            )}
+                        </Button>
                     </div>
                 </div>
             </div>

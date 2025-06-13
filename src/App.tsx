@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import CustomCursor from './components/CustomCursor';
-import CinematicEntry from './components/CinematicEntry';
+import CustomCursor from './components/private/CustomCursor';
+import CinematicEntry from './components/private/CinematicEntry';
 import ScrollProgressIndicator from './components/ScrollProgressIndicator';
 import { ThemeProvider } from './components/theme-provider';
 import { Sidebar } from './components/private/sidebar';

@@ -77,15 +77,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Feel free to fork this project and customize it for your own use. If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request. 
 
-## 👤 Contact
-
-- **Name**: Shashwat Singh
-- **Role**: Data Analyst
-- **Skills**: SQL, Python, Tableau, Excel
-- **LinkedIn**: [Your LinkedIn Profile]
-- **GitHub**: [@itsshashwatsingh](https://github.com/itsshashwatsingh)
-
-
 ---
 
 Made with ❤️ and ☕ by Shashwat Singh 

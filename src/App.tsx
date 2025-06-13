@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import CustomCursor from './components/private/CustomCursor';
 import CinematicEntry from './components/private/CinematicEntry';
 import ScrollProgressIndicator from './components/ScrollProgressIndicator';

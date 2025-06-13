@@ -29,7 +29,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center">
+    <section ref={addSection} id="about" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font mb-4">ABOUT ME</h2>
@@ -57,7 +57,7 @@ export function AboutSection() {
           ))}
         </div>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-background to-muted/20 border-0 shadow-xl">
           <CardContent className="p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-6 text-center  lg:text-left">

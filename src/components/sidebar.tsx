@@ -11,7 +11,17 @@ export function Sidebar() {
     const { scrollToSection } = useUltraSmoothScroll();
 
     const handleNavigation = (sectionId: string) => {
-        scrollToSection(sectionId);
+        const sectionMap: { [key: string]: number } = {
+            'hero': 0,
+            'about': 1,
+            'skills': 2,
+            'projects': 3,
+            'contact': 4
+        };
+
+        if (sectionMap[sectionId] !== undefined) {
+            scrollToSection(sectionMap[sectionId]);
+        }
         setIsOpen(false);
     };
 

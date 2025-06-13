@@ -117,7 +117,7 @@ export function ContactSection() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 text-lg"
+                    className="w-full h-12 bg-blue-600 text-white hover:bg-black hover:text-white text-lg transition-colors"
                     disabled={isLoading}
                   >
                     {isLoading ? 'Sending...' : 'Send Message'}

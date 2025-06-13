@@ -164,10 +164,22 @@ button:focus-visible {
     letter-spacing: 0.05em;
   }
 
+  /* Light mode heading color */
+  :root {
+    .heading-font {
+      color: hsl(0 0% 45%);
+    }
+  }
+
+  /* Dark mode heading color */
+  .dark {
+    .heading-font {
+      color: hsl(0 0% 98%);
+    }
+  }
+
   /* Section spacing styles */
   section {
     @apply py-8 md:py-10 lg:py-20;
   }
-
-
 }

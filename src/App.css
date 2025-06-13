@@ -26,9 +26,9 @@ body {
   cursor: none !important; /* Remove cursor pointer from all elements */
 }
 
-/* Ensure smooth scrolling behavior */
+/* Reset scroll behavior */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* Smooth scroll container styles */
@@ -39,16 +39,18 @@ html {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  z-index: 1;
 }
 
 .smooth-scroll-content {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  will-change: transform;
 }
 
-/* Section styles for smooth animations */
-.scroll-section {
+/* Section styles */
+section {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -56,11 +58,23 @@ html {
   align-items: center;
   justify-content: center;
   will-change: transform;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
+
+/* Prevent horizontal scroll */
 html, body {
   overflow-x: hidden;
-  
+  margin: 0;
+  padding: 0;
 }
+
+/* Ensure sections are visible when in viewport */
+section:not(:first-child) {
+  margin-top: 0;
+}
+
 html {
   scroll-behavior: auto !important;
 }

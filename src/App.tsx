@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import CustomCursor from './components/CustomCursor';
 import CinematicEntry from './components/CinematicEntry';
 import ScrollProgressIndicator from './components/ScrollProgressIndicator';
 import { ThemeProvider } from './components/theme-provider';
 import { Sidebar } from './components/sidebar';
+import { SmoothScroll } from './components/SmoothScroll';
 import { HeroSection } from './components/hero-section';
 import { AboutSection } from './components/about-section';
 import { SkillsSection } from './components/skills-section';
@@ -14,12 +15,17 @@ import { Spacer } from './components/spacer';
 import { Toaster } from 'sonner';
 import './App.css';
 
-// Replace useScrollAnimation with UltraSmoothScroll
-import { useUltraSmoothScroll } from './hooks/UltraSmoothScroll';
-
 export default function App() {
   const [showCinematic, setShowCinematic] = useState(true);
-  const { containerRef, contentRef, addSection } = useUltraSmoothScroll();
+
+  // Create refs for each section
+  const sections = {
+    hero: useRef<HTMLElement>(null),
+    about: useRef<HTMLElement>(null),
+    skills: useRef<HTMLElement>(null),
+    projects: useRef<HTMLElement>(null),
+    contact: useRef<HTMLElement>(null)
+  };
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -30,42 +36,39 @@ export default function App() {
 
         {/* Enhanced scroll indicator */}
         <div className="relative z-20">
-          <Sidebar />
+          <Sidebar sections={sections} />
 
-          {/* Add smooth scroll container and content refs */}
-          <div ref={containerRef} className="smooth-scroll-container">
-            <div ref={contentRef} className="smooth-scroll-content">
-              <main className="container mx-auto px-4 md:px-8 lg:px-16 pt-0 pb-4 md:pb-8 lg:pb-12">
-                <div ref={addSection} className="scroll-section">
-                  <HeroSection />
-                </div>
+          <SmoothScroll>
+            <main className="container mx-auto px-4 md:px-8 lg:px-16 pt-0 pb-4 md:pb-8 lg:pb-12">
+              <section ref={sections.hero} id="hero">
+                <HeroSection />
+              </section>
 
-                <Spacer />
+              <Spacer />
 
-                <div ref={addSection} className="scroll-section">
-                  <AboutSection />
-                </div>
+              <section ref={sections.about} id="about">
+                <AboutSection />
+              </section>
 
-                <Spacer />
+              <Spacer />
 
-                <div ref={addSection} className="scroll-section">
-                  <SkillsSection />
-                </div>
+              <section ref={sections.skills} id="skills">
+                <SkillsSection />
+              </section>
 
-                <Spacer />
+              <Spacer />
 
-                <div ref={addSection} className="scroll-section">
-                  <ProjectsSection />
-                </div>
+              <section ref={sections.projects} id="projects">
+                <ProjectsSection />
+              </section>
 
-                <Spacer />
+              <Spacer />
 
-                <div ref={addSection} className="scroll-section">
-                  <ContactSection />
-                </div>
-              </main>
-            </div>
-          </div>
+              <section ref={sections.contact} id="contact">
+                <ContactSection />
+              </section>
+            </main>
+          </SmoothScroll>
         </div>
       </div>
 

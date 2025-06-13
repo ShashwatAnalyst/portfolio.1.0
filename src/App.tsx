@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-screen dark:bg-transparent bg-background h-[130vh] text-foreground">
         <StarryBackground />
         <CustomCursor />
         <ScrollProgressIndicator />

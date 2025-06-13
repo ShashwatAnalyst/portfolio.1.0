@@ -54,7 +54,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
             )}
 
             {/* Sidebar */}
-            <div className={`fixed top-0 left-0 h-full w-[400px] sm:w-[400px] w-[230px] bg-background/95 backdrop-blur-sm z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <div className={`fixed top-0 left-0 h-full w-[50%] min-w-[230px] max-w-[400px] bg-background/95 backdrop-blur-sm z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="p-8 h-full flex flex-col items-center">
                     <div className="flex mt-16">
                         {/* Navigation Links */}
@@ -123,7 +123,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="w-[50px]"
+                                className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
                                 onClick={() => window.open('https://github.com/itsshashwatsingh', '_blank')}
                             >
                                 <GithubIcon className="w-4 h-4" />
@@ -131,7 +131,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="w-[50px]"
+                                className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
                                 onClick={() => window.open('https://www.linkedin.com/in/shashwat-singh-bb2730357/', '_blank')}
                             >
                                 <LinkedInIcon className="w-4 h-4" />
@@ -139,7 +139,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="w-[50px]"
+                                className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
                                 onClick={() => window.open('https://x.com/ShashwatSi48402', '_blank')}
                             >
                                 <TwitterIcon className="w-4 h-4" />
@@ -152,7 +152,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                         <Button
                             variant="outline"
                             size="icon"
-                            className="w-[50px]"
+                            className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
                             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                         >
                             {theme === 'dark' ? (

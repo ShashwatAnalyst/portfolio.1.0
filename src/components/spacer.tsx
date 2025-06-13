@@ -1,5 +1,5 @@
 export function Spacer() {
     return (
-        <div className="h-[0vh] w-full" /> // 40vh is slightly less than half the screen height
+        <div className="h-[20vh] lg:h-[2vh] w-full" /> // Much smaller height on large screens
     );
 } 

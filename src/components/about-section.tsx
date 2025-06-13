@@ -33,7 +33,7 @@ export function AboutSection() {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font mb-4">ABOUT ME</h2>
-          <p className="text-muted-foreground text-[18.5px]  max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-[18.5px] max-w-2xl mx-auto leading-relaxed">
             A passionate Data Analyst with a strong foundation in data analysis and visualization.
             I'm eager to apply my skills in transforming raw data into meaningful insights that drive business decisions.
           </p>

@@ -293,7 +293,7 @@ export function SkillsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <Card className="hover:shadow-lg transition-all duration-300">
             <CardHeader className="pb-12">
-              <CardTitle className="flex items-center gap-2 heading-font text-[25px] font-[60] tracking-wider text-foreground/80">
+              <CardTitle className="flex items-center gap-2 heading-font text-[25px] font-[60] tracking-wider text-black dark:text-foreground/80">
                 SKILLS GROWTH OVER TIME (SELECT TIMELINE)
               </CardTitle>
             </CardHeader>
@@ -382,7 +382,7 @@ export function SkillsSection() {
                   )}
                 </LineChart>
               </ResponsiveContainer>
-              <div className="mt-4 text-[18.5px] text-muted-foreground text-center">
+              <div className="mt-4 text-[18.5px] text-black dark:text-muted-foreground text-center">
                 {selectedYear
                   ? `Showing skills growth data over time. Timeline: ${selectedYear}. Click on skill icons below or donut chart segments to focus on specific skills.`
                   : selectedSkill
@@ -394,7 +394,7 @@ export function SkillsSection() {
 
           <Card className="hover:shadow-lg transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="heading-font text-[25px] font-[60] tracking-wider text-foreground/80">
+              <CardTitle className="heading-font text-[25px] font-[60] tracking-wider text-black dark:text-foreground/80">
                 SKILL CONTRIBUTION DISTRIBUTION & PROFICIENCY LEVELS
               </CardTitle>
               <Select
@@ -472,7 +472,7 @@ export function SkillsSection() {
                   />
                 </PieChart>
               </ResponsiveContainer>
-              <div className="mt-4 text-[18.5px] text-muted-foreground text-center">
+              <div className="mt-4 text-[18.5px] text-black dark:text-muted-foreground text-center">
                 {getDescriptiveText()}
               </div>
               <div className="mt-4 flex justify-center">
@@ -494,7 +494,7 @@ export function SkillsSection() {
 
         <Card className="bg-gradient-to-br from-background to-muted/20">
           <CardHeader>
-            <CardTitle className="text-center heading-font text-[25px] font-[60] tracking-wider text-foreground/80">TECHNICAL PROFICIENCY (SELECT SKILL)</CardTitle>
+            <CardTitle className="text-center heading-font text-[25px] font-[60] tracking-wider text-black dark:text-foreground/80">TECHNICAL PROFICIENCY (SELECT SKILL)</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-8 justify-center">

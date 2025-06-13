@@ -89,10 +89,10 @@ export function ProjectsSection() {
               </div>
 
               <CardHeader>
-                <CardTitle className="text-[25px] font-[60] lg:text-[22px] lg:font-[60] heading-font  tracking-wider text-foreground/80 group-hover:text-primary transition-colors">
+                <CardTitle className="text-[25px] font-[60] lg:text-[22px] lg:font-[60] heading-font tracking-wider text-black dark:text-foreground/80 group-hover:text-primary transition-colors">
                   {project.title.toUpperCase()}
                 </CardTitle>
-                <p className="text-muted-foreground text-[18.5px]  ">
+                <p className="text-black dark:text-muted-foreground text-[18.5px]">
                   {project.description}
                 </p>
               </CardHeader>
@@ -107,10 +107,10 @@ export function ProjectsSection() {
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="font-medium text-sm">Key Achievements:</h4>
+                  <h4 className="font-medium text-sm text-black dark:text-foreground">Key Achievements:</h4>
                   <ul className="space-y-1">
                     {project.highlights.map((highlight, index) => (
-                      <li key={index} className="text-xs text-muted-foreground flex items-center gap-2">
+                      <li key={index} className="text-black dark:text-muted-foreground text-xs flex items-center gap-2">
                         <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                         {highlight}
                       </li>

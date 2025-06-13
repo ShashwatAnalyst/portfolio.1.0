@@ -33,7 +33,7 @@ export function AboutSection() {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl heading-font mb-4">ABOUT ME</h2>
-          <p className="text-muted-foreground text-[18.5px] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-[18.5px]  max-w-2xl mx-auto leading-relaxed">
             A passionate Data Analyst with a strong foundation in data analysis and visualization.
             I'm eager to apply my skills in transforming raw data into meaningful insights that drive business decisions.
           </p>
@@ -46,10 +46,10 @@ export function AboutSection() {
                 <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <highlight.icon className="w-6 h-6 text-primary" />
                 </div>
-                <CardTitle className="text-[23px] font-[60] lg:text-[20px] lg:font-[60] heading-font  tracking-wider text-foreground/80">{highlight.title.toUpperCase()}</CardTitle>
+                <CardTitle className="text-[23px] font-[60] lg:text-[20px] lg:font-[60] heading-font tracking-wider text-black dark:text-foreground/80">{highlight.title.toUpperCase()}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground text-[18.5px] text-center leading-relaxed">
+                <p className="text-black dark:text-muted-foreground text-[18.5px] text-center leading-relaxed">
                   {highlight.description}
                 </p>
               </CardContent>
@@ -61,18 +61,18 @@ export function AboutSection() {
           <CardContent className="p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-6 text-center  lg:text-left">
-                <h3 className="text-2xl text-[25px] font-[60] heading-font">MY JOURNEY</h3>
-                <p className="text-muted-foreground text-[18.5px] leading-relaxed">
+                <h3 className="text-2xl text-[25px] font-[60] heading-font text-black dark:text-foreground">MY JOURNEY</h3>
+                <p className="text-black dark:text-muted-foreground text-[18.5px] leading-relaxed">
                   As a recent graduate, I'm excited to begin my journey in data analysis. I've developed a strong foundation in data manipulation,
                   statistical analysis, and visualization through my academic projects and personal learning.
                 </p>
-                <p className="text-muted-foreground text-[18.5px] leading-relaxed">
+                <p className="text-black dark:text-muted-foreground text-[18.5px] leading-relaxed">
                   I'm passionate about learning and applying data analysis techniques to solve real-world problems.
                   I believe in continuous learning and staying updated with the latest tools and technologies in the field.
                 </p>
               </div>
               <div className="space-y-4 text-center lg:text-left">
-                <h4 className="text-lg text-[25px] font-[60] heading-font">CORE COMPETENCIES</h4>
+                <h4 className="text-lg text-[25px] font-[60] heading-font text-black dark:text-foreground">CORE COMPETENCIES</h4>
                 <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                   {[
                     'Data Analysis', 'SQL', 'Python', 'Tableau', 'Excel',

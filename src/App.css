@@ -57,10 +57,9 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: transform;
+  will-change: transform, opacity;
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.3s ease;
 }
 
 /* Prevent horizontal scroll */

@@ -21,22 +21,39 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
         smoother.current = ScrollSmoother.create({
             wrapper: containerRef.current,
             content: contentRef.current,
-            smooth: 1.5,
+            smooth: 0.8,
             effects: true,
             smoothTouch: 0.1,
             normalizeScroll: true,
             ignoreMobileResize: true,
-            ease: "power2.out",
-            onUpdate: (self) => {
-                // Ensure all sections are visible
-                const sections = contentRef.current?.querySelectorAll('section');
-                sections?.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        section.style.visibility = 'visible';
+            ease: "power2.out"
+        });
+
+        // Set up fade animations for each section
+        const sections = contentRef.current.querySelectorAll('section');
+        sections.forEach((section, index) => {
+            // Skip the first section (hero) as it should be visible by default
+            if (index === 0) return;
+
+            gsap.fromTo(section,
+                {
+                    opacity: 0,
+                    y: 50
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 60%",
+                        end: "top 40%",
+                        toggleActions: "play none none reverse",
+                        scrub: 1
                     }
-                });
-            }
+                }
+            );
         });
 
         // Cleanup

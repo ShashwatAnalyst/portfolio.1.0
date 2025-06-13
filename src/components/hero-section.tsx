@@ -1,7 +1,21 @@
 import { Download, Mail } from 'lucide-react';
 import { Button } from './ui/button';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 export function HeroSection() {
+  const handleContactClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (!contactSection) return;
+
+    // Get the ScrollSmoother instance
+    const smoother = ScrollSmoother.get();
+    if (!smoother) return;
+
+    // Scroll to the section using GSAP's ScrollSmoother
+    smoother.scrollTo(contactSection, true, "center center");
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-start pt-20 justify-center">
       <div className="container mx-auto px-8 md:px-16 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -29,9 +43,7 @@ export function HeroSection() {
             <Button
               size="lg"
               className="gap-2 bg-blue-600 text-white hover:bg-black hover:text-white transition-all hover:scale-105"
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={handleContactClick}
             >
               <Mail className="w-4 h-4" />
               Contact Me

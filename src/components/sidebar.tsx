@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { Mail, Sun, Moon } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { GithubIcon, LinkedInIcon, TwitterIcon } from './social-icons';
 import { useTheme } from 'next-themes';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';

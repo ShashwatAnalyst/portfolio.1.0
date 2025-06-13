@@ -59,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                     <div className="flex mt-16">
                         {/* Navigation Links */}
                         <div className="flex flex-col gap-4">
-                            <h2 className="text-lg font-semibold mb-2">MENU</h2>
+                            <h2 className="text-lg font-semibold mb-2 pl-4">MENU</h2>
                             <div
                                 className="flex items-center text-lg hover:text-primary transition-colors duration-300 group"
                                 onClick={(e) => handleNavClick(e, 'hero')}
@@ -132,7 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                                 variant="outline"
                                 size="icon"
                                 className="w-[50px]"
-                                onClick={() => window.open('https://www.linkedin.com/in/shashwat-singh-2004/', '_blank')}
+                                onClick={() => window.open('https://www.linkedin.com/in/shashwat-singh-bb2730357/', '_blank')}
                             >
                                 <LinkedInIcon className="w-4 h-4" />
                             </Button>
@@ -140,7 +140,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                                 variant="outline"
                                 size="icon"
                                 className="w-[50px]"
-                                onClick={() => window.open('https://twitter.com/itsshashwatsingh', '_blank')}
+                                onClick={() => window.open('https://x.com/ShashwatSi48402', '_blank')}
                             >
                                 <TwitterIcon className="w-4 h-4" />
                             </Button>

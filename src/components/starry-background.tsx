@@ -91,7 +91,7 @@ const StarryBackground = () => {
         // Simple intersection observer for hero section
         const heroSection = document.getElementById('hero');
         let intersectionObserver: IntersectionObserver | null = null;
-        
+
         if (heroSection) {
             intersectionObserver = new IntersectionObserver(
                 (entries) => {

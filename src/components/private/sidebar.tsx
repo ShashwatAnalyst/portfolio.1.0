@@ -123,7 +123,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
+                                className="w-[50px] hover:bg-zinc-700 hover:text-white  transition-colors duration-300"
                                 onClick={() => window.open('https://github.com/itsshashwatsingh', '_blank')}
                             >
                                 <GithubIcon className="w-4 h-4" />
@@ -131,7 +131,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
+                                className="w-[50px] hover:bg-zinc-700 hover:text-white  transition-colors duration-300"
                                 onClick={() => window.open('https://www.linkedin.com/in/shashwat-singh-bb2730357/', '_blank')}
                             >
                                 <LinkedInIcon className="w-4 h-4" />
@@ -139,7 +139,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
+                                className="w-[50px] hover:bg-zinc-700 hover:text-white  transition-colors duration-300"
                                 onClick={() => window.open('https://x.com/ShashwatSi48402', '_blank')}
                             >
                                 <TwitterIcon className="w-4 h-4" />
@@ -152,7 +152,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                         <Button
                             variant="outline"
                             size="icon"
-                            className="w-[50px] hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300"
+                            className="w-[50px] hover:bg-zinc-700 hover:text-white  transition-colors duration-300"
                             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                         >
                             {theme === 'dark' ? (

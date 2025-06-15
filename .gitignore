@@ -51,6 +51,3 @@ dist-ssr
 
 # Bolt
 .bolt/
-
-# Private components
-src/components/private/

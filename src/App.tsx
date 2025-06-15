@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import CustomCursor from './components/private/CustomCursor';
 import CinematicEntry from './components/private/CinematicEntry';
 import ScrollProgressIndicator from './components/private/ScrollProgressIndicator';
@@ -33,6 +34,7 @@ export default function App() {
         <StarryBackground />
         <CustomCursor />
         <ScrollProgressIndicator />
+        <Analytics />
 
         {/* Enhanced scroll indicator */}
         <div className="relative z-20">

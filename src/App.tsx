@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="min-h-screen dark:bg-transparent bg-background h-[130vh] lg:h-[80vh] text-foreground">
+      <div className="min-h-screen dark:bg-transparent bg-background h-auto text-foreground">
         <StarryBackground />
         <CustomCursor />
         <ScrollProgressIndicator />
@@ -41,7 +41,7 @@ export default function App() {
           <Sidebar sections={sections} />
 
           <SmoothScroll>
-            <main className="container mx-auto px-4 md:px-8 lg:px-16 pt-0 pb-4 md:pb-8 lg:pb-12">
+            <main className="container mx-auto px-4 md:px-8 lg:px-16 pt-0 pb-8 md:pb-12 lg:pb-16">
               <section ref={sections.hero} id="hero">
                 <HeroSection />
               </section>

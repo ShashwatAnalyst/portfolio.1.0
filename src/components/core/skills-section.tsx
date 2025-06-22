@@ -282,7 +282,7 @@ export function SkillsSection() {
   };
 
   return (
-    <section ref={addSection} id="skills" className="min-h-screen flex items-center justify-center">
+    <section ref={addSection} id="skills" className="flex items-center justify-center py-16">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>SKILLS & EXPERTISE</h2>

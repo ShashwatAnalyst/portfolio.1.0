@@ -342,7 +342,7 @@ export function SkillsSection() {
                       fontSize: isSmallScreen ? '10px' : '14px'
                     }}
                   />
-                  <Legend verticalAlign="top" wrapperStyle={{ fontSize: isSmallScreen ? '10px' : '14px' ,position: 'absolute',top: 10 }} />
+                  <Legend verticalAlign="top" wrapperStyle={{ fontSize: isSmallScreen ? '10px' : '14px', position: 'absolute', top: 10 }} />
                   {selectedSkill ? (
                     <Line
                       type="monotone"

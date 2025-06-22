@@ -47,8 +47,11 @@ export function AboutSection() {
         <div className="text-center mb-16">
           <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font mb-4`}>ABOUT ME</h2>
           <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto leading-relaxed`}>
-            A passionate Data Analyst with a strong foundation in data analysis and visualization.
-            I'm eager to apply my skills in transforming raw data into meaningful insights that drive business decisions.
+            As a Data Analyst, I specialize in converting raw data into actionable insights.
+            Driven by curiosity, I enjoy revealing the narratives within data to inform business strategy.
+          </p>
+          <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto leading-relaxed mt-4`}>
+            Here are some of the key areas where I focus my skills:
           </p>
         </div>
 
@@ -76,12 +79,9 @@ export function AboutSection() {
               <div className="space-y-6 text-center lg:text-left">
                 <h3 className={`${isSmallScreen ? 'text-lg' : 'text-2xl'} text-[25px] font-[60] heading-font text-black dark:text-foreground`}>MY JOURNEY</h3>
                 <p className={`${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'} leading-relaxed`}>
-                  As a recent graduate, I'm excited to begin my journey in data analysis. I've developed a strong foundation in data manipulation,
-                  statistical analysis, and visualization through my academic projects and personal learning.
-                </p>
-                <p className={`${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'} leading-relaxed`}>
-                  I'm passionate about learning and applying data analysis techniques to solve real-world problems.
-                  I believe in continuous learning and staying updated with the latest tools and technologies in the field.
+                  My journey into data analysis began in my academic career, where I cultivated a robust foundation in data manipulation,
+                  statistical methods, and visualization. This experience ignited my passion for solving real-world challenges through data.
+                  I am a firm believer in lifelong learning and am constantly seeking to expand my toolkit and stay at the forefront of this dynamic field.
                 </p>
               </div>
               <div className="space-y-4 text-center lg:text-left">

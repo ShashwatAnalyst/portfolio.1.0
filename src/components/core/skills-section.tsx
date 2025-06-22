@@ -289,6 +289,9 @@ export function SkillsSection() {
           <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
             A comprehensive overview of my technical skills and their evolution over time
           </p>
+          <p className={`${isSmallScreen ? 'text-xs' : 'text-sm'} text-muted-foreground mt-2 max-w-2xl mx-auto`}>
+            (Skill proficiency is a measure of my hands-on experience and project work with each technology)
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">

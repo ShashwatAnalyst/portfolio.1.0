@@ -63,11 +63,11 @@ export const useUltraSmoothScroll = () => {
 
             // Mobile-friendly animation settings
             const mobileSettings = {
-                opacity: index === 0 ? 1 : 0.3, // Less fade on mobile
-                y: index === 0 ? 0 : 30, // Smaller movement on mobile
-                scale: index === 0 ? 1 : 0.98, // Less scale change on mobile
+                opacity: index === 0 ? 1 : 0.1, // Much less fade on mobile
+                y: index === 0 ? 0 : 20, // Even smaller movement on mobile
+                scale: index === 0 ? 1 : 0.99, // Minimal scale change on mobile
                 rotationX: 0, // No 3D rotation on mobile
-                duration: 0.4, // Much faster animations on mobile
+                duration: 0.3, // Much faster animations on mobile
                 ease: "power1.out" // Simpler easing on mobile
             };
 
@@ -95,7 +95,7 @@ export const useUltraSmoothScroll = () => {
             // Create smooth entrance animation with mobile-friendly triggers
             ScrollTrigger.create({
                 trigger: section,
-                start: isMobile() ? "top 90%" : "top 50%", // Trigger much later on mobile
+                start: isMobile() ? "top 90%" : "top 50%", // Trigger much earlier on mobile
                 end: isMobile() ? "top 10%" : "bottom 50%", // End much later on mobile
                 scrub: false,
                 onEnter: () => {
@@ -111,12 +111,12 @@ export const useUltraSmoothScroll = () => {
                 },
                 onLeave: () => {
                     if (isMobile()) {
-                        // On mobile, only slightly fade out instead of completely hiding
+                        // On mobile, only very slightly fade out instead of completely hiding
                         gsap.to(section, {
-                            opacity: 0.7,
-                            y: -20,
-                            scale: 0.99,
-                            duration: settings.duration * 0.6,
+                            opacity: 0.9,
+                            y: -10,
+                            scale: 0.995,
+                            duration: settings.duration * 0.4,
                             ease: "power1.in"
                         });
                     } else {
@@ -145,12 +145,12 @@ export const useUltraSmoothScroll = () => {
                 },
                 onLeaveBack: () => {
                     if (isMobile()) {
-                        // On mobile, only slightly fade out instead of completely hiding
+                        // On mobile, only very slightly fade out instead of completely hiding
                         gsap.to(section, {
-                            opacity: 0.7,
-                            y: 20,
-                            scale: 0.99,
-                            duration: settings.duration * 0.6,
+                            opacity: 0.9,
+                            y: 10,
+                            scale: 0.995,
+                            duration: settings.duration * 0.4,
                             ease: "power1.in"
                         });
                     } else {

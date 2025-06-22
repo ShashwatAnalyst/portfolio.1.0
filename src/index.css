@@ -183,6 +183,19 @@ button:focus-visible {
     @apply py-8 md:py-10 lg:py-10;
   }
 }
+/* Mobile-specific scroll optimizations */
+.mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  height: auto !important;
+  overflow: auto !important;
+}
+
+.desktop-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 /* Prevent scroll lag on mobile */
 @media (max-width: 768px) {
   .smooth-scroll-content {

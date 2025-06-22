@@ -426,6 +426,30 @@ export function SkillsSection() {
             <CardContent>
               <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 300}>
                 <PieChart>
+                  <Tooltip
+                    content={({ active, payload }) => {
+                      if (isSmallScreen) {
+                        return null;
+                      }
+                      if (active && payload && payload.length) {
+                        const data = payload[0].payload;
+                        if (data.name === 'Remaining') {
+                          return null;
+                        }
+                        return (
+                          <div className="bg-background border rounded-md p-2 shadow-lg text-xs">
+                            <p className="font-bold">{data.name}</p>
+                            {selectedSkill ? (
+                              <p>Proficiency: {data.value}%</p>
+                            ) : (
+                              <p>Contribution: {data.value}%</p>
+                            )}
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
                   <Pie
                     data={pieChartData}
                     cx="50%"
@@ -475,29 +499,6 @@ export function SkillsSection() {
                       />
                     ))}
                   </Pie>
-                  <Tooltip
-                    content={({ active, payload }) => {
-                      if (active && payload && payload.length) {
-                        const data = payload[0].payload;
-                        return (
-                          <div className={`bg-background border border-border rounded-lg p-2 shadow-lg ${isSmallScreen ? 'text-xs' : 'text-sm'}`}>
-                            <p className="font-medium">{data.name}</p>
-                            <p className="text-sm text-muted-foreground">
-                              {selectedYear && selectedSkill
-                                ? `Proficiency: ${data.contribution}% (${selectedYear})`
-                                : selectedYear
-                                  ? `Contribution: ${data.contribution}%`
-                                  : selectedSkill
-                                    ? `Proficiency: ${data.contribution}%${selectedYear ? ` (${selectedYear})` : ''}`
-                                    : `Contribution: ${data.contribution}%`
-                              }
-                            </p>
-                          </div>
-                        );
-                      }
-                      return null;
-                    }}
-                  />
                 </PieChart>
               </ResponsiveContainer>
               <div className={`mt-4 ${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground text-center ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'}`}>

@@ -12,6 +12,11 @@ export const useUltraSmoothScroll = () => {
     const sections = useRef<HTMLElement[]>([]);
     const initialized = useRef(false);
 
+    // Check if device is mobile
+    const isMobile = () => {
+        return window.innerWidth < 768;
+    };
+
     // Physics-based scroll state
     const scrollPhysics = useRef({
         velocity: 0,
@@ -32,7 +37,7 @@ export const useUltraSmoothScroll = () => {
         smoother.current = ScrollSmoother.create({
             wrapper: containerRef.current,
             content: contentRef.current,
-            smooth: 1, // Increased smoothness
+            smooth: isMobile() ? 0.5 : 1, // Less smooth on mobile for better performance
             effects: true,
             smoothTouch: 0.1,
             normalizeScroll: true,
@@ -52,25 +57,46 @@ export const useUltraSmoothScroll = () => {
             }
         });
 
-        // Enhanced section animations with physics
+        // Enhanced section animations with mobile-friendly settings
         sections.current.forEach((section, index) => {
             if (!section) return;
 
-            // Initial state
-            gsap.set(section, {
+            // Mobile-friendly animation settings
+            const mobileSettings = {
+                opacity: index === 0 ? 1 : 0.3, // Less fade on mobile
+                y: index === 0 ? 0 : 30, // Smaller movement on mobile
+                scale: index === 0 ? 1 : 0.98, // Less scale change on mobile
+                rotationX: 0, // No 3D rotation on mobile
+                duration: 0.8, // Faster animations on mobile
+                ease: "power1.out" // Simpler easing on mobile
+            };
+
+            const desktopSettings = {
                 opacity: index === 0 ? 1 : 0,
                 y: index === 0 ? 0 : 100,
                 scale: index === 0 ? 1 : 0.95,
                 rotationX: index === 0 ? 0 : 5,
+                duration: 1.2,
+                ease: "power2.out"
+            };
+
+            const settings = isMobile() ? mobileSettings : desktopSettings;
+
+            // Initial state
+            gsap.set(section, {
+                opacity: settings.opacity,
+                y: settings.y,
+                scale: settings.scale,
+                rotationX: settings.rotationX,
                 transformOrigin: "center center",
-                force3D: true
+                force3D: !isMobile() // Disable 3D on mobile for better performance
             });
 
-            // Create smooth entrance animation
+            // Create smooth entrance animation with mobile-friendly triggers
             ScrollTrigger.create({
                 trigger: section,
-                start: "top 90%",
-                end: "bottom 10%",
+                start: isMobile() ? "top 80%" : "top 50%", // Trigger later on mobile
+                end: isMobile() ? "bottom 20%" : "bottom 50%", // End later on mobile
                 scrub: false,
                 onEnter: () => {
                     gsap.to(section, {
@@ -78,21 +104,33 @@ export const useUltraSmoothScroll = () => {
                         y: 0,
                         scale: 1,
                         rotationX: 0,
-                        duration: 1.2,
-                        ease: "power2.out",
-                        force3D: true
+                        duration: settings.duration,
+                        ease: settings.ease,
+                        force3D: !isMobile()
                     });
                 },
                 onLeave: () => {
-                    gsap.to(section, {
-                        opacity: 0.3,
-                        y: -20,
-                        scale: 0.99,
-                        rotationX: -1,
-                        duration: 0.6,
-                        ease: "power2.in",
-                        force3D: true
-                    });
+                    if (isMobile()) {
+                        // On mobile, only slightly fade out instead of completely hiding
+                        gsap.to(section, {
+                            opacity: 0.7,
+                            y: -20,
+                            scale: 0.99,
+                            duration: settings.duration * 0.6,
+                            ease: "power1.in"
+                        });
+                    } else {
+                        // Desktop behavior - full fade out
+                        gsap.to(section, {
+                            opacity: 0,
+                            y: -50,
+                            scale: 0.98,
+                            rotationX: -3,
+                            duration: settings.duration * 0.8,
+                            ease: "power2.in",
+                            force3D: true
+                        });
+                    }
                 },
                 onEnterBack: () => {
                     gsap.to(section, {
@@ -100,39 +138,53 @@ export const useUltraSmoothScroll = () => {
                         y: 0,
                         scale: 1,
                         rotationX: 0,
-                        duration: 1.2,
-                        ease: "power2.out",
-                        force3D: true
+                        duration: settings.duration,
+                        ease: settings.ease,
+                        force3D: !isMobile()
                     });
                 },
                 onLeaveBack: () => {
-                    gsap.to(section, {
-                        opacity: 0.3,
-                        y: 20,
-                        scale: 0.99,
-                        rotationX: 1,
-                        duration: 0.6,
-                        ease: "power2.in",
-                        force3D: true
-                    });
+                    if (isMobile()) {
+                        // On mobile, only slightly fade out instead of completely hiding
+                        gsap.to(section, {
+                            opacity: 0.7,
+                            y: 20,
+                            scale: 0.99,
+                            duration: settings.duration * 0.6,
+                            ease: "power1.in"
+                        });
+                    } else {
+                        // Desktop behavior - full fade out
+                        gsap.to(section, {
+                            opacity: 0,
+                            y: 50,
+                            scale: 0.98,
+                            rotationX: 3,
+                            duration: settings.duration * 0.8,
+                            ease: "power2.in",
+                            force3D: true
+                        });
+                    }
                 }
             });
 
-            // Parallax effects for depth
-            const parallaxElements = section.querySelectorAll('[data-speed]');
-            parallaxElements.forEach((element) => {
-                const speed = parseFloat((element as HTMLElement).dataset.speed || '1');
-                gsap.to(element, {
-                    yPercent: -50 * speed,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true
-                    }
+            // Parallax effects for depth (disabled on mobile for performance)
+            if (!isMobile()) {
+                const parallaxElements = section.querySelectorAll('[data-speed]');
+                parallaxElements.forEach((element) => {
+                    const speed = parseFloat((element as HTMLElement).dataset.speed || '1');
+                    gsap.to(element, {
+                        yPercent: -50 * speed,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true
+                        }
+                    });
                 });
-            });
+            }
         });
 
         initialized.current = true;

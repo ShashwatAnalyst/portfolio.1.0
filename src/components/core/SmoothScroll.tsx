@@ -43,19 +43,19 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
             // Mobile-friendly animation settings with much earlier triggers
             const mobileSettings = {
                 start: "top 80%", // Trigger even earlier on mobile
-                end: "top 20%", // End earlier on mobile
-                duration: 0.3, // Even faster animations for mobile
+                end: "top 60%", // End much earlier - section becomes fully visible when 60% of viewport is scrolled
+                duration: 0.2, // Very fast animations for mobile
                 ease: "power1.out", // Simpler easing
-                opacity: 0.4, // More visible initial state
+                opacity: 0.7, // Much more visible initial state
                 y: 10 // Smaller movement
             };
 
             const desktopSettings = {
                 start: "top 55%", // Trigger earlier on desktop too
-                end: "top 45%", // End earlier on desktop
-                duration: 0.5, // Moderate animations
+                end: "top 35%", // End much earlier - section becomes fully visible when 35% of viewport is scrolled
+                duration: 0.3, // Faster animations
                 ease: "power2.out", // Smooth easing
-                opacity: 0.2, // Subtle initial fade on desktop
+                opacity: 0.6, // More visible initial state on desktop
                 y: 20 // Moderate movement
             };
 

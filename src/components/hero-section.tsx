@@ -67,7 +67,7 @@ export function HeroSection() {
         <div className="flex justify-center lg:justify-end">
           {isSmallScreen ? (
             <div className="relative">
-              <div className="relative top-[10px] h-[80px] w-[80px] mx-auto rounded-full overflow-hidden border-4 border-gray-800 dark:border-border backdrop-blur-sm transform hover:scale-105 transition-all duration-500 hover:rotate-2 animate-float z-10">
+              <div className="relative top-[10px] h-[150px] w-[150px] mx-auto rounded-full overflow-hidden border-4 border-gray-800 dark:border-border backdrop-blur-sm transform hover:scale-105 transition-all duration-500 hover:rotate-2 animate-float z-10">
                 <img
                   src="/images/profile.png"
                   alt="Profile"

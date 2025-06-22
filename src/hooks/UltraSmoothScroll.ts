@@ -69,8 +69,8 @@ export const useUltraSmoothScroll = () => {
             // Create smooth entrance animation
             ScrollTrigger.create({
                 trigger: section,
-                start: "top 80%",
-                end: "bottom 20%",
+                start: "top 90%",
+                end: "bottom 10%",
                 scrub: false,
                 onEnter: () => {
                     gsap.to(section, {

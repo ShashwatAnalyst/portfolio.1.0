@@ -26,65 +26,99 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
         smoother.current = ScrollSmoother.create({
             wrapper: containerRef.current,
             content: contentRef.current,
-            smooth: isMobile() ? 0.5 : 0.8, // Less smooth on mobile
+            smooth: isMobile() ? 0.3 : 0.8, // Much less smooth on mobile
             effects: true,
-            smoothTouch: 0.1,
+            smoothTouch: isMobile() ? 0.05 : 0.1, // Reduced smoothTouch for mobile
             normalizeScroll: true,
             ignoreMobileResize: true,
             ease: "power2.out"
         });
 
-        // Set up fade animations - no fade on mobile
+        // Set up fade animations for each section
         const sections = contentRef.current.querySelectorAll('section');
         sections.forEach((section, index) => {
             // Skip the first section (hero) as it should be visible by default
             if (index === 0) return;
 
             if (isMobile()) {
-                // On mobile: No fade animations - sections stay fully visible
-                gsap.set(section, {
-                    opacity: 1, // Always fully visible on mobile
-                    y: 0,
-                    scale: 1
-                });
-
-                // No ScrollTrigger animations for mobile - sections stay static
-                return;
-            }
-
-            // Desktop settings only
-            const desktopSettings = {
-                start: "top 90%", // Trigger late on desktop
-                end: "top 10%", // End late on desktop
-                duration: 0.8, // Moderate animations
-                ease: "power2.out", // Smooth easing
-                opacity: 0.1, // Very subtle initial fade on desktop
-                y: 30 // Moderate movement
-            };
-
-            gsap.fromTo(section,
-                {
-                    opacity: desktopSettings.opacity,
-                    y: desktopSettings.y
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: desktopSettings.duration,
-                    ease: desktopSettings.ease,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: desktopSettings.start,
-                        end: desktopSettings.end,
-                        toggleActions: "play none none reverse",
-                        scrub: 0.5
+                // Mobile-specific settings with better sync
+                gsap.fromTo(section,
+                    {
+                        opacity: 0.2,
+                        y: 15
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.4,
+                        ease: "power1.out",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 85%", // Start earlier
+                            end: "top 25%",   // End later
+                            toggleActions: "play reverse play reverse", // Better toggle actions
+                            scrub: false, // Disable scrub on mobile for better performance
+                            refreshPriority: -1, // Lower priority for mobile
+                            onToggle: (self) => {
+                                // Manual opacity control for better sync
+                                if (self.isActive) {
+                                    gsap.to(section, {
+                                        opacity: 1,
+                                        y: 0,
+                                        duration: 0.3,
+                                        ease: "power1.out"
+                                    });
+                                } else {
+                                    gsap.to(section, {
+                                        opacity: 0.2,
+                                        y: 15,
+                                        duration: 0.3,
+                                        ease: "power1.out"
+                                    });
+                                }
+                            }
+                        }
                     }
-                }
-            );
+                );
+            } else {
+                // Desktop settings (your original approach works fine here)
+                gsap.fromTo(section,
+                    {
+                        opacity: 0.1,
+                        y: 30
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 90%",
+                            end: "top 10%",
+                            toggleActions: "play none none reverse",
+                            scrub: 0.5
+                        }
+                    }
+                );
+            }
         });
+
+        // Add refresh on resize for mobile orientation changes
+        const handleResize = () => {
+            if (isMobile()) {
+                ScrollTrigger.refresh();
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
 
         // Cleanup
         return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('orientationchange', handleResize);
+            
             if (smoother.current) {
                 smoother.current.kill();
                 smoother.current = null;
@@ -100,4 +134,4 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
             </div>
         </div>
     );
-}; 
+};

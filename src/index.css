@@ -183,3 +183,26 @@ button:focus-visible {
     @apply py-8 md:py-10 lg:py-10;
   }
 }
+/* Prevent scroll lag on mobile */
+@media (max-width: 768px) {
+  .smooth-scroll-content {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  .smooth-scroll-container {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* Improve mobile performance */
+.smooth-scroll-container {
+  position: relative;
+  width: 100%;
+}
+
+.smooth-scroll-content {
+  position: relative;
+  width: 100%;
+}

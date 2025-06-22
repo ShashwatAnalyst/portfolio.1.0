@@ -57,27 +57,31 @@ export const useUltraSmoothScroll = () => {
             }
         });
 
-        // Enhanced section animations with mobile-friendly settings
+        // Enhanced section animations with better timing
         sections.current.forEach((section, index) => {
             if (!section) return;
 
-            // Mobile-friendly animation settings
+            // Mobile-friendly animation settings with better timing
             const mobileSettings = {
-                opacity: index === 0 ? 1 : 0.3, // Less fade on mobile
-                y: index === 0 ? 0 : 30, // Smaller movement on mobile
-                scale: index === 0 ? 1 : 0.98, // Less scale change on mobile
+                opacity: index === 0 ? 1 : 0.1, // Very subtle initial fade on mobile
+                y: index === 0 ? 0 : 20, // Smaller movement on mobile
+                scale: index === 0 ? 1 : 0.99, // Minimal scale change on mobile
                 rotationX: 0, // No 3D rotation on mobile
-                duration: 0.8, // Faster animations on mobile
-                ease: "power1.out" // Simpler easing on mobile
+                duration: 0.6, // Faster animations on mobile
+                ease: "power1.out", // Simpler easing on mobile
+                start: "top 95%", // Trigger very late on mobile
+                end: "top 5%" // End very late on mobile
             };
 
             const desktopSettings = {
-                opacity: index === 0 ? 1 : 0,
-                y: index === 0 ? 0 : 100,
-                scale: index === 0 ? 1 : 0.95,
-                rotationX: index === 0 ? 0 : 5,
-                duration: 1.2,
-                ease: "power2.out"
+                opacity: index === 0 ? 1 : 0.1, // Very subtle initial fade on desktop
+                y: index === 0 ? 0 : 50, // Moderate movement on desktop
+                scale: index === 0 ? 1 : 0.98, // Minimal scale change on desktop
+                rotationX: index === 0 ? 0 : 2, // Minimal 3D rotation on desktop
+                duration: 0.8, // Moderate animations on desktop
+                ease: "power2.out", // Smooth easing on desktop
+                start: "top 90%", // Trigger late on desktop
+                end: "top 10%" // End late on desktop
             };
 
             const settings = isMobile() ? mobileSettings : desktopSettings;
@@ -92,11 +96,11 @@ export const useUltraSmoothScroll = () => {
                 force3D: !isMobile() // Disable 3D on mobile for better performance
             });
 
-            // Create smooth entrance animation with mobile-friendly triggers
+            // Create smooth entrance animation with better timing
             ScrollTrigger.create({
                 trigger: section,
-                start: isMobile() ? "top 80%" : "top 50%", // Trigger later on mobile
-                end: isMobile() ? "bottom 20%" : "bottom 50%", // End later on mobile
+                start: settings.start, // Trigger very late to ensure content is visible
+                end: settings.end, // End very late to keep content visible
                 scrub: false,
                 onEnter: () => {
                     gsap.to(section, {
@@ -111,21 +115,21 @@ export const useUltraSmoothScroll = () => {
                 },
                 onLeave: () => {
                     if (isMobile()) {
-                        // On mobile, fade to 30% opacity instead of completely hiding
+                        // On mobile, only very slightly fade out
                         gsap.to(section, {
-                            opacity: 0.3,
-                            y: -20,
-                            scale: 0.99,
-                            duration: settings.duration * 0.6,
+                            opacity: 0.9, // Keep mostly visible
+                            y: -10,
+                            scale: 0.995,
+                            duration: settings.duration * 0.8,
                             ease: "power1.in"
                         });
                     } else {
-                        // Desktop behavior - full fade out
+                        // Desktop behavior - very subtle fade out
                         gsap.to(section, {
-                            opacity: 0,
-                            y: -50,
-                            scale: 0.98,
-                            rotationX: -3,
+                            opacity: 0.8, // Keep mostly visible
+                            y: -30,
+                            scale: 0.99,
+                            rotationX: -1,
                             duration: settings.duration * 0.8,
                             ease: "power2.in",
                             force3D: true
@@ -145,21 +149,21 @@ export const useUltraSmoothScroll = () => {
                 },
                 onLeaveBack: () => {
                     if (isMobile()) {
-                        // On mobile, fade to 30% opacity instead of completely hiding
+                        // On mobile, only very slightly fade out
                         gsap.to(section, {
-                            opacity: 0.3,
-                            y: 20,
-                            scale: 0.99,
-                            duration: settings.duration * 0.6,
+                            opacity: 0.9, // Keep mostly visible
+                            y: 10,
+                            scale: 0.995,
+                            duration: settings.duration * 0.8,
                             ease: "power1.in"
                         });
                     } else {
-                        // Desktop behavior - full fade out
+                        // Desktop behavior - very subtle fade out
                         gsap.to(section, {
-                            opacity: 0,
-                            y: 50,
-                            scale: 0.98,
-                            rotationX: 3,
+                            opacity: 0.8, // Keep mostly visible
+                            y: 30,
+                            scale: 0.99,
+                            rotationX: 1,
                             duration: settings.duration * 0.8,
                             ease: "power2.in",
                             force3D: true

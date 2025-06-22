@@ -34,29 +34,29 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
             ease: "power2.out"
         });
 
-        // Set up fade animations for each section with mobile-friendly settings
+        // Set up fade animations for each section with better timing
         const sections = contentRef.current.querySelectorAll('section');
         sections.forEach((section, index) => {
             // Skip the first section (hero) as it should be visible by default
             if (index === 0) return;
 
-            // Mobile-friendly animation settings
+            // Mobile-friendly animation settings with better timing
             const mobileSettings = {
-                start: "top 85%", // Trigger later on mobile
-                end: "top 15%", // End later on mobile
-                duration: 0.8, // Faster animations
+                start: "top 95%", // Trigger very late on mobile
+                end: "top 5%", // End very late on mobile
+                duration: 0.6, // Faster animations
                 ease: "power1.out", // Simpler easing
-                opacity: 0.3, // Less fade on mobile
-                y: 30 // Smaller movement
+                opacity: 0.1, // Very subtle initial fade on mobile
+                y: 20 // Smaller movement
             };
 
             const desktopSettings = {
-                start: "top 60%",
-                end: "top 40%",
-                duration: 1,
-                ease: "power2.out",
-                opacity: 0,
-                y: 50
+                start: "top 90%", // Trigger late on desktop
+                end: "top 10%", // End late on desktop
+                duration: 0.8, // Moderate animations
+                ease: "power2.out", // Smooth easing
+                opacity: 0.1, // Very subtle initial fade on desktop
+                y: 30 // Moderate movement
             };
 
             const settings = isMobile() ? mobileSettings : desktopSettings;
@@ -76,7 +76,7 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
                         start: settings.start,
                         end: settings.end,
                         toggleActions: "play none none reverse",
-                        scrub: isMobile() ? 0.5 : 1 // Less scrub on mobile for better performance
+                        scrub: isMobile() ? 0.3 : 0.5 // Less scrub for better responsiveness
                     }
                 }
             );

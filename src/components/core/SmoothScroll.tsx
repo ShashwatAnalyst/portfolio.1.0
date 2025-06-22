@@ -46,7 +46,7 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
                 end: "top 90%", // End almost immediately - section becomes fully visible very quickly
                 duration: 0.15, // Very fast animations for mobile
                 ease: "power1.out", // Simpler easing
-                opacity: 0.7, // Much more visible initial state
+                opacity: 1, // Much more visible initial state
                 y: 10 // Smaller movement
             };
 

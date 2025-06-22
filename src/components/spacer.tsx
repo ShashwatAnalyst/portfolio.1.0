@@ -1,5 +1,5 @@
 export function Spacer() {
     return (
-        <div className="h-[5vh] lg:h-[5vh] w-full" /> // Much smaller height on large screens
+        <div className="h-[10vh] lg:h-[5vh] w-full" /> // Much smaller height on large screens
     );
 } 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -13,38 +13,83 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const smoother = useRef<ScrollSmoother | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
 
-    // Check if device is mobile
-    const isMobile = () => {
-        return window.innerWidth < 768;
-    };
+    // Improved mobile detection
+    const checkMobile = useCallback(() => {
+        const mobile = window.innerWidth < 768 || ('ontouchstart' in window);
+        setIsMobile(mobile);
+        return mobile;
+    }, []);
+
+    // Handle resize and orientation changes
+    useEffect(() => {
+        checkMobile();
+        
+        const handleResize = () => {
+            checkMobile();
+            // Refresh ScrollTrigger on resize
+            ScrollTrigger.refresh();
+        };
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('orientationchange', handleResize);
+        };
+    }, [checkMobile]);
 
     useEffect(() => {
         if (!containerRef.current || !contentRef.current) return;
 
-        // Create smooth scroll instance with mobile-friendly settings
-        smoother.current = ScrollSmoother.create({
+        // Kill existing instance
+        if (smoother.current) {
+            smoother.current.kill();
+            smoother.current = null;
+        }
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+        // Mobile-specific configuration
+        const mobileConfig = {
             wrapper: containerRef.current,
             content: contentRef.current,
-            smooth: isMobile() ? 0.3 : 0.8, // Much less smooth on mobile
+            smooth: 0.3, // Much less smooth for better touch response
+            effects: false, // Disable effects on mobile for better performance
+            smoothTouch: false, // Disable smooth touch for natural mobile scrolling
+            normalizeScroll: false, // Allow native mobile scrolling
+            ignoreMobileResize: true,
+        };
+
+        // Desktop configuration
+        const desktopConfig = {
+            wrapper: containerRef.current,
+            content: contentRef.current,
+            smooth: 0.8,
             effects: true,
-            smoothTouch: isMobile() ? 0.05 : 0.1, // Reduced smoothTouch for mobile
+            smoothTouch: 0.1,
             normalizeScroll: true,
             ignoreMobileResize: true,
             ease: "power2.out"
-        });
+        };
 
-        // Set up fade animations for each section
+        // Create smooth scroll instance with device-appropriate settings
+        if (!isMobile) {
+            smoother.current = ScrollSmoother.create(desktopConfig);
+        }
+
+        // Set up fade animations with mobile-optimized settings
         const sections = contentRef.current.querySelectorAll('section');
         sections.forEach((section, index) => {
             // Skip the first section (hero) as it should be visible by default
             if (index === 0) return;
 
-            if (isMobile()) {
-                // Mobile-specific settings with better sync
+            if (isMobile) {
+                // Mobile: Much simpler, more reliable animations
                 gsap.fromTo(section,
                     {
-                        opacity: 0.2,
+                        opacity: 0.3,
                         y: 15
                     },
                     {
@@ -54,34 +99,17 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
                         ease: "power1.out",
                         scrollTrigger: {
                             trigger: section,
-                            start: "top 85%", // Start earlier
-                            end: "top 25%",   // End later
-                            toggleActions: "play reverse play reverse", // Better toggle actions
-                            scrub: false, // Disable scrub on mobile for better performance
-                            refreshPriority: -1, // Lower priority for mobile
-                            onToggle: (self) => {
-                                // Manual opacity control for better sync
-                                if (self.isActive) {
-                                    gsap.to(section, {
-                                        opacity: 1,
-                                        y: 0,
-                                        duration: 0.3,
-                                        ease: "power1.out"
-                                    });
-                                } else {
-                                    gsap.to(section, {
-                                        opacity: 0.2,
-                                        y: 15,
-                                        duration: 0.3,
-                                        ease: "power1.out"
-                                    });
-                                }
-                            }
+                            start: "top 85%", // Trigger earlier for mobile
+                            end: "top 15%",
+                            toggleActions: "play reverse play reverse", // Better for mobile
+                            once: false, // Allow re-triggering
+                            fastScrollEnd: true, // Better mobile performance
+                            preventOverlaps: true // Prevent animation conflicts
                         }
                     }
                 );
             } else {
-                // Desktop settings (your original approach works fine here)
+                // Desktop: More sophisticated animations
                 gsap.fromTo(section,
                     {
                         opacity: 0.1,
@@ -104,32 +132,66 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
             }
         });
 
-        // Add refresh on resize for mobile orientation changes
-        const handleResize = () => {
-            if (isMobile()) {
-                ScrollTrigger.refresh();
-            }
-        };
+        // Mobile-specific: Add intersection observer fallback for better reliability
+        if (isMobile) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        const section = entry.target as HTMLElement;
+                        if (entry.isIntersecting) {
+                            gsap.to(section, {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.3,
+                                ease: "power1.out"
+                            });
+                        }
+                    });
+                },
+                {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -10% 0px'
+                }
+            );
 
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('orientationchange', handleResize);
+            sections.forEach((section, index) => {
+                if (index > 0) { // Skip hero section
+                    observer.observe(section);
+                }
+            });
 
-        // Cleanup
+            return () => {
+                observer.disconnect();
+                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            };
+        }
+
+        // Cleanup for desktop
         return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('orientationchange', handleResize);
-            
             if (smoother.current) {
                 smoother.current.kill();
                 smoother.current = null;
             }
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
-    }, []);
+    }, [isMobile]);
 
     return (
-        <div ref={containerRef} className="smooth-scroll-container">
-            <div ref={contentRef} className="smooth-scroll-content">
+        <div 
+            ref={containerRef} 
+            className={`smooth-scroll-container ${isMobile ? 'mobile-scroll' : 'desktop-scroll'}`}
+            style={{
+                height: '100vh',
+                overflow: 'hidden'
+            }}
+        >
+            <div 
+                ref={contentRef} 
+                className="smooth-scroll-content"
+                style={{
+                    willChange: isMobile ? 'auto' : 'transform'
+                }}
+            >
                 {children}
             </div>
         </div>

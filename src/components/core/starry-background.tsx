@@ -53,24 +53,51 @@ const StarryBackground = () => {
             }, 100); // Throttle to 100ms
         };
 
-        // Animate particles with optimized settings
+        // Animate particles with more aggressive settings
         particles.forEach((particle) => {
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * window.innerHeight;
+            const endX = startX + (Math.random() - 0.5) * 200; // Add horizontal movement
+            const endY = window.innerHeight + 50;
+            const duration = Math.random() * 4 + 6; // Faster: 6-10 seconds (was 8-12)
+            const delay = Math.random() * 5; // Shorter delay: 0-5 seconds (was 0-8)
+
             gsap.set(particle, {
-                width: Math.random() * 2 + 1, // Slightly smaller particles
-                height: Math.random() * 2 + 1,
+                width: Math.random() * 3 + 2, // Increased from 2+1 to 3+2 (larger particles)
+                height: Math.random() * 3 + 2, // Increased from 2+1 to 3+2 (larger particles)
                 opacity: Math.random() * 0.5 + 0.3, // Reduced opacity range
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
+                x: startX,
+                y: startY,
                 backgroundColor: getParticleColor(),
             });
 
+            // Create more aggressive animation with horizontal movement
             gsap.to(particle, {
-                y: window.innerHeight,
-                duration: Math.random() * 8 + 12, // Slightly longer duration for smoother movement
+                x: endX,
+                y: endY,
+                duration: duration,
                 opacity: 0,
                 repeat: -1,
-                ease: 'none',
-                delay: Math.random() * 8, // Reduced delay range
+                ease: "power1.out", // More aggressive easing
+                delay: delay,
+                onComplete: () => {
+                    // Reset particle position for continuous flow
+                    gsap.set(particle, {
+                        x: Math.random() * window.innerWidth,
+                        y: -20,
+                        opacity: Math.random() * 0.5 + 0.3,
+                    });
+                }
+            });
+
+            // Add subtle horizontal swaying motion
+            gsap.to(particle, {
+                x: endX + (Math.random() - 0.5) * 100,
+                duration: duration * 0.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
+                delay: delay,
             });
         });
 

@@ -69,8 +69,8 @@ export const useUltraSmoothScroll = () => {
             // Create smooth entrance animation
             ScrollTrigger.create({
                 trigger: section,
-                start: "top 50%",
-                end: "bottom 50%",
+                start: "top 80%",
+                end: "bottom 20%",
                 scrub: false,
                 onEnter: () => {
                     gsap.to(section, {
@@ -85,11 +85,11 @@ export const useUltraSmoothScroll = () => {
                 },
                 onLeave: () => {
                     gsap.to(section, {
-                        opacity: 0,
-                        y: -50,
-                        scale: 0.98,
-                        rotationX: -3,
-                        duration: 0.8,
+                        opacity: 0.3,
+                        y: -20,
+                        scale: 0.99,
+                        rotationX: -1,
+                        duration: 0.6,
                         ease: "power2.in",
                         force3D: true
                     });
@@ -107,11 +107,11 @@ export const useUltraSmoothScroll = () => {
                 },
                 onLeaveBack: () => {
                     gsap.to(section, {
-                        opacity: 0,
-                        y: 50,
-                        scale: 0.98,
-                        rotationX: 3,
-                        duration: 0.8,
+                        opacity: 0.3,
+                        y: 20,
+                        scale: 0.99,
+                        rotationX: 1,
+                        duration: 0.6,
                         ease: "power2.in",
                         force3D: true
                     });

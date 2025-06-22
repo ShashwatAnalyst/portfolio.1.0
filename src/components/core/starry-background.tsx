@@ -45,10 +45,10 @@ const StarryBackground = () => {
             if (colorUpdateTimeout) return;
 
             colorUpdateTimeout = window.setTimeout(() => {
-                const color = getParticleColor();
-                particles.forEach(particle => {
-                    particle.style.backgroundColor = color;
-                });
+            const color = getParticleColor();
+            particles.forEach(particle => {
+                particle.style.backgroundColor = color;
+            });
                 colorUpdateTimeout = null;
             }, 100); // Throttle to 100ms
         };

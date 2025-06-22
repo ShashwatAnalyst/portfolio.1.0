@@ -51,8 +51,8 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
             };
 
             const desktopSettings = {
-                start: "top 75%", // Trigger earlier on desktop too
-                end: "top 25%", // End earlier on desktop
+                start: "top 55%", // Trigger earlier on desktop too
+                end: "top 45%", // End earlier on desktop
                 duration: 0.5, // Moderate animations
                 ease: "power2.out", // Smooth easing
                 opacity: 0.2, // Subtle initial fade on desktop

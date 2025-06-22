@@ -4,11 +4,13 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { sendEmail } from '../lib/emailjs';
 import { toast } from 'sonner';
-import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
+import { useUltraSmoothScroll } from '../hooks/UltraSmoothScroll';
 import { Label } from './ui/label';
+import { useEffect } from 'react';
 
 export function ContactSection() {
   const { addSection } = useUltraSmoothScroll();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,6 +18,16 @@ export function ContactSection() {
     message: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 450);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,7 +54,7 @@ export function ContactSection() {
       } else {
         toast.error('Failed to send message. Please try again.');
       }
-    } catch (error) {
+    } catch {
       toast.error('An error occurred. Please try again later.');
     } finally {
       setIsLoading(false);
@@ -53,8 +65,8 @@ export function ContactSection() {
     <section ref={addSection} id="contact" className="px-4">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4 text-foreground">GET IN TOUCH</h2>
-          <p className="text-muted-foreground text-[18.5px] text-lg max-w-2xl mx-auto">
+          <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4 text-foreground`}>GET IN TOUCH</h2>
+          <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
             Ready to collaborate on your next data project? Let's discuss how data-driven insights can transform your business. Fill out the form below and I'll get back to you within 24 hours.
           </p>
         </div>
@@ -62,11 +74,11 @@ export function ContactSection() {
         <div className="flex justify-center">
           <div className="w-full max-w-5xl">
             <div className="bg-card rounded-lg shadow-lg border border-border">
-              <div className="p-8">
+              <div className={`${isSmallScreen ? 'p-4' : 'p-8'}`}>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-foreground">Name</Label>
+                      <Label htmlFor="name" className={`${isSmallScreen ? 'text-xs' : 'text-base'} text-foreground`}>Name</Label>
                       <Input
                         id="name"
                         name="name"
@@ -74,11 +86,11 @@ export function ContactSection() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="h-12 bg-background border-input"
+                        className={`${isSmallScreen ? 'h-10 text-xs' : 'h-12'} bg-background border-input`}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground">Email</Label>
+                      <Label htmlFor="email" className={`${isSmallScreen ? 'text-xs' : 'text-base'} text-foreground`}>Email</Label>
                       <Input
                         id="email"
                         name="email"
@@ -87,12 +99,12 @@ export function ContactSection() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="h-12 bg-background border-input"
+                        className={`${isSmallScreen ? 'h-10 text-xs' : 'h-12'} bg-background border-input`}
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="subject" className="text-foreground">Subject</Label>
+                    <Label htmlFor="subject" className={`${isSmallScreen ? 'text-xs' : 'text-base'} text-foreground`}>Subject</Label>
                     <Input
                       id="subject"
                       name="subject"
@@ -100,11 +112,11 @@ export function ContactSection() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="h-12 bg-background border-input"
+                      className={`${isSmallScreen ? 'h-10 text-xs' : 'h-12'} bg-background border-input`}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-foreground">Message</Label>
+                    <Label htmlFor="message" className={`${isSmallScreen ? 'text-xs' : 'text-base'} text-foreground`}>Message</Label>
                     <Textarea
                       id="message"
                       name="message"
@@ -112,12 +124,12 @@ export function ContactSection() {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="min-h-[200px] bg-background border-input"
+                      className={`${isSmallScreen ? 'min-h-[150px] text-xs' : 'min-h-[200px]'} bg-background border-input`}
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full h-12 bg-blue-600 text-white hover:bg-black hover:text-white text-lg transition-colors"
+                    className={`w-full ${isSmallScreen ? 'h-10 text-sm' : 'h-12 text-lg'} bg-blue-600 text-white hover:bg-black hover:text-white transition-colors`}
                     disabled={isLoading}
                   >
                     {isLoading ? 'Sending...' : 'Send Message'}
@@ -130,7 +142,7 @@ export function ContactSection() {
 
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-border text-center">
-          <p className="text-muted-foreground text-sm">
+          <p className={`${isSmallScreen ? 'text-xs' : 'text-sm'} text-muted-foreground`}>
             © 2025 Data Analyst Portfolio. Built with React, Vite, Tailwind CSS, GSAP, shadcn/ui, and ☕ by Shashwat Singh.
           </p>
         </div>

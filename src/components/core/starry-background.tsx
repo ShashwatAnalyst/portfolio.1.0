@@ -12,8 +12,8 @@ const StarryBackground = () => {
         // Clear existing particles
         particlesRef.current = [];
 
-        // Create particles - increased from 100 to 200
-        const particles = Array.from({ length: 200 }, () => {
+        // Create particles - reduced from 200 to 80 for better performance
+        const particles = Array.from({ length: 80 }, () => {
             const particle = document.createElement('div');
             particle.className = 'absolute rounded-full';
             containerRef.current?.appendChild(particle);
@@ -39,20 +39,26 @@ const StarryBackground = () => {
             }
         };
 
-        // Function to update particle colors - simplified
+        // Function to update particle colors - optimized with throttling
+        let colorUpdateTimeout: number | null = null;
         const updateParticleColors = () => {
-            const color = getParticleColor();
-            particles.forEach(particle => {
-                particle.style.backgroundColor = color;
-            });
+            if (colorUpdateTimeout) return;
+
+            colorUpdateTimeout = window.setTimeout(() => {
+                const color = getParticleColor();
+                particles.forEach(particle => {
+                    particle.style.backgroundColor = color;
+                });
+                colorUpdateTimeout = null;
+            }, 100); // Throttle to 100ms
         };
 
-        // Animate particles
+        // Animate particles with optimized settings
         particles.forEach((particle) => {
             gsap.set(particle, {
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                opacity: Math.random() * 0.7 + 0.3,
+                width: Math.random() * 2 + 1, // Slightly smaller particles
+                height: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.3, // Reduced opacity range
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
                 backgroundColor: getParticleColor(),
@@ -60,21 +66,21 @@ const StarryBackground = () => {
 
             gsap.to(particle, {
                 y: window.innerHeight,
-                duration: Math.random() * 10 + 10,
+                duration: Math.random() * 8 + 12, // Slightly longer duration for smoother movement
                 opacity: 0,
                 repeat: -1,
                 ease: 'none',
-                delay: Math.random() * 10,
+                delay: Math.random() * 8, // Reduced delay range
             });
         });
 
-        // Add theme change listener
+        // Add theme change listener with throttling
         const observer = new MutationObserver(() => {
             updateParticleColors();
         });
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
-        // Optimized scroll listener with proper throttling
+        // Optimized scroll listener with increased throttling
         let ticking = false;
         const handleScroll = () => {
             if (!ticking) {
@@ -97,7 +103,6 @@ const StarryBackground = () => {
                 (entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            // Simple immediate update when hero becomes visible
                             updateParticleColors();
                         }
                     });
@@ -107,9 +112,8 @@ const StarryBackground = () => {
             intersectionObserver.observe(heroSection);
         }
 
-        // Initial color update - just once with a small delay
+        // Initial color update
         updateParticleColors();
-        setTimeout(updateParticleColors, 100);
 
         // Cleanup function
         return () => {
@@ -117,6 +121,9 @@ const StarryBackground = () => {
             observer.disconnect();
             if (intersectionObserver) {
                 intersectionObserver.disconnect();
+            }
+            if (colorUpdateTimeout) {
+                clearTimeout(colorUpdateTimeout);
             }
             particles.forEach(particle => {
                 gsap.killTweensOf(particle);

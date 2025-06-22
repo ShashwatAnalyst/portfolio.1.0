@@ -1,6 +1,7 @@
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { useUltraSmoothScroll } from '@/hooks/UltraSmoothScroll';
+import { useUltraSmoothScroll } from '../../hooks/UltraSmoothScroll';
 import { useState, useEffect } from 'react';
 import {
   Select,
@@ -8,7 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "../ui/select";
 
 interface SkillData {
   year: string;
@@ -284,21 +285,21 @@ export function SkillsSection() {
     <section ref={addSection} id="skills" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl heading-font font-normal mb-4">SKILLS & EXPERTISE</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>SKILLS & EXPERTISE</h2>
+          <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
             A comprehensive overview of my technical skills and their evolution over time
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <Card className="hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-12">
-              <CardTitle className="flex items-center gap-2 heading-font text-[25px] font-[60] tracking-wider text-black dark:text-foreground/80">
+          <Card className={`hover:shadow-lg transition-all duration-300 ${isSmallScreen ? 'p-3' : ''}`}>
+            <CardHeader className={`${isSmallScreen ? 'pb-6' : 'pb-12'}`}>
+              <CardTitle className={`flex items-center gap-2 heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>
                 SKILLS GROWTH OVER TIME (SELECT TIMELINE)
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 300}>
                 <LineChart
                   data={filteredSkillData}
                   margin={{
@@ -318,7 +319,7 @@ export function SkillsSection() {
                   <XAxis
                     dataKey="year"
                     tick={{
-                      fontSize: isSmallScreen ? 10 : 12,
+                      fontSize: isSmallScreen ? 8 : 12,
                       dy: isSmallScreen ? 10 : 0
                     }}
                     height={isSmallScreen ? 40 : 30}
@@ -327,7 +328,7 @@ export function SkillsSection() {
                   <YAxis
                     domain={[0, 100]}
                     tick={{
-                      fontSize: isSmallScreen ? 10 : 12
+                      fontSize: isSmallScreen ? 8 : 12
                     }}
                     width={isSmallScreen ? 35 : 40}
                   />
@@ -336,7 +337,7 @@ export function SkillsSection() {
                       backgroundColor: 'hsl(var(--background))',
                       border: '1px solid hsl(var(--border))',
                       borderRadius: '8px',
-                      fontSize: isSmallScreen ? '12px' : '14px'
+                      fontSize: isSmallScreen ? '10px' : '14px'
                     }}
                   />
                   {selectedSkill ? (
@@ -344,18 +345,18 @@ export function SkillsSection() {
                       type="monotone"
                       dataKey={selectedSkill}
                       stroke={getSkillColor(selectedSkill)}
-                      strokeWidth={isSmallScreen ? 3 : 4}
+                      strokeWidth={isSmallScreen ? 2 : 4}
                       dot={{
                         fill: getSkillColor(selectedSkill),
-                        strokeWidth: isSmallScreen ? 2 : 3,
-                        r: isSmallScreen ? 4 : 6,
+                        strokeWidth: isSmallScreen ? 1 : 3,
+                        r: isSmallScreen ? 3 : 6,
                         onClick: (e: any) => {
                           if (e && e.payload) {
                             setSelectedYear(e.payload.year);
                           }
                         }
                       }}
-                      activeDot={{ r: isSmallScreen ? 6 : 8 }}
+                      activeDot={{ r: isSmallScreen ? 4 : 8 }}
                     />
                   ) : (
                     ['Python', 'PostgreSQL', 'Tableau', 'Excel'].map((skill) => (
@@ -364,25 +365,25 @@ export function SkillsSection() {
                         type="monotone"
                         dataKey={skill}
                         stroke={getSkillColor(skill)}
-                        strokeWidth={isSmallScreen ? 1.5 : 2}
+                        strokeWidth={isSmallScreen ? 1 : 2}
                         strokeDasharray="5 5"
                         dot={{
                           fill: getSkillColor(skill),
-                          strokeWidth: isSmallScreen ? 1.5 : 2,
-                          r: isSmallScreen ? 3 : 4,
+                          strokeWidth: isSmallScreen ? 1 : 2,
+                          r: isSmallScreen ? 2 : 4,
                           onClick: (e: any) => {
                             if (e && e.payload) {
                               setSelectedYear(e.payload.year);
                             }
                           }
                         }}
-                        activeDot={{ r: isSmallScreen ? 5 : 6 }}
+                        activeDot={{ r: isSmallScreen ? 3 : 6 }}
                       />
                     ))
                   )}
                 </LineChart>
               </ResponsiveContainer>
-              <div className="mt-4 text-[18.5px] text-black dark:text-muted-foreground text-center">
+              <div className={`mt-4 ${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground text-center ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'}`}>
                 {selectedYear
                   ? `Showing skills growth data over time. Timeline: ${selectedYear}. Click on skill icons below or donut chart segments to focus on specific skills.`
                   : selectedSkill
@@ -392,9 +393,9 @@ export function SkillsSection() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-all duration-300">
+          <Card className={`hover:shadow-lg transition-all duration-300 ${isSmallScreen ? 'p-3' : ''}`}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="heading-font text-[25px] font-[60] tracking-wider text-black dark:text-foreground/80">
+              <CardTitle className={`heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>
                 SKILL CONTRIBUTION DISTRIBUTION & PROFICIENCY LEVELS
               </CardTitle>
               <Select
@@ -404,7 +405,7 @@ export function SkillsSection() {
                   // Don't clear selectedSkill - maintain skill selection when switching timelines
                 }}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className={`${isSmallScreen ? 'w-[120px] text-xs' : 'w-[180px]'}`}>
                   <SelectValue placeholder="Select timeline" />
                 </SelectTrigger>
                 <SelectContent>
@@ -417,17 +418,38 @@ export function SkillsSection() {
               </Select>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 300}>
                 <PieChart>
                   <Pie
                     data={pieChartData}
                     cx="50%"
                     cy="50%"
-                    outerRadius={isSmallScreen ? 60 : 80}
-                    innerRadius={isSmallScreen ? 30 : 40}
+                    outerRadius={isSmallScreen ? 45 : 80}
+                    innerRadius={isSmallScreen ? 22 : 40}
                     paddingAngle={3}
                     dataKey="value"
-                    label={({ name, contribution }) => name === 'Remaining' ? '' : `${name}: ${contribution}%`}
+                    label={({ name, contribution, cx, cy, midAngle, innerRadius, outerRadius }) => {
+                      if (name === 'Remaining') return null;
+
+                      const RADIAN = Math.PI / 180;
+                      const radius = isSmallScreen ? 55 : 90;
+                      const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                      const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                      return (
+                        <text
+                          x={x}
+                          y={y}
+                          fill={getSkillColor(name)}
+                          textAnchor={x > cx ? 'start' : 'end'}
+                          dominantBaseline="central"
+                          fontSize={isSmallScreen ? 7 : 12}
+                          fontWeight="medium"
+                        >
+                          {`${name}: ${contribution}%`}
+                        </text>
+                      );
+                    }}
                     animationDuration={300}
                     animationBegin={0}
                     stroke="none"
@@ -452,7 +474,7 @@ export function SkillsSection() {
                       if (active && payload && payload.length) {
                         const data = payload[0].payload;
                         return (
-                          <div className="bg-background border border-border rounded-lg p-2 shadow-lg">
+                          <div className={`bg-background border border-border rounded-lg p-2 shadow-lg ${isSmallScreen ? 'text-xs' : 'text-sm'}`}>
                             <p className="font-medium">{data.name}</p>
                             <p className="text-sm text-muted-foreground">
                               {selectedYear && selectedSkill
@@ -472,14 +494,14 @@ export function SkillsSection() {
                   />
                 </PieChart>
               </ResponsiveContainer>
-              <div className="mt-4 text-[18.5px] text-black dark:text-muted-foreground text-center">
+              <div className={`mt-4 ${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground text-center ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'}`}>
                 {getDescriptiveText()}
               </div>
               <div className="mt-4 flex justify-center">
                 <button
                   onClick={() => setSelectedSkill(null)}
                   disabled={!selectedSkill}
-                  className={`px-4 py-2 font-medium transition-all duration-300 border-0
+                  className={`${isSmallScreen ? 'px-3 py-1 text-xs' : 'px-4 py-2'} font-medium transition-all duration-300 border-0
                     ${selectedSkill
                       ? 'bg-blue-600 text-white hover:bg-primary hover:text-primary-foreground'
                       : 'bg-muted text-muted-foreground cursor-not-allowed opacity-50'
@@ -492,12 +514,12 @@ export function SkillsSection() {
           </Card>
         </div>
 
-        <Card className="bg-gradient-to-br from-background to-muted/20">
+        <Card className={`bg-gradient-to-br from-background to-muted/20 ${isSmallScreen ? 'p-3' : ''}`}>
           <CardHeader>
-            <CardTitle className="text-center heading-font text-[25px] font-[60] tracking-wider text-black dark:text-foreground/80">TECHNICAL PROFICIENCY (SELECT SKILL)</CardTitle>
+            <CardTitle className={`text-center heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>TECHNICAL PROFICIENCY (SELECT SKILL)</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-wrap gap-8 justify-center">
+            <div className={`flex flex-wrap gap-8 justify-center ${isSmallScreen ? 'gap-4' : ''}`}>
               {tools.map((tool, index) => (
                 <div
                   key={index}
@@ -505,10 +527,13 @@ export function SkillsSection() {
                   onClick={() => handleSkillClick(tool.name)}
                 >
                   <div className="flex flex-col items-center gap-3">
-                    <div className={`w-16 h-16 flex items-center justify-center transition-transform duration-300 transform-gpu origin-center ${selectedSkill === tool.name ? 'scale-125' : 'group-hover:scale-125'}`}>
-                      {tool.icon}
+                    <div className={`${isSmallScreen ? 'w-12 h-12' : 'w-16 h-16'} flex items-center justify-center transition-transform duration-300 transform-gpu origin-center ${selectedSkill === tool.name ? 'scale-125' : 'group-hover:scale-125'}`}>
+                      {React.cloneElement(tool.icon, {
+                        width: isSmallScreen ? 30 : 50,
+                        height: isSmallScreen ? 30 : 50
+                      })}
                     </div>
-                    <span className={`text-sm font-medium transition-colors ${selectedSkill === tool.name ? 'text-primary' : 'group-hover:text-primary'}`}>{tool.name}</span>
+                    <span className={`${isSmallScreen ? 'text-xs' : 'text-sm'} font-medium transition-colors ${selectedSkill === tool.name ? 'text-primary' : 'group-hover:text-primary'}`}>{tool.name}</span>
                   </div>
                 </div>
               ))}

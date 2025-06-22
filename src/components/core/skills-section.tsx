@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import { useUltraSmoothScroll } from '../../hooks/UltraSmoothScroll';
 import { useState, useEffect } from 'react';
 import {
@@ -293,20 +293,20 @@ export function SkillsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <Card className={`hover:shadow-lg transition-all duration-300 ${isSmallScreen ? 'p-3' : ''}`}>
-            <CardHeader className={`${isSmallScreen ? 'pb-6' : 'pb-12'}`}>
+            <CardHeader className={`pb-6`}>
               <CardTitle className={`flex items-center gap-2 heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>
                 SKILLS GROWTH OVER TIME (SELECT TIMELINE)
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 300}>
+              <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 350}>
                 <LineChart
                   data={filteredSkillData}
                   margin={{
-                    top: 5,
+                    top: 30,
                     right: isSmallScreen ? 15 : 30,
                     left: isSmallScreen ? 10 : 20,
-                    bottom: isSmallScreen ? 20 : 5
+                    bottom: 20
                   }}
                   onClick={(e: any) => {
                     if (e && e.activePayload && e.activePayload[0]) {
@@ -318,6 +318,7 @@ export function SkillsSection() {
                   <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
                   <XAxis
                     dataKey="year"
+                    label={{ value: "Date", position: "insideBottom", offset: -10, fontSize: isSmallScreen ? 8 : 12 }}
                     tick={{
                       fontSize: isSmallScreen ? 8 : 12,
                       dy: isSmallScreen ? 10 : 0
@@ -326,6 +327,7 @@ export function SkillsSection() {
                     interval={0}
                   />
                   <YAxis
+                    label={{ value: "Proficiency", angle: -90, position: "insideLeft", fontSize: isSmallScreen ? 8 : 12 }}
                     domain={[0, 100]}
                     tick={{
                       fontSize: isSmallScreen ? 8 : 12
@@ -340,6 +342,7 @@ export function SkillsSection() {
                       fontSize: isSmallScreen ? '10px' : '14px'
                     }}
                   />
+                  <Legend verticalAlign="top" wrapperStyle={{ fontSize: isSmallScreen ? '10px' : '14px' ,position: 'absolute',top: 10 }} />
                   {selectedSkill ? (
                     <Line
                       type="monotone"

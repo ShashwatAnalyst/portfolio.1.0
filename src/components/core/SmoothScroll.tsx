@@ -42,9 +42,9 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
             // Mobile-friendly animation settings
             const mobileSettings = {
-                start: "top 85%", // Trigger later on mobile
-                end: "top 15%", // End later on mobile
-                duration: 0.8, // Faster animations
+                start: "top 95%", // Trigger much later on mobile
+                end: "top 5%", // End much later on mobile
+                duration: 0.3, // Much faster animations
                 ease: "power1.out", // Simpler easing
                 opacity: 0.3, // Less fade on mobile
                 y: 30 // Smaller movement

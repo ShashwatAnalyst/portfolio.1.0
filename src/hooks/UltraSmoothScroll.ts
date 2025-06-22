@@ -67,7 +67,7 @@ export const useUltraSmoothScroll = () => {
                 y: index === 0 ? 0 : 30, // Smaller movement on mobile
                 scale: index === 0 ? 1 : 0.98, // Less scale change on mobile
                 rotationX: 0, // No 3D rotation on mobile
-                duration: 0.8, // Faster animations on mobile
+                duration: 0.4, // Much faster animations on mobile
                 ease: "power1.out" // Simpler easing on mobile
             };
 
@@ -95,8 +95,8 @@ export const useUltraSmoothScroll = () => {
             // Create smooth entrance animation with mobile-friendly triggers
             ScrollTrigger.create({
                 trigger: section,
-                start: isMobile() ? "top 80%" : "top 50%", // Trigger later on mobile
-                end: isMobile() ? "bottom 20%" : "bottom 50%", // End later on mobile
+                start: isMobile() ? "top 90%" : "top 50%", // Trigger much later on mobile
+                end: isMobile() ? "top 10%" : "bottom 50%", // End much later on mobile
                 scrub: false,
                 onEnter: () => {
                     gsap.to(section, {

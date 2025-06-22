@@ -42,8 +42,8 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
             // Mobile-friendly animation settings with much earlier triggers
             const mobileSettings = {
-                start: "top 80%", // Trigger even earlier on mobile
-                end: "top 75%", // End almost immediately - section becomes fully visible very quickly
+                start: "top 90%", // Trigger even earlier on mobile
+                end: "top 90%", // End almost immediately - section becomes fully visible very quickly
                 duration: 0.15, // Very fast animations for mobile
                 ease: "power1.out", // Simpler easing
                 opacity: 0.7, // Much more visible initial state

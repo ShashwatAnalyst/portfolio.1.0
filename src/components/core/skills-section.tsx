@@ -414,7 +414,7 @@ export function SkillsSection() {
                 <SelectTrigger className={`${isSmallScreen ? 'w-[120px] text-xs' : 'w-[180px]'}`}>
                   <SelectValue placeholder="Select timeline" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent position="popper" sideOffset={8} className="bg-background/95 backdrop-blur-sm">
                   {skillData.map((data) => (
                     <SelectItem key={data.year} value={data.year}>
                       {data.year}

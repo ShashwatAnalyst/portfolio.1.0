@@ -1,29 +1,13 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 const StarryBackground = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const particlesRef = useRef<HTMLDivElement[]>([]);
-    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         if (!containerRef.current) return;
-
-        // Wait for page to be fully loaded before starting animations
-        const startAnimations = () => {
-            if (isLoaded) return;
-            setIsLoaded(true);
-        };
-
-        // Start animations after a short delay to ensure smooth initial load
-        const timer = setTimeout(startAnimations, 500);
-
-        return () => clearTimeout(timer);
-    }, [isLoaded]);
-
-    useEffect(() => {
-        if (!containerRef.current || !isLoaded) return;
 
         // Clear existing particles
         particlesRef.current = [];
@@ -174,7 +158,7 @@ const StarryBackground = () => {
             });
             particlesRef.current = [];
         };
-    }, [isLoaded]); // Only re-run when isLoaded changes
+    }, []); // Run immediately when component mounts
 
     return (
         <div ref={containerRef} className="fixed inset-0 z-0 pointer-events-none overflow-hidden" />

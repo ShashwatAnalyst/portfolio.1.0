@@ -1,18 +1,34 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const StarryBackground = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const particlesRef = useRef<HTMLDivElement[]>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         if (!containerRef.current) return;
 
+        // Wait for page to be fully loaded before starting animations
+        const startAnimations = () => {
+            if (isLoaded) return;
+            setIsLoaded(true);
+        };
+
+        // Start animations after a short delay to ensure smooth initial load
+        const timer = setTimeout(startAnimations, 500);
+
+        return () => clearTimeout(timer);
+    }, [isLoaded]);
+
+    useEffect(() => {
+        if (!containerRef.current || !isLoaded) return;
+
         // Clear existing particles
         particlesRef.current = [];
 
-        // Create particles - reduced from 200 to 80 for better performance
+        // Create particles - keep all 80 particles
         const particles = Array.from({ length: 80 }, () => {
             const particle = document.createElement('div');
             particle.className = 'absolute rounded-full';
@@ -39,46 +55,46 @@ const StarryBackground = () => {
             }
         };
 
-        // Function to update particle colors - optimized with throttling
+        // Function to update particle colors - optimized with better throttling
         let colorUpdateTimeout: number | null = null;
         const updateParticleColors = () => {
             if (colorUpdateTimeout) return;
 
             colorUpdateTimeout = window.setTimeout(() => {
-            const color = getParticleColor();
-            particles.forEach(particle => {
-                particle.style.backgroundColor = color;
-            });
+                const color = getParticleColor();
+                particles.forEach(particle => {
+                    particle.style.backgroundColor = color;
+                });
                 colorUpdateTimeout = null;
-            }, 100); // Throttle to 100ms
+            }, 150); // Increased throttle to 150ms for better performance
         };
 
-        // Animate particles with more aggressive settings
+        // Animate particles with optimized settings
         particles.forEach((particle) => {
             const startX = Math.random() * window.innerWidth;
             const startY = Math.random() * window.innerHeight;
-            const endX = startX + (Math.random() - 0.5) * 200; // Add horizontal movement
+            const endX = startX + (Math.random() - 0.5) * 200; // Keep horizontal movement
             const endY = window.innerHeight + 50;
-            const duration = Math.random() * 4 + 6; // Faster: 6-10 seconds (was 8-12)
-            const delay = Math.random() * 5; // Shorter delay: 0-5 seconds (was 0-8)
+            const duration = Math.random() * 4 + 6; // Keep 6-10 seconds
+            const delay = Math.random() * 5; // Keep 0-5 seconds delay
 
             gsap.set(particle, {
-                width: Math.random() * 3 + 2, // Increased from 2+1 to 3+2 (larger particles)
-                height: Math.random() * 3 + 2, // Increased from 2+1 to 3+2 (larger particles)
-                opacity: Math.random() * 0.5 + 0.3, // Reduced opacity range
+                width: Math.random() * 3 + 2, // Keep larger particles
+                height: Math.random() * 3 + 2, // Keep larger particles
+                opacity: Math.random() * 0.5 + 0.3, // Keep opacity range
                 x: startX,
                 y: startY,
                 backgroundColor: getParticleColor(),
             });
 
-            // Create more aggressive animation with horizontal movement
+            // Create animation with horizontal movement (keep all effects)
             gsap.to(particle, {
                 x: endX,
                 y: endY,
                 duration: duration,
                 opacity: 0,
                 repeat: -1,
-                ease: "power1.out", // More aggressive easing
+                ease: "power1.out", // Keep aggressive easing
                 delay: delay,
                 onComplete: () => {
                     // Reset particle position for continuous flow
@@ -90,7 +106,7 @@ const StarryBackground = () => {
                 }
             });
 
-            // Add subtle horizontal swaying motion
+            // Keep horizontal swaying motion
             gsap.to(particle, {
                 x: endX + (Math.random() - 0.5) * 100,
                 duration: duration * 0.5,
@@ -107,7 +123,7 @@ const StarryBackground = () => {
         });
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
-        // Optimized scroll listener with increased throttling
+        // Optimized scroll listener with better throttling
         let ticking = false;
         const handleScroll = () => {
             if (!ticking) {
@@ -158,7 +174,7 @@ const StarryBackground = () => {
             });
             particlesRef.current = [];
         };
-    }, []);
+    }, [isLoaded]); // Only re-run when isLoaded changes
 
     return (
         <div ref={containerRef} className="fixed inset-0 z-0 pointer-events-none overflow-hidden" />

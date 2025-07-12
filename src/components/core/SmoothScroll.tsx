@@ -46,8 +46,8 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
                 end: "top 90%", // End almost immediately - section becomes fully visible very quickly
                 duration: 0.15, // Very fast animations for mobile
                 ease: "power1.out", // Simpler easing
-                opacity: 1, // Much more visible initial state
-                y: 10 // Smaller movement
+                opacity: 1, // Fully visible initial state
+                y: 0 // No movement
             };
 
             const desktopSettings = {
@@ -55,16 +55,23 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
                 end: "top 20%", // End almost immediately - section becomes fully visible very quickly
                 duration: 0.3, // Very fast animations
                 ease: "power2.out", // Smooth easing
-                opacity: 0.6, // More visible initial state on desktop
-                y: 20 // Moderate movement
+                opacity: 1, // Fully visible initial state on desktop
+                y: 0 // No movement
             };
 
             const settings = isMobile() ? mobileSettings : desktopSettings;
 
+            // Set initial state to fully visible
+            gsap.set(section, {
+                opacity: 1,
+                y: 0
+            });
+
+            // Only animate on scroll trigger
             gsap.fromTo(section,
                 {
-                    opacity: settings.opacity,
-                    y: settings.y
+                    opacity: 0.8,
+                    y: 30
                 },
                 {
                     opacity: 1,

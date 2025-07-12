@@ -275,7 +275,7 @@ export function SkillsSection() {
       return `Showing skill percentage contribution for ${selectedYear}. Click on a skill segment or the skill icons below to view the proficiency of that skill in ${selectedYear}`;
     } else if (selectedSkill) {
       const skillValue = currentData[selectedSkill as keyof typeof currentData] || 0;
-      return `Currently showing ${selectedSkill} proficiency level: ${skillValue}%. Select a timeline to see how this skill evolved over time.`;
+      return `Currently showing ${selectedSkill} proficiency level: ${skillValue}%. Select a timeline to see how this skill proficiency has evolved over time.`;
     } else {
       return `Showing percentage contribution of each skill based on the latest data. Click on a skill or time period to see detailed breakdowns.`;
     }
@@ -289,8 +289,8 @@ export function SkillsSection() {
           <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
             A comprehensive overview of my technical skills and their evolution over time
           </p>
-          <p className={`${isSmallScreen ? 'text-xs' : 'text-sm'} text-muted-foreground mt-2 max-w-2xl mx-auto`}>
-            (Skill proficiency is a measure of my hands-on experience and project work with each technology)
+          <p className={`${isSmallScreen ? 'text-xs' : 'text-lg'} text-muted-foreground mt-2 max-w-2xl mx-auto`}>
+            (Skill proficiency and contribution percentage are measures of my hands-on experience and project work with each technology)
           </p>
         </div>
 
@@ -391,7 +391,7 @@ export function SkillsSection() {
               </ResponsiveContainer>
               <div className={`mt-4 ${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground text-center ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'}`}>
                 {selectedYear
-                  ? `Showing skills growth data over time. Timeline: ${selectedYear}. Click on skill icons below or donut chart segments to focus on specific skills.`
+                  ? `Showing skills proficiency growth data over time. Timeline: ${selectedYear}. Click on skill icons below or donut chart segments to focus on specific skills.`
                   : selectedSkill
                     ? `Showing ${selectedSkill} progression over time. Click on any point in the timeline to view skill distribution for that period.`
                     : `Click on any point in the timeline to view skill distribution for that period, or select a specific skill to track its progression.`}
@@ -458,7 +458,7 @@ export function SkillsSection() {
                     innerRadius={isSmallScreen ? 22 : 40}
                     paddingAngle={3}
                     dataKey="value"
-                    label={({ name, contribution, cx, cy, midAngle, innerRadius, outerRadius }) => {
+                    label={({ name, contribution, cx, cy, midAngle }) => {
                       if (name === 'Remaining') return null;
 
                       const RADIAN = Math.PI / 180;

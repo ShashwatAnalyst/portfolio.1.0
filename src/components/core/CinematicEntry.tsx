@@ -39,6 +39,7 @@ const CinematicEntry: React.FC<CinematicEntryProps> = ({ onComplete }) => {
 
       // Enable maximum performance
       gsap.config({
+        force3D: true,
         nullTargetWarn: false
       });
 
@@ -46,7 +47,9 @@ const CinematicEntry: React.FC<CinematicEntryProps> = ({ onComplete }) => {
       requestAnimationFrame(() => {
         const tl = gsap.timeline({
           defaults: {
-            ease: 'power2.inOut'
+            ease: 'power2.inOut',
+            force3D: true,
+            transformOrigin: "50% 50%"
           },
           immediateRender: false // Let useEffect handle initial setup
         });

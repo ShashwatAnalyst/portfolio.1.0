@@ -65,7 +65,7 @@ export const useUltraSmoothScroll = () => {
             const mobileSettings = {
                 opacity: index === 0 ? 1 : 0.1, // Very subtle initial fade on mobile
                 y: index === 0 ? 0 : 20, // Smaller movement on mobile
-                scale: 1, // Keep normal scale
+                scale: index === 0 ? 1 : 0.99, // Minimal scale change on mobile
                 rotationX: 0, // No 3D rotation on mobile
                 duration: 0.6, // Faster animations on mobile
                 ease: "power1.out", // Simpler easing on mobile
@@ -76,7 +76,7 @@ export const useUltraSmoothScroll = () => {
             const desktopSettings = {
                 opacity: index === 0 ? 1 : 0.1, // Very subtle initial fade on desktop
                 y: index === 0 ? 0 : 50, // Moderate movement on desktop
-                scale: 1, // Keep normal scale
+                scale: index === 0 ? 1 : 0.98, // Minimal scale change on desktop
                 rotationX: index === 0 ? 0 : 2, // Minimal 3D rotation on desktop
                 duration: 0.8, // Moderate animations on desktop
                 ease: "power2.out", // Smooth easing on desktop
@@ -92,7 +92,8 @@ export const useUltraSmoothScroll = () => {
                 y: settings.y,
                 scale: settings.scale,
                 rotationX: settings.rotationX,
-                transformOrigin: "center center"
+                transformOrigin: "center center",
+                force3D: !isMobile() // Disable 3D on mobile for better performance
             });
 
             // Create smooth entrance animation with better timing
@@ -108,7 +109,8 @@ export const useUltraSmoothScroll = () => {
                         scale: 1,
                         rotationX: 0,
                         duration: settings.duration,
-                        ease: settings.ease
+                        ease: settings.ease,
+                        force3D: !isMobile()
                     });
                 },
                 onLeave: () => {
@@ -129,7 +131,8 @@ export const useUltraSmoothScroll = () => {
                             scale: 0.99,
                             rotationX: -1,
                             duration: settings.duration * 0.8,
-                            ease: "power2.in"
+                            ease: "power2.in",
+                            force3D: true
                         });
                     }
                 },
@@ -140,7 +143,8 @@ export const useUltraSmoothScroll = () => {
                         scale: 1,
                         rotationX: 0,
                         duration: settings.duration,
-                        ease: settings.ease
+                        ease: settings.ease,
+                        force3D: !isMobile()
                     });
                 },
                 onLeaveBack: () => {
@@ -161,7 +165,8 @@ export const useUltraSmoothScroll = () => {
                             scale: 0.99,
                             rotationX: 1,
                             duration: settings.duration * 0.8,
-                            ease: "power2.in"
+                            ease: "power2.in",
+                            force3D: true
                         });
                     }
                 }

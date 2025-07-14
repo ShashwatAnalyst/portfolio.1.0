@@ -53,12 +53,12 @@ const StarryBackground = () => {
             }, 150); // Increased throttle to 150ms for better performance
         };
 
-        // Animate particles with optimized settings
+        // Animate particles with top-to-bottom spawning
         particles.forEach((particle) => {
             const startX = Math.random() * window.innerWidth;
-            const startY = Math.random() * window.innerHeight;
+            const startY = -20; // Start from just above the viewport
             const endX = startX + (Math.random() - 0.5) * 200; // Keep horizontal movement
-            const endY = window.innerHeight + 50;
+            const endY = window.innerHeight + 50; // End below the viewport
             const duration = Math.random() * 4 + 6; // Keep 6-10 seconds
             const delay = Math.random() * 5; // Keep 0-5 seconds delay
 
@@ -71,7 +71,7 @@ const StarryBackground = () => {
                 backgroundColor: getParticleColor(),
             });
 
-            // Create animation with horizontal movement (keep all effects)
+            // Create animation with particles falling from top
             gsap.to(particle, {
                 x: endX,
                 y: endY,
@@ -81,10 +81,10 @@ const StarryBackground = () => {
                 ease: "power1.out", // Keep aggressive easing
                 delay: delay,
                 onComplete: () => {
-                    // Reset particle position for continuous flow
+                    // Reset particle position to top for continuous flow
                     gsap.set(particle, {
                         x: Math.random() * window.innerWidth,
-                        y: -20,
+                        y: -20, // Reset to top
                         opacity: Math.random() * 0.5 + 0.3,
                     });
                 }

@@ -124,7 +124,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ sections }) => {
                                 variant="outline"
                                 size="icon"
                                 className="w-[50px] hover:bg-zinc-700 hover:text-white  transition-colors duration-300"
-                                onClick={() => window.open('https://github.com/itsshashwatsingh', '_blank')}
+                                onClick={() => window.open('https://github.com/shashwatanalyst', '_blank')}
                             >
                                 <GithubIcon className="w-4 h-4" />
                             </Button>

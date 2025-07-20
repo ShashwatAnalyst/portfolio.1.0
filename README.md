@@ -10,7 +10,7 @@ Visit the live website: [shashwatanalyst.online](https://www.shashwatanalyst.onl
 
 ## 👨‍💻 Connect With Me
 
-- GitHub: [@itsshashwatsingh](https://github.com/shashwatanalyst)
+- GitHub: [@ShashwatAnalyst](https://github.com/shashwatanalyst)
 - LinkedIn: [Shashwat Singh](https://www.linkedin.com/in/shashwat-singh-bb2730357/)
 - Twitter: [@ShashwatSi48402](https://x.com/ShashwatSi48402)
 - Email: shashwat98k@gmail.com

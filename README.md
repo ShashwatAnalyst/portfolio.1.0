@@ -6,7 +6,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 ## 🚀 Live Demo
 
-Visit the live website: [portfolio-1-0-lac.vercel.app](https://www.shashwatanalyst.online/)
+Visit the live website: [shashwatanalyst.online](https://www.shashwatanalyst.online/)
 
 ## 👨‍💻 Connect With Me
 

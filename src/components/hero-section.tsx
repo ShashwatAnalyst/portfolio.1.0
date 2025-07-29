@@ -75,7 +75,7 @@ export function HeroSection() {
               </div>
               <div className="relative -bottom-[10px] text-center w-full animate-float">
                 <h3 className="text-lg heading-font font-bold text-blue-600 !text-blue-600">SHASHWAT SINGH</h3>
-                <p className="text-xs text-muted-foreground mt-1">Data Analyst</p>
+                
               </div>
             </div>
           ) : (
@@ -91,7 +91,7 @@ export function HeroSection() {
               </div>
               <div className="relative -bottom-[20px] left-[90px] md:-bottom-[30px] md:-left-[10px] lg:-bottom-[30px] lg:-left-[00px] transform -translate-x-1/2 text-center w-full animate-float">
                 <h3 className="text-3xl heading-font font-bold text-blue-600 !text-blue-600">SHASHWAT SINGH</h3>
-                <p className="text-s text-muted-foreground mt-3">Data Analyst</p>
+                
               </div>
             </div>
           )}

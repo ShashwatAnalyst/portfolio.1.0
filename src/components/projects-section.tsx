@@ -1,56 +1,55 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { ExternalLink, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { useUltraSmoothScroll } from '../hooks/UltraSmoothScroll';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
     id: 1,
     title: "Sales Analytics Dashboard",
-    description: "Comprehensive dashboard analyzing sales performance across multiple regions with real-time KPI tracking and predictive analytics.",
+    description: "Comprehensive dashboard analyzing sales performance across multiple regions with real-time KPI tracking and predictive analytics. This project demonstrates advanced data visualization techniques and business intelligence solutions that helped increase sales insights by 40% while implementing automated reporting systems.",
     image: "https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600",
     technologies: ["Python", "Tableau", "SQL", "AWS"],
-    liveUrl: "#",
-    githubUrl: "#",
-    highlights: ["40% increase in sales insights", "Real-time data processing", "Automated reporting"]
+    githubUrl: "#"
   },
   {
     id: 2,
     title: "Customer Segmentation Analysis",
-    description: "Machine learning-based customer segmentation to optimize marketing strategies and improve customer retention rates.",
+    description: "Machine learning-based customer segmentation to optimize marketing strategies and improve customer retention rates. Utilized advanced clustering algorithms and statistical analysis to identify distinct customer groups, resulting in 25% improvement in marketing campaign targeting and significantly enhanced customer engagement metrics.",
     image: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=600",
     technologies: ["Python", "scikit-learn", "Pandas", "Matplotlib"],
-    liveUrl: "#",
-    githubUrl: "#",
-    highlights: ["25% improvement in targeting", "K-means clustering", "Interactive visualizations"]
+    githubUrl: "#"
   },
   {
     id: 3,
     title: "Financial Risk Assessment Tool",
-    description: "Automated risk assessment system for loan applications using machine learning algorithms and historical data analysis.",
+    description: "Automated risk assessment system for loan applications using machine learning algorithms and historical data analysis. This comprehensive solution processes applications 30% faster while maintaining 95% accuracy rate and full regulatory compliance, revolutionizing the traditional loan approval process.",
     image: "https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=600",
     technologies: ["R", "Power BI", "SQL Server", "Azure"],
-    liveUrl: "#",
-    githubUrl: "#",
-    highlights: ["30% faster processing", "95% accuracy rate", "Regulatory compliance"]
+    githubUrl: "#"
   },
   {
     id: 4,
     title: "Supply Chain Optimization",
-    description: "Data-driven analysis of supply chain inefficiencies with recommendations for cost reduction and improved delivery times.",
+    description: "Data-driven analysis of supply chain inefficiencies with recommendations for cost reduction and improved delivery times. Through comprehensive data modeling and predictive analytics, achieved 20% cost reduction and significantly improved operational efficiency with automated monitoring systems.",
     image: "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=600",
     technologies: ["Excel", "Python", "Tableau", "Google Analytics"],
-    liveUrl: "#",
-    githubUrl: "#",
-    highlights: ["20% cost reduction", "Improved efficiency", "Automated monitoring"]
+    githubUrl: "#"
   }
 ];
 
 export function ProjectsSection() {
   const { addSection } = useUltraSmoothScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -62,75 +61,200 @@ export function ProjectsSection() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  useEffect(() => {
+    // Clear any existing ScrollTriggers
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+    // GSAP ScrollTrigger animations with optimized settings
+    cardRefs.current.forEach((card, index) => {
+      if (card) {
+        // Set initial state - cards start invisible from bottom
+        gsap.set(card, {
+          y: 50,
+          opacity: 0
+        });
+
+        // Create scroll trigger animation with simplified and responsive trigger points
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 85%",     // Start animation earlier for smoother entry
+          end: "bottom 25%",    // End animation later to reduce flickering on upward scroll
+          onEnter: () => {
+            // Card enters from bottom
+            gsap.to(card, {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              ease: "power2.out",
+              delay: index * 0.05  // Reduced stagger delay
+            });
+          },
+          onLeave: () => {
+            // Card leaves at top - subtle upward movement (reduced from -30 to -15)
+            gsap.to(card, {
+              y: -15,
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.out"  // Changed from power2.in to power2.out for smoother exit
+            });
+          },
+          onEnterBack: () => {
+            // Card re-enters from top - smooth transition
+            gsap.to(card, {
+              y: 0,
+              opacity: 1,
+              duration: 0.5,
+              ease: "power2.out"
+            });
+          },
+          onLeaveBack: () => {
+            // Card leaves at bottom - subtle downward movement (reduced from 30 to 15)
+            gsap.to(card, {
+              y: 15,
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.out"  // Changed from power2.in to power2.out for smoother exit
+            });
+          },
+          // Add some margin to prevent rapid triggering
+          markers: false,
+          refreshPriority: -1,
+          invalidateOnRefresh: true
+        });
+
+        // Simplified hover animations
+        const handleMouseEnter = () => {
+          const currentOpacity = gsap.getProperty(card, "opacity") as number;
+          if (currentOpacity > 0.8) {
+            gsap.to(card, {
+              y: "-=5",
+              scale: 1.01,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          }
+        };
+
+        const handleMouseLeave = () => {
+          const currentOpacity = gsap.getProperty(card, "opacity") as number;
+          if (currentOpacity > 0.8) {
+            gsap.to(card, {
+              y: "+=5",
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          }
+        };
+
+        card.addEventListener('mouseenter', handleMouseEnter);
+        card.addEventListener('mouseleave', handleMouseLeave);
+
+        // Store cleanup function for event listeners
+        card.addEventListener('cleanup', () => {
+          card.removeEventListener('mouseenter', handleMouseEnter);
+          card.removeEventListener('mouseleave', handleMouseLeave);
+        });
+      }
+    });
+
+    // Cleanup function
+    return () => {
+      cardRefs.current.forEach(card => {
+        if (card) {
+          card.dispatchEvent(new Event('cleanup'));
+        }
+      });
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  // Refresh ScrollTrigger on window resize to maintain responsiveness
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <section ref={addSection} id="projects" className="flex items-center justify-center py-16">
-      <div className="container mx-auto">
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="flex items-center justify-center py-16"
+    >
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>FEATURED PROJECTS</h2>
+          <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>
+            FEATURED PROJECTS
+          </h2>
           <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
             A showcase of my data analysis projects that demonstrate problem-solving skills and business impact
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <Card key={project.id} className="group overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={`w-full ${isSmallScreen ? 'h-32' : 'h-48'} object-cover transition-transform duration-500 group-hover:scale-110`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="flex gap-2">
-                    <Button size={isSmallScreen ? "sm" : "sm"} className={`gap-2 ${isSmallScreen ? 'text-xs px-2 py-1' : ''}`} asChild>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'}`} />
-                        Live Demo
-                      </a>
-                    </Button>
-                    <Button size={isSmallScreen ? "sm" : "sm"} variant="outline" className={`gap-2 bg-background/20 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 ${isSmallScreen ? 'text-xs px-2 py-1' : ''}`} asChild>
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'}`} />
-                        Code
-                      </a>
-                    </Button>
+        <div className="flex flex-col items-center space-y-12">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              ref={(el) => cardRefs.current[index] = el}
+              className="w-[90vw] max-w-7xl"
+            >
+              <Card className="overflow-hidden bg-white dark:bg-card shadow-lg">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Image Section - 35-40% width */}
+                  <div className="md:w-[38%] relative overflow-hidden group">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className={`w-full ${isSmallScreen ? 'h-48' : 'h-full md:h-80 lg:h-96'} object-cover transition-transform duration-700 group-hover:scale-110`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 group-hover:to-black/40 transition-all duration-500"></div>
+                  </div>
+
+                  {/* Content Section - 60-65% width */}
+                  <div className="md:w-[62%] flex flex-col justify-between">
+                    <CardHeader className={`${isSmallScreen ? 'p-4' : 'p-8'} pb-4`}>
+                      <CardTitle className={`${isSmallScreen ? 'text-lg' : 'text-2xl lg:text-3xl'} heading-font font-normal tracking-wider text-black dark:text-foreground/90 hover:text-primary transition-colors duration-300 mb-4`}>
+                        {project.title.toUpperCase()}
+                      </CardTitle>
+                      <p className={`${isSmallScreen ? 'text-sm leading-relaxed' : 'text-lg leading-relaxed'} text-black/80 dark:text-muted-foreground ${isSmallScreen ? 'text-[14px]' : 'text-[17px]'}`}>
+                        {project.description}
+                      </p>
+                    </CardHeader>
+
+                    <CardContent className={`${isSmallScreen ? 'p-4' : 'p-8'} pt-0 space-y-6`}>
+                      <div className="flex flex-wrap gap-3">
+                        {project.technologies.map((tech) => (
+                          <Badge 
+                            key={tech} 
+                            variant="secondary" 
+                            className={`${isSmallScreen ? 'text-xs px-3 py-1' : 'text-sm px-4 py-2'} hover:bg-primary hover:text-primary-foreground transition-colors duration-300`}
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="pt-2">
+                        <Button 
+                          size={isSmallScreen ? "sm" : "lg"} 
+                          className={`gap-2 bg-black hover:bg-black/80 text-white transition-all duration-300 hover:shadow-lg ${isSmallScreen ? 'text-xs px-4 py-2' : 'px-8 py-4 text-base'}`} 
+                          asChild
+                        >
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className={`${isSmallScreen ? 'w-3 h-3' : 'w-5 h-5'}`} />
+                            View on GitHub
+                          </a>
+                        </Button>
+                      </div>
+                    </CardContent>
                   </div>
                 </div>
-              </div>
-
-              <CardHeader className={`${isSmallScreen ? 'p-3' : ''}`}>
-                <CardTitle className={`${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60] lg:text-[22px] lg:font-[60]'} heading-font tracking-wider text-black dark:text-foreground/80 group-hover:text-primary transition-colors`}>
-                  {project.title.toUpperCase()}
-                </CardTitle>
-                <p className={`${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'}`}>
-                  {project.description}
-                </p>
-              </CardHeader>
-
-              <CardContent className={`space-y-4 ${isSmallScreen ? 'p-3' : ''}`}>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="secondary" className={`${isSmallScreen ? 'text-xs px-2 py-1' : 'text-xs'}`}>
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className={`font-medium ${isSmallScreen ? 'text-xs' : 'text-sm'} text-black dark:text-foreground`}>Key Achievements:</h4>
-                  <ul className="space-y-1">
-                    {project.highlights.map((highlight, index) => (
-                      <li key={index} className={`${isSmallScreen ? 'text-xs' : 'text-xs'} text-black dark:text-muted-foreground flex items-center gap-2`}>
-                        <div className={`${isSmallScreen ? 'w-1 h-1' : 'w-1.5 h-1.5'} bg-primary rounded-full`}></div>
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

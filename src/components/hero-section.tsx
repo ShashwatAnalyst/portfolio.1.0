@@ -73,10 +73,7 @@ export function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 dark:from-background/50 to-transparent"></div>
               </div>
-              <div className="relative -bottom-[10px] text-center w-full animate-float">
-                <h3 className="text-lg heading-font font-bold text-blue-600 !text-blue-600">SHASHWAT SINGH</h3>
-                
-              </div>
+             
             </div>
           ) : (
             <div className="relative lg:right-[-50px] lg:-top-[50px] md:-right-[120px] md:-top-[30px] transform -translate-x-[100px]">
@@ -89,10 +86,7 @@ export function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 dark:from-background/50 to-transparent"></div>
               </div>
-              <div className="relative -bottom-[20px] left-[90px] md:-bottom-[30px] md:-left-[10px] lg:-bottom-[30px] lg:-left-[00px] transform -translate-x-1/2 text-center w-full animate-float">
-                <h3 className="text-3xl heading-font font-bold text-blue-600 !text-blue-600">SHASHWAT SINGH</h3>
-                
-              </div>
+              
             </div>
           )}
         </div>

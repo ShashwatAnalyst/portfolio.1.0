@@ -285,7 +285,7 @@ export function SkillsSection() {
     <section ref={addSection} id="skills" className="flex items-center justify-center py-16">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>SKILLS & EXPERTISE</h2>
+          <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>TECHNICAL SKILLS PROGRESS STATS</h2>
           <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
             A comprehensive overview of my technical skills and their evolution over time
           </p>

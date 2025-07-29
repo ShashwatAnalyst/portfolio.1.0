@@ -36,15 +36,12 @@ export function HeroSection() {
           <div className="space-y-4">
             <h1 className={`${isSmallScreen ? 'text-xl md:text-3xl' : 'text-4xl md:text-6xl'} heading-font tracking-tight`}>
               <span className="bg-blue-600 bg-clip-text text-transparent">
-                HI, I'M SHASHWAT,<br /> DATA ANALYST
+                DATA ANALYST
               </span>
             </h1>
-            <h2 className={`${isSmallScreen ? 'text-base md:text-xl' : 'text-2xl md:text-3xl'} text-muted-foreground heading-font`}>
-              TRANSFORMING DATA INTO INSIGHTS
-            </h2>
+            
             <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-lg mx-auto lg:mx-0 leading-relaxed`}>
-              Passionate about uncovering patterns in data and creating compelling visualizations
-              that drive business decisions. Specialized in SQL, Python, Tableau, and Excel.
+            Hi! I'm <strong>Shashwat</strong>. A passionate Data Analyst with a B.Tech in Computer Science and Engineering (specialization in Big Data Analytics) from SRM Institute of Science and Technology. 
             </p>
           </div>
 
@@ -94,7 +91,7 @@ export function HeroSection() {
               </div>
               <div className="relative -bottom-[20px] left-[90px] md:-bottom-[30px] md:-left-[10px] lg:-bottom-[30px] lg:-left-[00px] transform -translate-x-1/2 text-center w-full animate-float">
                 <h3 className="text-3xl heading-font font-bold text-blue-600 !text-blue-600">SHASHWAT SINGH</h3>
-                <p className="text-base text-muted-foreground mt-2">Data Analyst</p>
+                <p className="text-s text-muted-foreground mt-3">Data Analyst</p>
               </div>
             </div>
           )}

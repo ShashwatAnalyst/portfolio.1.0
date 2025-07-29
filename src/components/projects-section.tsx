@@ -48,12 +48,14 @@ const projects = [
 export function ProjectsSection() {
   const { addSection } = useUltraSmoothScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 450);
+      setIsMobile(window.innerWidth < 768); // Mobile threshold at 768px
     };
 
     checkScreenSize();
@@ -65,98 +67,112 @@ export function ProjectsSection() {
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-    // GSAP ScrollTrigger animations with optimized settings
-    cardRefs.current.forEach((card, index) => {
-      if (card) {
-        // Set initial state - cards start invisible from bottom
-        gsap.set(card, {
-          y: 50,
-          opacity: 0
-        });
+    // Only initialize animations if NOT mobile
+    if (!isMobile) {
+      // GSAP ScrollTrigger animations with optimized settings
+      cardRefs.current.forEach((card, index) => {
+        if (card) {
+          // Set initial state - cards start invisible from bottom
+          gsap.set(card, {
+            y: 50,
+            opacity: 0
+          });
 
-        // Create scroll trigger animation with simplified and responsive trigger points
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 85%",     // Start animation earlier for smoother entry
-          end: "bottom 25%",    // End animation later to reduce flickering on upward scroll
-          onEnter: () => {
-            // Card enters from bottom
-            gsap.to(card, {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-              delay: index * 0.05  // Reduced stagger delay
-            });
-          },
-          onLeave: () => {
-            // Card leaves at top - subtle upward movement (reduced from -30 to -15)
-            gsap.to(card, {
-              y: -15,
-              opacity: 0,
-              duration: 0.5,
-              ease: "power2.out"  // Changed from power2.in to power2.out for smoother exit
-            });
-          },
-          onEnterBack: () => {
-            // Card re-enters from top - smooth transition
-            gsap.to(card, {
-              y: 0,
-              opacity: 1,
-              duration: 0.5,
-              ease: "power2.out"
-            });
-          },
-          onLeaveBack: () => {
-            // Card leaves at bottom - subtle downward movement (reduced from 30 to 15)
-            gsap.to(card, {
-              y: 15,
-              opacity: 0,
-              duration: 0.5,
-              ease: "power2.out"  // Changed from power2.in to power2.out for smoother exit
-            });
-          },
-          // Add some margin to prevent rapid triggering
-          markers: false,
-          refreshPriority: -1,
-          invalidateOnRefresh: true
-        });
+          // Create scroll trigger animation with simplified and responsive trigger points
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 85%",     // Start animation earlier for smoother entry
+            end: "bottom 25%",    // End animation later to reduce flickering on upward scroll
+            onEnter: () => {
+              // Card enters from bottom
+              gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: "power2.out",
+                delay: index * 0.05  // Reduced stagger delay
+              });
+            },
+            onLeave: () => {
+              // Card leaves at top - subtle upward movement (reduced from -30 to -15)
+              gsap.to(card, {
+                y: -15,
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.out"  // Changed from power2.in to power2.out for smoother exit
+              });
+            },
+            onEnterBack: () => {
+              // Card re-enters from top - smooth transition
+              gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out"
+              });
+            },
+            onLeaveBack: () => {
+              // Card leaves at bottom - subtle downward movement (reduced from 30 to 15)
+              gsap.to(card, {
+                y: 15,
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.out"  // Changed from power2.in to power2.out for smoother exit
+              });
+            },
+            // Add some margin to prevent rapid triggering
+            markers: false,
+            refreshPriority: -1,
+            invalidateOnRefresh: true
+          });
 
-        // Simplified hover animations
-        const handleMouseEnter = () => {
-          const currentOpacity = gsap.getProperty(card, "opacity") as number;
-          if (currentOpacity > 0.8) {
-            gsap.to(card, {
-              y: "-=5",
-              scale: 1.01,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          }
-        };
+          // Simplified hover animations
+          const handleMouseEnter = () => {
+            const currentOpacity = gsap.getProperty(card, "opacity") as number;
+            if (currentOpacity > 0.8) {
+              gsap.to(card, {
+                y: "-=5",
+                scale: 1.01,
+                duration: 0.3,
+                ease: "power2.out"
+              });
+            }
+          };
 
-        const handleMouseLeave = () => {
-          const currentOpacity = gsap.getProperty(card, "opacity") as number;
-          if (currentOpacity > 0.8) {
-            gsap.to(card, {
-              y: "+=5",
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          }
-        };
+          const handleMouseLeave = () => {
+            const currentOpacity = gsap.getProperty(card, "opacity") as number;
+            if (currentOpacity > 0.8) {
+              gsap.to(card, {
+                y: "+=5",
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+              });
+            }
+          };
 
-        card.addEventListener('mouseenter', handleMouseEnter);
-        card.addEventListener('mouseleave', handleMouseLeave);
+          card.addEventListener('mouseenter', handleMouseEnter);
+          card.addEventListener('mouseleave', handleMouseLeave);
 
-        // Store cleanup function for event listeners
-        card.addEventListener('cleanup', () => {
-          card.removeEventListener('mouseenter', handleMouseEnter);
-          card.removeEventListener('mouseleave', handleMouseLeave);
-        });
-      }
-    });
+          // Store cleanup function for event listeners
+          card.addEventListener('cleanup', () => {
+            card.removeEventListener('mouseenter', handleMouseEnter);
+            card.removeEventListener('mouseleave', handleMouseLeave);
+          });
+        }
+      });
+    } else {
+      // For mobile devices, reset all cards to visible state without animations
+      cardRefs.current.forEach((card) => {
+        if (card) {
+          gsap.set(card, {
+            y: 0,
+            opacity: 1,
+            scale: 1
+          });
+        }
+      });
+    }
 
     // Cleanup function
     return () => {
@@ -167,17 +183,19 @@ export function ProjectsSection() {
       });
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [isMobile]); // Add isMobile as dependency
 
-  // Refresh ScrollTrigger on window resize to maintain responsiveness
+  // Refresh ScrollTrigger on window resize to maintain responsiveness (only for non-mobile)
   useEffect(() => {
     const handleResize = () => {
-      ScrollTrigger.refresh();
+      if (!isMobile) {
+        ScrollTrigger.refresh();
+      }
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
 
   return (
     <section

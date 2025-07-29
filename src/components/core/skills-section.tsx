@@ -402,7 +402,7 @@ export function SkillsSection() {
           <Card className={`hover:shadow-lg transition-all duration-300 ${isSmallScreen ? 'p-3' : ''}`}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className={`heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>
-                SKILL CONTRIBUTION DISTRIBUTION & PROFICIENCY LEVELS
+                SKILL CONTRIBUTION & PROFICIENCY LEVELS
               </CardTitle>
               <Select
                 value={selectedYear || ''}

@@ -134,9 +134,9 @@ export function AboutSection() {
     <div className="max-w-4xl mx-auto text-center space-y-6">
       <div className="flex flex-col md:flex-row items-start gap-8">
         {/* Left: Name Heading */}
-        <div className="md:w-1/2 w-full text-left -ml-6 md:-ml-12">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-black dark:text-foreground mb-2">Hi, I'm Shashwat.</h2>
-        </div>
+        <div className="md:w-1/2 w-full text-left">
+                  <h2 className="text-3xl md:text-5xl font-extrabold text-black dark:text-foreground mb-2">Hi, I'm Shashwat.</h2>
+                </div>
 
         {/* Right: Bio Paragraphs */}
         <div className="md:w-1/2 w-full space-y-4 mt-5">                   

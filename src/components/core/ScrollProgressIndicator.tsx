@@ -2,32 +2,29 @@
 import { useEffect, useRef } from 'react';
 
 const ScrollProgressIndicator = () => {
-    const scrollBarRef = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (scrollBarRef.current) {
-                const { scrollHeight, clientHeight } = document.documentElement;
-                const scrollableHeight = scrollHeight - clientHeight;
-                const scrollY = window.scrollY;
-                const scrollProgress = (scrollY / scrollableHeight) * 100;
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            const scrollableHeight = scrollHeight - clientHeight;
+            const progress = (scrollTop / scrollableHeight) * 100;
 
-                scrollBarRef.current.style.transform = `translateY(-${100 - scrollProgress
-                    }%)`;
+            if (scrollRef.current) {
+                scrollRef.current.style.width = `${progress}%`;
             }
         };
 
-        handleScroll();
-
+        handleScroll(); // run once initially
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
-        <div className="fixed top-[50svh] right-[2%] -translate-y-1/2 w-2 h-[120px] rounded-full bg-background/50 backdrop-blur-sm overflow-hidden z-50">
+        <div className="fixed top-0 left-0 w-full h-[6px] bg-transparent z-[9999]">
             <div
-                className="w-full  backdrop-blur-sm rounded-full h-full  bg-blue-600  transition-transform duration-150 ease-out"
-                ref={scrollBarRef}
+                ref={scrollRef}
+                className="h-full bg-gray-500 transition-all duration-150 ease-out"
             />
         </div>
     );

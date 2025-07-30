@@ -4,7 +4,7 @@ import CustomCursor from './components/core/CustomCursor';
 import CinematicEntry from './components/core/CinematicEntry';
 import ScrollProgressIndicator from './components/core/ScrollProgressIndicator';
 import { ThemeProvider } from './components/theme-provider';
-import { Sidebar } from './components/core/sidebar';
+import { Navbar } from './components/core/sidebar';
 import { SmoothScroll } from './components/core/SmoothScroll';
 import { HeroSection } from './components/hero-section';
 import { AboutSection } from './components/about-section';
@@ -38,7 +38,7 @@ export default function App() {
 
         {/* Enhanced scroll indicator */}
         <div className="relative z-20">
-          <Sidebar sections={sections} />
+          <Navbar sections={sections} />
 
           <SmoothScroll>
             <main className="container mx-auto px-4 md:px-8 lg:px-16 pt-0 pb-8 md:pb-12 lg:pb-16">

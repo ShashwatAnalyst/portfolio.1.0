@@ -1,4 +1,4 @@
-import { Download, Mail } from 'lucide-react';
+import { Download} from 'lucide-react';
 import { Button } from './ui/button';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { useState, useEffect } from 'react';
@@ -30,15 +30,21 @@ export function HeroSection() {
   };
 
   return (
-    <section id="hero" className={`flex items-start ${isSmallScreen ? 'pt-12' : 'pt-32'} justify-center`}>
+    <section
+  id="hero"
+  className={`flex items-start justify-center ${
+    isSmallScreen ? 'pt-28' : 'pt-48'
+  }`}
+>
+
       <div className="container mx-auto px-8 md:px-16 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8 text-center lg:text-left">
           <div className="space-y-4">
-            <h1 className={`${isSmallScreen ? 'text-xl md:text-3xl' : 'text-4xl md:text-6xl'} heading-font tracking-tight`}>
-              <span className="bg-blue-600 bg-clip-text text-transparent">
-                DATA ANALYST
-              </span>
-            </h1>
+          <h1 className={`${isSmallScreen ? 'text-xl md:text-3xl' : 'text-4xl md:text-6xl'} heading-font tracking-tight`}>
+  <span className="bg-gradient-to-r from-black to-gray-800 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+    DATA ANALYST
+  </span>
+</h1>
             
             <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-lg mx-auto lg:mx-0 leading-relaxed`}>
             Hi! I'm <strong>Shashwat</strong>. A passionate Data Analyst with a B.Tech in Computer Science and Engineering (specialization in Big Data Analytics) from SRM Institute of Science and Technology. 
@@ -46,18 +52,22 @@ export function HeroSection() {
           </div>
 
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <Button size={isSmallScreen ? "sm" : "lg"} className={`gap-2 bg-blue-600 text-white hover:bg-black hover:text-white transition-all hover:scale-105 ${isSmallScreen ? 'text-xs px-2 py-1' : ''}`}>
+          <Button
+  size={isSmallScreen ? "sm" : "lg"}
+  className={`gap-2 bg-black text-white hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white transition-all hover:scale-105 ${isSmallScreen ? 'text-xs px-2 py-1' : ''}`}
+  onClick={handleContactClick}
+>
               <Download className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'}`} />
               Download CV
             </Button>
             <Button
-              size={isSmallScreen ? "sm" : "lg"}
-              className={`gap-2 bg-blue-600 text-white hover:bg-black hover:text-white transition-all hover:scale-105 ${isSmallScreen ? 'text-xs px-2 py-1' : ''}`}
-              onClick={handleContactClick}
-            >
-              <Mail className={`${isSmallScreen ? 'w-3 h-3' : 'w-4 h-4'}`} />
-              Contact Me
-            </Button>
+  size={isSmallScreen ? "sm" : "lg"}
+  className={`gap-2 bg-black text-white hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white transition-all hover:scale-105 ${isSmallScreen ? 'text-xs px-2 py-1' : ''}`}
+  onClick={handleContactClick}
+>
+  Contact Me
+</Button>
+
           </div>
         </div>
 

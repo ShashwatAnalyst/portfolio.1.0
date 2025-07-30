@@ -296,11 +296,16 @@ export function SkillsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <Card className={`hover:shadow-lg transition-all duration-300 ${isSmallScreen ? 'p-3' : ''}`}>
-            <CardHeader className={`pb-6`}>
-              <CardTitle className={`flex items-center gap-2 heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>
-                SKILLS GROWTH OVER TIME (SELECT TIMELINE)
-              </CardTitle>
-            </CardHeader>
+          <CardHeader className="pb-6">
+  <CardTitle className={`text-left ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-widest text-black dark:text-foreground/80`}>
+    <div className="mb-2">
+      <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+        SKILLS GROWTH OVER TIME (SELECT TIMELINE)
+      </span>
+      <div className="w-12 h-px bg-primary mt-2"></div>
+    </div>
+  </CardTitle>
+</CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 350}>
                 <LineChart
@@ -401,9 +406,15 @@ export function SkillsSection() {
 
           <Card className={`hover:shadow-lg transition-all duration-300 ${isSmallScreen ? 'p-3' : ''}`}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className={`heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>
-                SKILL CONTRIBUTION & PROFICIENCY LEVELS
-              </CardTitle>
+            <CardTitle className={`text-left ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-widest text-black dark:text-foreground/80`}>
+  <div className="mb-2">
+    <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+      SKILL CONTRIBUTION & PROFICIENCY LEVELS
+    </span>
+    <div className="w-12 h-px bg-primary mt-2"></div>
+  </div>
+</CardTitle>
+
               <Select
                 value={selectedYear || ''}
                 onValueChange={(value) => {
@@ -521,32 +532,41 @@ export function SkillsSection() {
           </Card>
         </div>
 
-        <Card className={`bg-gradient-to-br from-background to-muted/20 ${isSmallScreen ? 'p-3' : ''}`}>
-          <CardHeader>
-            <CardTitle className={`text-center heading-font ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-wider text-black dark:text-foreground/80`}>TECHNICAL PROFICIENCY (SELECT SKILL)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className={`flex flex-wrap gap-8 justify-center ${isSmallScreen ? 'gap-4' : ''}`}>
-              {tools.map((tool, index) => (
-                <div
-                  key={index}
-                  className={`group cursor-pointer transition-all duration-300 ${selectedSkill === tool.name ? 'scale-110' : 'hover:scale-110'}`}
-                  onClick={() => handleSkillClick(tool.name)}
-                >
-                  <div className="flex flex-col items-center gap-3">
-                    <div className={`${isSmallScreen ? 'w-12 h-12' : 'w-16 h-16'} flex items-center justify-center transition-transform duration-300 transform-gpu origin-center ${selectedSkill === tool.name ? 'scale-125' : 'group-hover:scale-125'}`}>
-                      {React.cloneElement(tool.icon, {
-                        width: isSmallScreen ? 30 : 50,
-                        height: isSmallScreen ? 30 : 50
-                      })}
-                    </div>
-                    <span className={`${isSmallScreen ? 'text-xs' : 'text-sm'} font-medium transition-colors ${selectedSkill === tool.name ? 'text-primary' : 'group-hover:text-primary'}`}>{tool.name}</span>
-                  </div>
-                </div>
-              ))}
+        <Card className={`bg-gradient-to-br from-background to-muted/20 ${isSmallScreen ? 'p-3' : 'p-4'}`}>
+  <CardHeader className="text-left pt-2 pb-2">
+    <CardTitle className={`${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-widest text-black dark:text-foreground/80`}>
+      <div className="mb-2">
+        <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+          TECHNICAL PROFICIENCY (SELECT SKILL)
+        </span>
+        <div className="w-12 h-px bg-primary mt-2"></div>
+      </div>
+    </CardTitle>
+  </CardHeader>
+
+  <CardContent className="pt-2 pb-3">
+    <div className={`flex flex-wrap gap-8 justify-center ${isSmallScreen ? 'gap-4' : ''}`}>
+      {tools.map((tool, index) => (
+        <div
+          key={index}
+          className={`group cursor-pointer transition-all duration-300 ${selectedSkill === tool.name ? 'scale-110' : 'hover:scale-110'}`}
+          onClick={() => handleSkillClick(tool.name)}
+        >
+          <div className="flex flex-col items-center gap-3">
+            <div className={`${isSmallScreen ? 'w-12 h-12' : 'w-16 h-16'} flex items-center justify-center transition-transform duration-300 transform-gpu origin-center ${selectedSkill === tool.name ? 'scale-125' : 'group-hover:scale-125'}`}>
+              {React.cloneElement(tool.icon, {
+                width: isSmallScreen ? 30 : 50,
+                height: isSmallScreen ? 30 : 50
+              })}
             </div>
-          </CardContent>
-        </Card>
+            <span className={`${isSmallScreen ? 'text-xs' : 'text-sm'} font-medium transition-colors ${selectedSkill === tool.name ? 'text-primary' : 'group-hover:text-primary'}`}>{tool.name}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </CardContent>
+</Card>
+
       </div>
     </section>
   );

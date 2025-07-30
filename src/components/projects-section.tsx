@@ -235,9 +235,14 @@ export function ProjectsSection() {
                   {/* Content Section - 60-65% width */}
                   <div className="md:w-[62%] flex flex-col justify-between">
                     <CardHeader className={`${isSmallScreen ? 'p-4' : 'p-8'} pb-4`}>
-                      <CardTitle className={`${isSmallScreen ? 'text-lg' : 'text-2xl lg:text-3xl'} heading-font font-normal tracking-wider text-black dark:text-foreground/90 hover:text-primary transition-colors duration-300 mb-4`}>
-                        {project.title.toUpperCase()}
-                      </CardTitle>
+                    <CardTitle className={`${isSmallScreen ? 'text-lg' : 'text-2xl lg:text-3xl'} font-normal tracking-wider text-black dark:text-foreground/90 hover:text-primary transition-colors duration-300 mb-4 text-left`}>
+      <div className="mb-2">
+        <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+          {project.title.toUpperCase()}
+        </span>
+        <div className="w-12 h-px bg-primary mt-2"></div>
+      </div>
+    </CardTitle>
                       <p className={`${isSmallScreen ? 'text-sm leading-relaxed' : 'text-lg leading-relaxed'} text-black/80 dark:text-muted-foreground ${isSmallScreen ? 'text-[14px]' : 'text-[17px]'}`}>
                         {project.description}
                       </p>

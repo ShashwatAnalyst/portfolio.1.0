@@ -267,32 +267,50 @@ export function SkillsSection() {
   // Get descriptive text based on current selections
   const getDescriptiveText = () => {
     const currentData = getCurrentDataSource();
-
+  
     if (selectedYear && selectedSkill) {
       const skillValue = currentData[selectedSkill as keyof typeof currentData] || 0;
-      return `${selectedSkill}: ${skillValue}% proficiency in ${selectedYear}`;
+      return (
+        <>
+          <strong>{selectedSkill}</strong>: {skillValue}% proficiency in <strong>{selectedYear}</strong>.
+        </>
+      );
     } else if (selectedYear) {
-      return `Showing skill percentage contribution for ${selectedYear}. Click on a skill segment or the skill icons below to view the proficiency of that skill in ${selectedYear}`;
+      return (
+        <>
+          Showing <strong>skill contribution</strong> for <strong>{selectedYear}</strong>.
+        </>
+      );
     } else if (selectedSkill) {
       const skillValue = currentData[selectedSkill as keyof typeof currentData] || 0;
-      return `Currently showing ${selectedSkill} proficiency level: ${skillValue}%. Select a timeline to see how this skill proficiency has evolved over time.`;
+      return (
+        <>
+          <strong>{selectedSkill}</strong> proficiency: {skillValue}%.
+        </>
+      );
     } else {
-      return `Showing percentage contribution of each skill based on the latest data. Click on a skill or time period to see detailed breakdowns.`;
+      return (
+        <>
+          Showing overall <strong>skill contribution</strong> from latest data.
+        </>
+      );
     }
   };
+  
+  
 
   return (
     <section ref={addSection} id="skills" className="flex items-center justify-center py-16">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>TECHNICAL SKILLS PROGRESS STATS</h2>
-          <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
-            A comprehensive overview of my technical skills and their evolution over time
-          </p>
-          <p className={`${isSmallScreen ? 'text-xs' : 'text-lg'} text-muted-foreground mt-2 max-w-2xl mx-auto`}>
-            (Skill proficiency and contribution percentage are measures of my hands-on experience and project work with each technology)
-          </p>
-        </div>
+      <div className="text-center mb-16">
+  <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4`}>
+    TECHNICAL SKILLS PROGRESS STATS
+  </h2>
+  <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
+    Track my evolving technical skillset based on hands-on work and projects.
+  </p>
+</div>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <Card className={`hover:shadow-lg transition-all duration-300 ${isSmallScreen ? 'p-3' : ''}`}>
@@ -395,12 +413,22 @@ export function SkillsSection() {
                 </LineChart>
               </ResponsiveContainer>
               <div className={`mt-4 ${isSmallScreen ? 'text-xs' : 'text-lg'} text-black dark:text-muted-foreground text-center ${isSmallScreen ? 'text-[10px]' : 'text-[18.5px]'}`}>
-                {selectedYear
-                  ? `Showing skills proficiency growth data over time. Timeline: ${selectedYear}. Click on skill icons below or donut chart segments to focus on specific skills.`
-                  : selectedSkill
-                    ? `Showing ${selectedSkill} progression over time. Click on any point in the timeline to view skill distribution for that period.`
-                    : `Click on any point in the timeline to view skill distribution for that period, or select a specific skill to track its progression.`}
-              </div>
+  {selectedYear ? (
+    <>
+      <strong>Timeline:</strong> {selectedYear}
+    </>
+  ) : selectedSkill ? (
+    <>
+      Showing <strong>{selectedSkill}</strong> progression over time.
+    </>
+  ) : (
+    <>
+      Showing overall <strong>skill growth</strong> timeline.
+    </>
+  )}
+</div>
+
+
             </CardContent>
           </Card>
 
@@ -516,17 +544,19 @@ export function SkillsSection() {
                 {getDescriptiveText()}
               </div>
               <div className="mt-4 flex justify-center">
-                <button
-                  onClick={() => setSelectedSkill(null)}
-                  disabled={!selectedSkill}
-                  className={`${isSmallScreen ? 'px-3 py-1 text-xs' : 'px-4 py-2'} font-medium transition-all duration-300 border-0
-                    ${selectedSkill
-                      ? 'bg-blue-600 text-white hover:bg-primary hover:text-primary-foreground'
-                      : 'bg-muted text-muted-foreground cursor-not-allowed opacity-50'
-                    }`}
-                >
-                  {selectedSkill ? 'Back to Skill Contribution View' : 'No Skill is Selected'}
-                </button>
+              <button
+  onClick={() => setSelectedSkill(null)}
+  disabled={!selectedSkill}
+  className={`${isSmallScreen ? 'px-3 py-1 text-xs' : 'px-4 py-2'} font-medium transition-all duration-300 border-0
+    ${
+      selectedSkill
+        ? 'bg-black text-white hover:bg-white hover:text-black dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white'
+        : 'bg-muted text-muted-foreground cursor-not-allowed opacity-50'
+    }`}
+>
+  {selectedSkill ? 'Back to Skill Contribution View' : 'No Skill is Selected'}
+</button>
+
               </div>
             </CardContent>
           </Card>

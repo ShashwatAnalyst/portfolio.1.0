@@ -67,8 +67,9 @@ export function ContactSection() {
         <div className="text-center mb-16">
           <h2 className={`${isSmallScreen ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} heading-font font-normal mb-4 text-foreground`}>GET IN TOUCH</h2>
           <p className={`${isSmallScreen ? 'text-xs md:text-sm' : 'text-lg'} text-muted-foreground ${isSmallScreen ? 'text-[12px]' : 'text-[18.5px]'} max-w-2xl mx-auto`}>
-            Ready to collaborate on your next data project? Let's discuss how data-driven insights can transform your business. Fill out the form below and I'll get back to you within 24 hours.
-          </p>
+  Feel free to reach out, I’ll get back to you shortly.
+</p>
+
         </div>
 
         <div className="flex justify-center">
@@ -128,12 +129,16 @@ export function ContactSection() {
                     />
                   </div>
                   <Button
-                    type="submit"
-                    className={`w-full ${isSmallScreen ? 'h-10 text-sm' : 'h-12 text-lg'} bg-blue-600 text-white hover:bg-black hover:text-white transition-colors`}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? 'Sending...' : 'Send Message'}
-                  </Button>
+  type="submit"
+  className={`w-full ${isSmallScreen ? 'h-10 text-sm' : 'h-12 text-lg'} 
+    bg-black text-white hover:bg-white hover:text-black 
+    dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white 
+    transition-colors`}
+  disabled={isLoading}
+>
+  {isLoading ? 'Sending...' : 'Send Message'}
+</Button>
+
                 </form>
               </div>
             </div>

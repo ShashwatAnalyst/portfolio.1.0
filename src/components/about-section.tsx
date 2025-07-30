@@ -140,12 +140,29 @@ export function AboutSection() {
 
         {/* Right: Bio Paragraphs */}
         <div className="md:w-1/2 w-full space-y-4 mt-5">                   
-          <p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-black dark:text-muted-foreground leading-relaxed text-left`}>                   
-            I'm a Data Analyst dedicated to turning raw data into actionable insights through ETL, automation, analytics, and visualization.                   
-          </p>                   
-          <p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-black dark:text-muted-foreground leading-relaxed text-left`}>                     
-            Alongside my data work, I build projects with frontend technologies to create user-friendly, data-driven interfaces. My goal is to make complex analytics accessible and intuitive.                   
-          </p>
+        <p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-muted-foreground leading-relaxed text-left`}>
+  I'm a <span className="text-black dark:text-white font-medium">Data Analyst</span> passionate about transforming raw data into 
+  <span className="text-black dark:text-white font-medium"> actionable insights</span> using 
+  <span className="text-black dark:text-white font-medium"> ETL pipelines</span>, 
+  <span className="text-black dark:text-white font-medium"> automation</span>, and 
+  <span className="text-black dark:text-white font-medium"> data visualization</span>. 
+  As a <span className="text-black dark:text-white font-medium">tech enthusiast</span>, I constantly explore 
+  <span className="text-black dark:text-white font-medium"> modern tools</span> like 
+  <span className="text-black dark:text-white font-medium"> Python</span>, 
+  <span className="text-black dark:text-white font-medium"> SQL</span>, and 
+  <span className="text-black dark:text-white font-medium"> Tableau</span> to uncover trends and optimize decision-making.
+</p>
+
+<p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-muted-foreground leading-relaxed text-left`}>
+  I also build projects using <span className="text-black dark:text-white font-medium">frontend technologies</span> like 
+  <span className="text-black dark:text-white font-medium"> React</span> and 
+  <span className="text-black dark:text-white font-medium"> Tailwind CSS</span> to craft clean, interactive 
+  <span className="text-black dark:text-white font-medium"> data-driven interfaces</span>. 
+  My goal is to make <span className="text-black dark:text-white font-medium"> analytics</span> not only accurate but also 
+  <span className="text-black dark:text-white font-medium"> accessible and intuitive</span> for users across all technical levels.
+</p>
+
+
         </div>
       </div>
     </div>

@@ -34,8 +34,8 @@ export const Navbar: React.FC<NavbarProps> = ({ sections }) => {
                     {/* Navigation Links */}
                     <div className="hidden md:flex items-center gap-8">
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
-                            onClick={(e) => handleNavClick(e, 'hero')}
+className="flex items-center text-sm font-medium text-gray-500 hover:text-blue-700 transition-colors duration-300 group cursor-pointer"
+onClick={(e) => handleNavClick(e, 'hero')}
                         >
                             <div className="relative w-3 h-3 rounded-full bg-blue-500 mr-2 group-hover:scale-125 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,8 +45,8 @@ export const Navbar: React.FC<NavbarProps> = ({ sections }) => {
                             Home
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
-                            onClick={(e) => handleNavClick(e, 'about')}
+className="flex items-center text-sm font-medium text-gray-500 hover:text-blue-700 transition-colors duration-300 group cursor-pointer"
+onClick={(e) => handleNavClick(e, 'about')}
                         >
                             <div className="relative w-3 h-3 rounded-full bg-purple-500 mr-2 group-hover:scale-125 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,8 +56,8 @@ export const Navbar: React.FC<NavbarProps> = ({ sections }) => {
                             About
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
-                            onClick={(e) => handleNavClick(e, 'skills')}
+className="flex items-center text-sm font-medium text-gray-500 hover:text-blue-700 transition-colors duration-300 group cursor-pointer"
+onClick={(e) => handleNavClick(e, 'skills')}
                         >
                             <div className="relative w-3 h-3 rounded-full bg-green-500 mr-2 group-hover:scale-125 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,8 +67,8 @@ export const Navbar: React.FC<NavbarProps> = ({ sections }) => {
                             Skills
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
-                            onClick={(e) => handleNavClick(e, 'projects')}
+className="flex items-center text-sm font-medium text-gray-500 hover:text-blue-700 transition-colors duration-300 group cursor-pointer"
+onClick={(e) => handleNavClick(e, 'projects')}
                         >
                             <div className="relative w-3 h-3 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,8 +78,8 @@ export const Navbar: React.FC<NavbarProps> = ({ sections }) => {
                             Projects
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
-                            onClick={(e) => handleNavClick(e, 'contact')}
+className="flex items-center text-sm font-medium text-gray-500 hover:text-blue-700 transition-colors duration-300 group cursor-pointer"
+onClick={(e) => handleNavClick(e, 'contact')}
                         >
                             <div className="relative w-3 h-3 rounded-full bg-pink-500 mr-2 group-hover:scale-125 transition-transform duration-300">
                                 <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -33,7 +33,7 @@ export function HeroSection() {
     <section
   id="hero"
   className={`flex items-start justify-center ${
-    isSmallScreen ? 'pt-28' : 'pt-48'
+    isSmallScreen ? 'pt-40' : 'pt-48'
   }`}
 >
 

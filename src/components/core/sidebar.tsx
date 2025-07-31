@@ -136,35 +136,35 @@ onClick={(e) => handleNavClick(e, 'contact')}
                 <div className="md:hidden mt-3 pt-3 border-t border-white/20 dark:border-white/10">
                     <div className="flex flex-wrap gap-3 justify-center">
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
+                            className="flex items-center text-[10px] font-medium text-gray-500 hover:text-primary transition-colors duration-300 group cursor-pointer"
                             onClick={(e) => handleNavClick(e, 'hero')}
                         >
                             <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
                             Home
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
+                            className="flex items-center text-[10px] font-medium text-gray-500 hover:text-primary transition-colors duration-300 group cursor-pointer"
                             onClick={(e) => handleNavClick(e, 'about')}
                         >
                             <div className="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
                             About
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
+                            className="flex items-center text-[10px] font-medium text-gray-500 hover:text-primary transition-colors duration-300 group cursor-pointer"
                             onClick={(e) => handleNavClick(e, 'skills')}
                         >
                             <div className="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
                             Skills
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
+                            className="flex items-center text-[10px] font-medium text-gray-500 hover:text-primary transition-colors duration-300 group cursor-pointer"
                             onClick={(e) => handleNavClick(e, 'projects')}
                         >
                             <div className="w-2 h-2 rounded-full bg-orange-500 mr-2"></div>
                             Projects
                         </div>
                         <div
-                            className="flex items-center text-sm font-medium hover:text-primary transition-colors duration-300 group cursor-pointer"
+                            className="flex items-center text-[10px] font-medium text-gray-500 hover:text-primary transition-colors duration-300 group cursor-pointer"
                             onClick={(e) => handleNavClick(e, 'contact')}
                         >
                             <div className="w-2 h-2 rounded-full bg-pink-500 mr-2"></div>

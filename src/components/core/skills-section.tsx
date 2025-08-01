@@ -278,7 +278,7 @@ export function SkillsSection() {
     } else if (selectedYear) {
       return (
         <>
-          Showing <strong>skill contribution</strong> for <strong>{selectedYear}</strong>.
+          Showing <strong>skill distribution</strong> for <strong>{selectedYear}</strong>.
         </>
       );
     } else if (selectedSkill) {
@@ -291,7 +291,7 @@ export function SkillsSection() {
     } else {
       return (
         <>
-          Showing overall <strong>skill contribution</strong> from latest data.
+          Showing overall <strong>skill distribution</strong> from latest data.
         </>
       );
     }
@@ -437,7 +437,7 @@ export function SkillsSection() {
             <CardTitle className={`text-left ${isSmallScreen ? 'text-sm font-[60]' : 'text-[25px] font-[60]'} tracking-widest text-black dark:text-foreground/80`}>
   <div className="mb-2">
     <span className="text-sm font-semibold uppercase tracking-widest text-primary">
-      SKILL CONTRIBUTION & PROFICIENCY LEVELS
+      SKILL PROFICIENCY DISTRIBUTION
     </span>
     <div className="w-12 h-px bg-primary mt-2"></div>
   </div>
@@ -481,7 +481,7 @@ export function SkillsSection() {
                             {selectedSkill ? (
                               <p>Proficiency: {data.value}%</p>
                             ) : (
-                              <p>Contribution: {data.value}%</p>
+                              <p>Contributes: {data.value}%</p>
                             )}
                           </div>
                         );
@@ -554,7 +554,7 @@ export function SkillsSection() {
         : 'bg-muted text-muted-foreground cursor-not-allowed opacity-50'
     }`}
 >
-  {selectedSkill ? 'Back to Skill Contribution View' : 'No Skill is Selected'}
+  {selectedSkill ? 'View Distribution Chart' : 'No Skill is Selected'}
 </button>
 
               </div>

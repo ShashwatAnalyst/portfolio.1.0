@@ -82,8 +82,8 @@ const StarryBackground = () => {
             const adjustedDuration = (remainingDistance / totalDistance) * duration;
 
             gsap.set(particle, {
-                width: Math.random() * 2 + 1.5, // Slightly bigger: 1.5-3.5px
-                height: Math.random() * 2 + 1.5, // Slightly bigger: 1.5-3.5px
+                width: Math.random() * 2 + 1.3, // Slightly bigger: 1.5-3.5px
+                height: Math.random() * 2 + 1.3, // Slightly bigger: 1.5-3.5px
                 opacity: Math.random() * 0.5 + 0.3,
                 x: startX,
                 y: startY,
@@ -115,14 +115,7 @@ const StarryBackground = () => {
 
                 // Remove horizontal swaying motion - particles fall straight
 
-                // Subtle twinkling effect (kept for visual appeal)
-                gsap.to(particle, {
-                    opacity: Math.random() * 0.3 + 0.7,
-                    duration: Math.random() * 2 + 1,
-                    repeat: Math.floor(duration / 2),
-                    yoyo: true,
-                    ease: "power2.inOut",
-                });
+                
             };
 
             // Start the initial animation (for particles that start mid-journey)

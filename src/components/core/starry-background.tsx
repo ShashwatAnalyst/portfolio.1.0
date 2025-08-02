@@ -82,8 +82,8 @@ const StarryBackground = () => {
             const adjustedDuration = (remainingDistance / totalDistance) * duration;
 
             gsap.set(particle, {
-                width: Math.random() * 2 + 1.3, // Slightly bigger: 1.5-3.5px
-                height: Math.random() * 2 + 1.3, // Slightly bigger: 1.5-3.5px
+                width: Math.random() * 2 + 1.4, // Slightly bigger: 1.5-3.5px
+                height: Math.random() * 2 + 1.4, // Slightly bigger: 1.5-3.5px
                 opacity: Math.random() * 0.5 + 0.3,
                 x: startX,
                 y: startY,

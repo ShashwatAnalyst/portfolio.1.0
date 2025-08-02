@@ -39,66 +39,117 @@ const StarryBackground = () => {
             }
         };
 
-        // Function to update particle colors - optimized with better throttling
+        // Function to get glow color based on particle color
+        const getGlowColor = (particleColor: string) => {
+            if (particleColor === 'rgb(0, 0, 0)') {
+                return '0 0 8px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 0, 0, 0.3)';
+            } else {
+                return '0 0 8px rgba(255, 255, 255, 0.6), 0 0 16px rgba(255, 255, 255, 0.3), 0 0 24px rgba(255, 255, 255, 0.1)';
+            }
+        };
+
+        // Function to update particle colors and glow - optimized with better throttling
         let colorUpdateTimeout: number | null = null;
         const updateParticleColors = () => {
             if (colorUpdateTimeout) return;
 
             colorUpdateTimeout = window.setTimeout(() => {
                 const color = getParticleColor();
+                const glow = getGlowColor(color);
                 particles.forEach(particle => {
                     particle.style.backgroundColor = color;
+                    particle.style.boxShadow = glow;
                 });
                 colorUpdateTimeout = null;
-            }, 150); // Increased throttle to 150ms for better performance
+            }, 150);
         };
 
-        // Animate particles with top-to-bottom spawning
+        // Animate particles with top-to-bottom spawning - STRAIGHT LINE FALL
         particles.forEach((particle) => {
             const startX = Math.random() * window.innerWidth;
-            const startY = -20; // Start from just above the viewport
-            const endX = startX + (Math.random() - 0.5) * 200; // Keep horizontal movement
-            const endY = window.innerHeight + 50; // End below the viewport
-            const duration = Math.random() * 4 + 6; // Keep 6-10 seconds
-            const delay = Math.random() * 5; // Keep 0-5 seconds delay
+            // Remove horizontal drift - particles fall straight down
+            const endX = startX;
+            const totalDistance = window.innerHeight + 70; // Total travel distance
+            const duration = Math.random() * 12 + 18; // Slower: 18-30 seconds (was 12-20)
+            
+            // CONTINUOUS FLOW: Start particles at different points in their journey
+            const initialProgress = Math.random(); // 0 to 1, representing how far along the journey they start
+            const startY = -20 + (totalDistance * initialProgress);
+            const endY = window.innerHeight + 50;
+            
+            // Adjust duration based on remaining distance
+            const remainingDistance = endY - startY;
+            const adjustedDuration = (remainingDistance / totalDistance) * duration;
 
             gsap.set(particle, {
-                width: Math.random() * 3 + 2, // Keep larger particles
-                height: Math.random() * 3 + 2, // Keep larger particles
-                opacity: Math.random() * 0.5 + 0.3, // Keep opacity range
+                width: Math.random() * 2 + 1.5, // Slightly bigger: 1.5-3.5px
+                height: Math.random() * 2 + 1.5, // Slightly bigger: 1.5-3.5px
+                opacity: Math.random() * 0.5 + 0.3,
                 x: startX,
                 y: startY,
                 backgroundColor: getParticleColor(),
+                boxShadow: getGlowColor(getParticleColor()),
             });
 
-            // Create animation with particles falling from top
-            gsap.to(particle, {
-                x: endX,
-                y: endY,
-                duration: duration,
-                opacity: 0,
-                repeat: -1,
-                ease: "power1.out", // Keep aggressive easing
-                delay: delay,
-                onComplete: () => {
-                    // Reset particle position to top for continuous flow
-                    gsap.set(particle, {
-                        x: Math.random() * window.innerWidth,
-                        y: -20, // Reset to top
+            // Create continuous falling animation - STRAIGHT LINE
+            const animateParticle = () => {
+                const newStartX = Math.random() * window.innerWidth;
+                // No horizontal drift - particles fall straight
+                const newEndX = newStartX;
+                
+                gsap.fromTo(particle, 
+                    {
+                        x: newStartX,
+                        y: -20,
                         opacity: Math.random() * 0.5 + 0.3,
-                    });
-                }
-            });
+                    },
+                    {
+                        x: newEndX, // Same X position - straight line
+                        y: window.innerHeight + 50,
+                        duration: duration, // Slower duration
+                        opacity: 0,
+                        ease: "none", // Linear motion for consistent speed
+                        onComplete: animateParticle, // Recursive call for continuous animation
+                    }
+                );
 
-            // Keep horizontal swaying motion
-            gsap.to(particle, {
-                x: endX + (Math.random() - 0.5) * 100,
-                duration: duration * 0.5,
-                repeat: -1,
-                yoyo: true,
-                ease: "power1.inOut",
-                delay: delay,
-            });
+                // Remove horizontal swaying motion - particles fall straight
+
+                // Subtle twinkling effect (kept for visual appeal)
+                gsap.to(particle, {
+                    opacity: Math.random() * 0.3 + 0.7,
+                    duration: Math.random() * 2 + 1,
+                    repeat: Math.floor(duration / 2),
+                    yoyo: true,
+                    ease: "power2.inOut",
+                });
+            };
+
+            // Start the initial animation (for particles that start mid-journey)
+            if (initialProgress > 0) {
+                gsap.to(particle, {
+                    x: endX, // Straight line - no horizontal movement
+                    y: endY,
+                    duration: adjustedDuration,
+                    opacity: 0,
+                    ease: "none", // Linear motion
+                    onComplete: animateParticle,
+                });
+
+                // Remove initial horizontal swaying
+
+                // Initial twinkling
+                gsap.to(particle, {
+                    opacity: Math.random() * 0.3 + 0.7,
+                    duration: Math.random() * 2 + 1,
+                    repeat: Math.floor(adjustedDuration / 2),
+                    yoyo: true,
+                    ease: "power2.inOut",
+                });
+            } else {
+                // Start fresh animation for particles that begin at the top
+                setTimeout(() => animateParticle(), Math.random() * 2000);
+            }
         });
 
         // Add theme change listener with throttling
@@ -158,7 +209,7 @@ const StarryBackground = () => {
             });
             particlesRef.current = [];
         };
-    }, []); // Run immediately when component mounts
+    }, []);
 
     return (
         <div ref={containerRef} className="fixed inset-0 z-0 pointer-events-none overflow-hidden" />

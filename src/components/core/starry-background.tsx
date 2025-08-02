@@ -13,7 +13,7 @@ const StarryBackground = () => {
         particlesRef.current = [];
 
         // Create particles - reduced number for cleaner look
-        const particles = Array.from({ length: 30 }, () => {
+        const particles = Array.from({ length: 40 }, () => {
             const particle = document.createElement('div');
             particle.className = 'absolute rounded-full';
             containerRef.current?.appendChild(particle);

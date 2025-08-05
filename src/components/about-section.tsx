@@ -143,8 +143,8 @@ export function AboutSection() {
         <p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-muted-foreground leading-relaxed text-left`}>
   I'm a <span className="text-black dark:text-white font-medium">Data Analyst</span> passionate about transforming raw data into 
   <span className="text-black dark:text-white font-medium"> actionable insights</span> using 
-  <span className="text-black dark:text-white font-medium"> ETL pipelines</span>, 
-  <span className="text-black dark:text-white font-medium"> automation</span>, and 
+  <span className="text-black dark:text-white font-medium">  data exploration</span>, 
+  <span className="text-black dark:text-white font-medium"> statistical analysis</span>, and compelling
   <span className="text-black dark:text-white font-medium"> data visualization</span>. 
   As a <span className="text-black dark:text-white font-medium">tech enthusiast</span>, I constantly explore 
   <span className="text-black dark:text-white font-medium"> modern tools</span> like 

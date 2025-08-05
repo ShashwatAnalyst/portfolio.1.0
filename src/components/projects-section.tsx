@@ -11,14 +11,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  {
-    id: 1,
-    title: "Sales Analytics Dashboard",
-    description: "Comprehensive dashboard analyzing sales performance across multiple regions with real-time KPI tracking and predictive analytics. This project demonstrates advanced data visualization techniques and business intelligence solutions that helped increase sales insights by 40% while implementing automated reporting systems.",
-    image: "https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600",
-    technologies: ["Python", "Tableau", "SQL", "AWS"],
-    githubUrl: "#"
-  },
+{
+  id: 1,
+  title: "SQL Data Warehouse Project",
+  description: "This project implements a full data warehousing workflow using the Medallion Architecture (Bronze, Silver, Gold layers). It features automated ETL batch processing with data cleaning, transformation, and integration. The warehouse uses a star schema, showcasing practical data engineering techniques for creating analytics-ready datasets for business intelligence.",
+  image: "public/479.jpg",
+  technologies: ["PostgreSQL", "ETL", "Data Modeling", "Batch Processing"],
+  githubUrl: "https://github.com/shashwatanalyst/SQL-Data-Warehouse-Project"
+}
+,
   {
     id: 2,
     title: "Customer Segmentation Analysis",
@@ -31,7 +32,7 @@ const projects = [
     id: 3,
     title: "Financial Risk Assessment Tool",
     description: "Automated risk assessment system for loan applications using machine learning algorithms and historical data analysis. This comprehensive solution processes applications 30% faster while maintaining 95% accuracy rate and full regulatory compliance, revolutionizing the traditional loan approval process.",
-    image: "https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600",
     technologies: ["R", "Power BI", "SQL Server", "Azure"],
     githubUrl: "#"
   },
@@ -46,7 +47,7 @@ const projects = [
 ];
 
 export function ProjectsSection() {
-  const { addSection } = useUltraSmoothScroll();
+useUltraSmoothScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);

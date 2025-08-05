@@ -15,7 +15,7 @@ const projects = [
   id: 1,
   title: "SQL Data Warehouse Project",
   description: "This project implements a full data warehousing workflow using the Medallion Architecture (Bronze, Silver, Gold layers). It features automated ETL batch processing with data cleaning, transformation, and integration. The warehouse uses a star schema, showcasing practical data engineering techniques for creating analytics-ready datasets for business intelligence.",
-  image: "public/479.jpg",
+  image: "https://img.freepik.com/premium-vector/big-data-job-abstract-concept-vector-illustration_107173-24965.jpg?ga=GA1.1.1630890589.1749303113&semt=ais_incoming&w=740&q=80",
   technologies: ["PostgreSQL", "ETL", "Data Modeling", "Batch Processing"],
   githubUrl: "https://github.com/shashwatanalyst/SQL-Data-Warehouse-Project"
 }

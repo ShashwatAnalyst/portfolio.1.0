@@ -291,7 +291,7 @@ export function SkillsSection() {
     } else {
       return (
         <>
-          Showing overall <strong>skill distribution</strong> from latest data.
+         Overall <strong>skill distribution</strong> based on proficiency in the selected timeline.
         </>
       );
     }

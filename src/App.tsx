@@ -30,7 +30,8 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="min-h-screen dark:bg-transparent bg-background h-auto text-foreground">
+      {/* REMOVED: dark:bg-transparent bg-background - these classes were causing the scroll animation */}
+      <div className="min-h-screen h-auto text-foreground">
         <StarryBackground />
         <CustomCursor />
         <ScrollProgressIndicator />

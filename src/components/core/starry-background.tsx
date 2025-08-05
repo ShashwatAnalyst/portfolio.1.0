@@ -23,20 +23,10 @@ const StarryBackground = () => {
         // Store refs
         particlesRef.current = particles;
 
-        // Function to get the correct particle color
+        // Simplified particle color - only based on theme, not scroll position
         const getParticleColor = () => {
-            const heroSection = document.getElementById('hero');
-            if (!heroSection) return 'rgb(255, 255, 255)';
-
-            const rect = heroSection.getBoundingClientRect();
-            const isInHeroSection = rect.top <= window.innerHeight && rect.bottom >= 0;
             const isDarkMode = document.documentElement.classList.contains('dark');
-
-            if (isInHeroSection) {
-                return isDarkMode ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)';
-            } else {
-                return 'rgb(255, 255, 255)';
-            }
+            return isDarkMode ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)';
         };
 
         // Function to get glow color based on particle color
@@ -48,42 +38,33 @@ const StarryBackground = () => {
             }
         };
 
-        // Function to update particle colors and glow - optimized with better throttling
-        let colorUpdateTimeout: number | null = null;
+        // Function to update particle colors - only for theme changes
         const updateParticleColors = () => {
-            if (colorUpdateTimeout) return;
-
-            colorUpdateTimeout = window.setTimeout(() => {
-                const color = getParticleColor();
-                const glow = getGlowColor(color);
-                particles.forEach(particle => {
-                    particle.style.backgroundColor = color;
-                    particle.style.boxShadow = glow;
-                });
-                colorUpdateTimeout = null;
-            }, 150);
+            const color = getParticleColor();
+            const glow = getGlowColor(color);
+            particles.forEach(particle => {
+                particle.style.backgroundColor = color;
+                particle.style.boxShadow = glow;
+            });
         };
 
         // Animate particles with top-to-bottom spawning - STRAIGHT LINE FALL
         particles.forEach((particle) => {
             const startX = Math.random() * window.innerWidth;
-            // Remove horizontal drift - particles fall straight down
             const endX = startX;
-            const totalDistance = window.innerHeight + 70; // Total travel distance
-            const duration = Math.random() * 12 + 18; // Slower: 18-30 seconds (was 12-20)
+            const totalDistance = window.innerHeight + 70;
+            const duration = Math.random() * 12 + 18;
             
-            // CONTINUOUS FLOW: Start particles at different points in their journey
-            const initialProgress = Math.random(); // 0 to 1, representing how far along the journey they start
+            const initialProgress = Math.random();
             const startY = -20 + (totalDistance * initialProgress);
             const endY = window.innerHeight + 50;
             
-            // Adjust duration based on remaining distance
             const remainingDistance = endY - startY;
             const adjustedDuration = (remainingDistance / totalDistance) * duration;
 
             gsap.set(particle, {
-                width: Math.random() * 2 + 1.5, // Slightly bigger: 1.5-3.5px
-                height: Math.random() * 2 + 1.5, // Slightly bigger: 1.5-3.5px
+                width: Math.random() * 2 + 1.5,
+                height: Math.random() * 2 + 1.5,
                 opacity: Math.random() * 0.5 + 0.3,
                 x: startX,
                 y: startY,
@@ -94,7 +75,6 @@ const StarryBackground = () => {
             // Create continuous falling animation - STRAIGHT LINE
             const animateParticle = () => {
                 const newStartX = Math.random() * window.innerWidth;
-                // No horizontal drift - particles fall straight
                 const newEndX = newStartX;
                 
                 gsap.fromTo(particle, 
@@ -104,18 +84,16 @@ const StarryBackground = () => {
                         opacity: Math.random() * 0.5 + 0.3,
                     },
                     {
-                        x: newEndX, // Same X position - straight line
+                        x: newEndX,
                         y: window.innerHeight + 50,
-                        duration: duration, // Slower duration
+                        duration: duration,
                         opacity: 0,
-                        ease: "none", // Linear motion for consistent speed
-                        onComplete: animateParticle, // Recursive call for continuous animation
+                        ease: "none",
+                        onComplete: animateParticle,
                     }
                 );
 
-                // Remove horizontal swaying motion - particles fall straight
-
-                // Subtle twinkling effect (kept for visual appeal)
+                // Subtle twinkling effect
                 gsap.to(particle, {
                     opacity: Math.random() * 0.3 + 0.7,
                     duration: Math.random() * 2 + 1,
@@ -125,20 +103,17 @@ const StarryBackground = () => {
                 });
             };
 
-            // Start the initial animation (for particles that start mid-journey)
+            // Start the initial animation
             if (initialProgress > 0) {
                 gsap.to(particle, {
-                    x: endX, // Straight line - no horizontal movement
+                    x: endX,
                     y: endY,
                     duration: adjustedDuration,
                     opacity: 0,
-                    ease: "none", // Linear motion
+                    ease: "none",
                     onComplete: animateParticle,
                 });
 
-                // Remove initial horizontal swaying
-
-                // Initial twinkling
                 gsap.to(particle, {
                     opacity: Math.random() * 0.3 + 0.7,
                     duration: Math.random() * 2 + 1,
@@ -147,62 +122,22 @@ const StarryBackground = () => {
                     ease: "power2.inOut",
                 });
             } else {
-                // Start fresh animation for particles that begin at the top
                 setTimeout(() => animateParticle(), Math.random() * 2000);
             }
         });
 
-        // Add theme change listener with throttling
+        // ONLY listen for theme changes - NO SCROLL LISTENER
         const observer = new MutationObserver(() => {
             updateParticleColors();
         });
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
-        // Optimized scroll listener with better throttling
-        let ticking = false;
-        const handleScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    updateParticleColors();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-
-        // Simple intersection observer for hero section
-        const heroSection = document.getElementById('hero');
-        let intersectionObserver: IntersectionObserver | null = null;
-
-        if (heroSection) {
-            intersectionObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            updateParticleColors();
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-            intersectionObserver.observe(heroSection);
-        }
-
         // Initial color update
         updateParticleColors();
 
-        // Cleanup function
+        // Cleanup function - removed scroll listener cleanup
         return () => {
-            window.removeEventListener('scroll', handleScroll);
             observer.disconnect();
-            if (intersectionObserver) {
-                intersectionObserver.disconnect();
-            }
-            if (colorUpdateTimeout) {
-                clearTimeout(colorUpdateTimeout);
-            }
             particles.forEach(particle => {
                 gsap.killTweensOf(particle);
                 particle.remove();
@@ -212,7 +147,13 @@ const StarryBackground = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="fixed inset-0 z-0 pointer-events-none overflow-hidden" />
+        <>
+            {/* Background layer - handles both light and dark mode backgrounds */}
+            <div className="fixed inset-0 z-0 dark:bg-transparent bg-background" />
+            
+            {/* Particles container */}
+            <div ref={containerRef} className="fixed inset-0 z-0 pointer-events-none overflow-hidden" />
+        </>
     );
 };
 

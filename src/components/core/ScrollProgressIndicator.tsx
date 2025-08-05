@@ -24,7 +24,7 @@ const ScrollProgressIndicator = () => {
         <div className="fixed top-0 left-0 w-full h-[6px] bg-transparent z-[9999]">
             <div
                 ref={scrollRef}
-                className="h-full bg-gray-500 transition-all duration-150 ease-out"
+                className="h-full bg-black dark:bg-white transition-all duration-150 ease-out"
             />
         </div>
     );

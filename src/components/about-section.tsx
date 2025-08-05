@@ -110,8 +110,8 @@ export function AboutSection() {
   const allCards = [...skillCards, ...competencyCards];
 
   // Calculate card width and gap based on screen size
-  const cardWidth = isSmallScreen ? 240 : 320; // Smaller cards for mobile
-  const cardGap = isSmallScreen ? 16 : 24; // Smaller gap for mobile
+  const cardWidth = isSmallScreen ? 240 : 320;
+  const cardGap = isSmallScreen ? 16 : 24;
 
   return (
     <section ref={addSection} id="about" className="flex items-center justify-center py-20">
@@ -122,53 +122,50 @@ export function AboutSection() {
 
         {/* WHO AM I section */}
         <Card className="bg-gradient-to-br from-background to-muted/20 border-0 shadow-xl mb-16">
-  <CardContent className="p-8">
-    
-    {/* Section Label - now fully left-aligned */}
-    <div className="text-left">
-      <span className="text-sm font-semibold uppercase tracking-widest text-primary">This is me</span>
-      <div className="w-12 h-px bg-primary mt-2 mb-4"></div>   
-    </div>
+          <CardContent className="p-8">
+            
+            {/* Section Label - now fully left-aligned */}
+            <div className="text-left">
+              <span className="text-sm font-semibold uppercase tracking-widest text-primary">This is me</span>
+              <div className="w-12 h-px bg-primary mt-2 mb-4"></div>   
+            </div>
 
-    {/* Centered Content Block */}
-    <div className="max-w-4xl mx-auto text-center space-y-6">
-      <div className="flex flex-col md:flex-row items-start gap-8">
-        {/* Left: Name Heading */}
-        <div className="md:w-1/2 w-full text-left">
+            {/* Centered Content Block */}
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <div className="flex flex-col md:flex-row items-start gap-8">
+                {/* Left: Name Heading */}
+                <div className="md:w-1/2 w-full text-left">
                   <h2 className="text-3xl md:text-5xl font-extrabold text-black dark:text-foreground mb-2">Hi, I'm Shashwat.</h2>
                 </div>
 
-        {/* Right: Bio Paragraphs */}
-        <div className="md:w-1/2 w-full space-y-4 mt-5">                   
-        <p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-muted-foreground leading-relaxed text-left`}>
-  I'm a <span className="text-black dark:text-white font-medium">Data Analyst</span> passionate about transforming raw data into 
-  <span className="text-black dark:text-white font-medium"> actionable insights</span> using 
-  <span className="text-black dark:text-white font-medium">  data exploration</span>, 
-  <span className="text-black dark:text-white font-medium"> statistical analysis</span>, and compelling
-  <span className="text-black dark:text-white font-medium"> data visualization</span>. 
-  As a <span className="text-black dark:text-white font-medium">tech enthusiast</span>, I constantly explore 
-  <span className="text-black dark:text-white font-medium"> modern tools</span> like 
-  <span className="text-black dark:text-white font-medium"> Python</span>, 
-  <span className="text-black dark:text-white font-medium"> SQL</span>, and 
-  <span className="text-black dark:text-white font-medium"> Tableau</span> to uncover trends and optimize decision-making.
-</p>
+                {/* Right: Bio Paragraphs */}
+                <div className="md:w-1/2 w-full space-y-4 mt-5">                   
+                  <p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-muted-foreground leading-relaxed text-left`}>
+                    I'm a <span className="text-black dark:text-white font-medium">Data Analyst</span> passionate about transforming raw data into 
+                    <span className="text-black dark:text-white font-medium"> actionable insights</span> using 
+                    <span className="text-black dark:text-white font-medium">  data exploration</span>, 
+                    <span className="text-black dark:text-white font-medium"> statistical analysis</span>, and compelling
+                    <span className="text-black dark:text-white font-medium"> data visualization</span>. 
+                    As a <span className="text-black dark:text-white font-medium">tech enthusiast</span>, I constantly explore 
+                    <span className="text-black dark:text-white font-medium"> modern tools</span> like 
+                    <span className="text-black dark:text-white font-medium"> Python</span>, 
+                    <span className="text-black dark:text-white font-medium"> SQL</span>, and 
+                    <span className="text-black dark:text-white font-medium"> Tableau</span> to uncover trends and optimize decision-making.
+                  </p>
 
-<p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-muted-foreground leading-relaxed text-left`}>
-  I also build projects using <span className="text-black dark:text-white font-medium">frontend technologies</span> like 
-  <span className="text-black dark:text-white font-medium"> React</span> and 
-  <span className="text-black dark:text-white font-medium"> Tailwind CSS</span> to craft clean, interactive 
-  <span className="text-black dark:text-white font-medium"> data-driven interfaces</span>. 
-  My goal is to make <span className="text-black dark:text-white font-medium"> analytics</span> not only accurate but also 
-  <span className="text-black dark:text-white font-medium"> accessible and intuitive</span> for users across all technical levels.
-</p>
-
-
-        </div>
-      </div>
-    </div>
-  </CardContent>
-</Card>
-
+                  <p className={`${isSmallScreen ? 'text-sm' : 'text-lg'} text-muted-foreground leading-relaxed text-left`}>
+                    I also build projects using <span className="text-black dark:text-white font-medium">frontend technologies</span> like 
+                    <span className="text-black dark:text-white font-medium"> React</span> and 
+                    <span className="text-black dark:text-white font-medium"> Tailwind CSS</span> to craft clean, interactive 
+                    <span className="text-black dark:text-white font-medium"> data-driven interfaces</span>. 
+                    My goal is to make <span className="text-black dark:text-white font-medium"> analytics</span> not only accurate but also 
+                    <span className="text-black dark:text-white font-medium"> accessible and intuitive</span> for users across all technical levels.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Skills & Competencies Section */}
         <Card className="bg-gradient-to-br from-background to-muted/20 border-0 shadow-xl overflow-hidden">
@@ -184,7 +181,7 @@ export function AboutSection() {
               <div
                 className="flex animate-scroll hover:pause-animation"
                 style={{
-                  width: `${(allCards.length * 2) * (cardWidth + cardGap)}px`, // Dynamic width calculation
+                  width: `${(allCards.length * 2) * (cardWidth + cardGap)}px`,
                   gap: `${cardGap}px`,
                   paddingLeft: isSmallScreen ? '1rem' : '2rem',
                   paddingRight: isSmallScreen ? '1rem' : '2rem',
@@ -193,72 +190,66 @@ export function AboutSection() {
               >
                 {/* First set of cards */}
                 {allCards.map((card, index) => (
-                 <Card
-  key={`second-${card.title}-${index}`}
-  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex-shrink-0 bg-white dark:bg-card hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10
-             flex flex-col justify-center gap-6" // 🔥 Added gap here
-  style={{ width: `${cardWidth}px`, height: isSmallScreen ? '260px' : '300px' }}
->
-
-                
+                  <Card
+                    key={`first-${card.title}-${index}`}
+                    className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex-shrink-0 bg-white dark:bg-card hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10 flex flex-col justify-center gap-6"
+                    style={{ width: `${cardWidth}px`, height: isSmallScreen ? '260px' : '300px' }}
+                  >
                     <CardHeader className={`text-center ${isSmallScreen ? 'pb-2 pt-4 px-3' : 'pb-4'}`}>
-  <div className={`mx-auto ${isSmallScreen ? 'w-10 h-10' : 'w-12 h-12'} bg-primary/10 rounded-xl flex items-center justify-center ${isSmallScreen ? 'mb-2' : 'mb-3'} group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300`}>
-    <card.icon className={`${isSmallScreen ? 'w-5 h-5' : 'w-6 h-6'} text-primary group-hover:text-primary/80`} />
-  </div>
-  <CardTitle className="text-xs font-semibold uppercase tracking-widest text-primary transition-colors">
-    {card.title}
-  </CardTitle>
-</CardHeader>
-<CardContent className={`pt-0 ${isSmallScreen ? 'px-3 pb-3' : 'px-4 pb-4'} flex flex-col gap-3 items-center`}>
-  <p className={`text-sm text-black dark:text-muted-foreground text-center leading-snug group-hover:text-foreground transition-colors ${isSmallScreen ? 'line-clamp-3' : ''}`}>
-    {card.description}
-  </p>
-  <div className="mt-2 flex justify-center items-center h-6">
-    <span className="inline-block px-2 py-[2px] text-[10px] rounded-full font-medium
-      ${card.category === 'skill'
-        ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300'
-        : 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300'}">
-      {card.category === 'skill' ? 'Core Skill' : 'Technical Expertise'}
-    </span>
-  </div>
-</CardContent>
-
+                      <div className={`mx-auto ${isSmallScreen ? 'w-10 h-10' : 'w-12 h-12'} bg-primary/10 rounded-xl flex items-center justify-center ${isSmallScreen ? 'mb-2' : 'mb-3'} group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300`}>
+                        <card.icon className={`${isSmallScreen ? 'w-5 h-5' : 'w-6 h-6'} text-primary group-hover:text-primary/80`} />
+                      </div>
+                      <CardTitle className="text-xs font-semibold uppercase tracking-widest text-primary transition-colors">
+                        {card.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className={`pt-0 ${isSmallScreen ? 'px-3 pb-3' : 'px-4 pb-4'} flex flex-col gap-3 items-center`}>
+                      <p className={`text-sm text-black dark:text-muted-foreground text-center leading-snug group-hover:text-foreground transition-colors ${isSmallScreen ? 'line-clamp-3' : ''}`}>
+                        {card.description}
+                      </p>
+                      <div className="mt-2 flex justify-center items-center h-6">
+                        <span className={`inline-block px-2 py-[2px] text-[10px] rounded-full font-medium ${
+                          card.category === 'skill'
+                            ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300'
+                            : 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300'
+                        }`}>
+                          {card.category === 'skill' ? 'Core Skill' : 'Technical Expertise'}
+                        </span>
+                      </div>
+                    </CardContent>
                   </Card>
                 ))}
 
                 {/* Second set of cards for seamless loop */}
                 {allCards.map((card, index) => (
-                 <Card
-                 key={`second-${card.title}-${index}`}
-                 className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex-shrink-0 bg-white dark:bg-card hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10
-                            flex flex-col justify-center gap-3" // 🔥 Vertically center content
-                 style={{ width: `${cardWidth}px`, height: isSmallScreen ? '260px' : '300px' }} // 🔧 Give it fixed height for alignment
-               >
-                 <CardHeader className={`text-center ${isSmallScreen ? 'pb-2 pt-4 px-3' : 'pb-4'}`}>
-                   <div className={`mx-auto ${isSmallScreen ? 'w-10 h-10' : 'w-12 h-12'} bg-primary/10 rounded-xl flex items-center justify-center ${isSmallScreen ? 'mb-2' : 'mb-3'} group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300`}>
-                     <card.icon className={`${isSmallScreen ? 'w-5 h-5' : 'w-6 h-6'} text-primary group-hover:text-primary/80`} />
-                   </div>
-                   <CardTitle className="text-xs font-semibold uppercase tracking-widest text-primary transition-colors">
-                     {card.title}
-                   </CardTitle>
-                 </CardHeader>
-               
-                 <CardContent className={`pt-0 ${isSmallScreen ? 'px-3 pb-3' : 'px-4 pb-4'} flex flex-col gap-3 items-center`}>
-                   <p className="text-sm text-black dark:text-muted-foreground text-center leading-snug group-hover:text-foreground transition-colors">
-                     {card.description}
-                   </p>
-                   <div className="mt-2 flex justify-center items-center h-6">
-                     <span className={`inline-block px-2 py-[2px] text-[10px] rounded-full font-medium ${
-                       card.category === 'skill'
-                         ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300'
-                         : 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300'
-                     }`}>
-                       {card.category === 'skill' ? 'Core Skill' : 'Technical Expertise'}
-                     </span>
-                   </div>
-                 </CardContent>
-               </Card>
-               
+                  <Card
+                    key={`second-${card.title}-${index}`}
+                    className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex-shrink-0 bg-white dark:bg-card hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10 flex flex-col justify-center gap-6"
+                    style={{ width: `${cardWidth}px`, height: isSmallScreen ? '260px' : '300px' }}
+                  >
+                    <CardHeader className={`text-center ${isSmallScreen ? 'pb-2 pt-4 px-3' : 'pb-4'}`}>
+                      <div className={`mx-auto ${isSmallScreen ? 'w-10 h-10' : 'w-12 h-12'} bg-primary/10 rounded-xl flex items-center justify-center ${isSmallScreen ? 'mb-2' : 'mb-3'} group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300`}>
+                        <card.icon className={`${isSmallScreen ? 'w-5 h-5' : 'w-6 h-6'} text-primary group-hover:text-primary/80`} />
+                      </div>
+                      <CardTitle className="text-xs font-semibold uppercase tracking-widest text-primary transition-colors">
+                        {card.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className={`pt-0 ${isSmallScreen ? 'px-3 pb-3' : 'px-4 pb-4'} flex flex-col gap-3 items-center`}>
+                      <p className={`text-sm text-black dark:text-muted-foreground text-center leading-snug group-hover:text-foreground transition-colors ${isSmallScreen ? 'line-clamp-3' : ''}`}>
+                        {card.description}
+                      </p>
+                      <div className="mt-2 flex justify-center items-center h-6">
+                        <span className={`inline-block px-2 py-[2px] text-[10px] rounded-full font-medium ${
+                          card.category === 'skill'
+                            ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300'
+                            : 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300'
+                        }`}>
+                          {card.category === 'skill' ? 'Core Skill' : 'Technical Expertise'}
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
 
@@ -276,7 +267,7 @@ export function AboutSection() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(calc(-${allCards.length} * (${cardWidth}px + ${cardGap}px)));
           }
         }
         

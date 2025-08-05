@@ -423,7 +423,7 @@ export function SkillsSection() {
     </>
   ) : (
     <>
-       overall <strong>skill proficiency growth</strong> over time.
+       Overall <strong>skill proficiency growth</strong> over time.
     </>
   )}
 </div>

@@ -41,7 +41,7 @@ export function HeroSection() {
         <div className="space-y-8 text-center lg:text-left">
           <div className="space-y-4">
           <h1 className={`${isSmallScreen ? 'text-xl md:text-3xl' : 'text-4xl md:text-6xl'} heading-font tracking-tight`}>
-  <span className="bg-gradient-to-r from-black to-gray-800 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+  <span className="bg-black  dark:bg-white  bg-clip-text text-transparent">
     DATA ANALYST
   </span>
 </h1>

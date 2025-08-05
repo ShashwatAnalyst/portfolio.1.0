@@ -278,7 +278,7 @@ export function SkillsSection() {
     } else if (selectedYear) {
       return (
         <>
-          Showing <strong>skill distribution</strong> for <strong>{selectedYear}</strong>.
+           <strong>skill distribution</strong> for <strong>{selectedYear}</strong>.
         </>
       );
     } else if (selectedSkill) {
@@ -419,11 +419,11 @@ export function SkillsSection() {
     </>
   ) : selectedSkill ? (
     <>
-      Showing <strong>{selectedSkill}</strong> progression over time.
+       <strong>{selectedSkill}</strong> proficiency growth over time.
     </>
   ) : (
     <>
-      Showing overall <strong>skill growth</strong> timeline.
+       overall <strong>skill proficiency growth</strong> over time.
     </>
   )}
 </div>

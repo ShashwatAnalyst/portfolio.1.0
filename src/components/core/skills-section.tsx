@@ -278,7 +278,7 @@ export function SkillsSection() {
     } else if (selectedYear) {
       return (
         <>
-           <strong>skill distribution</strong> for <strong>{selectedYear}</strong>.
+           <strong>Skill proficiency distribution</strong> for <strong>{selectedYear}</strong>.
         </>
       );
     } else if (selectedSkill) {
